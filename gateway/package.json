@@ -1,0 +1,17 @@
+{
+  "name": "cerebro-gateway",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Gateway Telegram+WhatsApp -> Ollama do Segundo Cérebro",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "whatsapp": "node --env-file=.env whatsapp.js"
+  },
+  "dependencies": {
+    "telegraf": "^4.16.3"
+  },
+  "optionalDependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "pino": "^9.4.0"
+  }
+}

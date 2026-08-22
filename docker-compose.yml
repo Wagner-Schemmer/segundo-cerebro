@@ -1,0 +1,64 @@
+services:
+  # ============ FASE 1: Orquestrador ============
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: cerebro-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_SECURE_COOKIE=false
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+      - TZ=America/Sao_Paulo
+      - N8N_DEFAULT_LOCALE=pt-BR
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_PAYLOAD_SIZE_MAX=50
+    volumes:
+      - ./n8n-data:/home/node/.n8n
+      - ./cerebro:/files/cerebro
+      - ./workflows:/files/workflows
+
+  # ============ FASE 2: WhatsApp (subir depois) ============
+  evolution-api:
+    image: evoapicloud/evolution-api:latest
+    container_name: cerebro-whatsapp
+    restart: unless-stopped
+    profiles: ["whatsapp"]
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - AUTHENTICATION_API_KEY=${EVOLUTION_API_KEY}
+      - DATABASE_ENABLED=true
+      - DATABASE_PROVIDER=postgresql
+      - DATABASE_CONNECTION_URI=postgresql://cerebro:cerebro@postgres:5432/evolution
+      - CACHE_REDIS_ENABLED=true
+      - CACHE_REDIS_URI=redis://redis:6379
+      - CACHE_LOCAL_ENABLED=false
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./evolution-instances:/evolution/instances
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: cerebro-postgres
+    restart: unless-stopped
+    profiles: ["whatsapp"]
+    environment:
+      - POSTGRES_USER=cerebro
+      - POSTGRES_PASSWORD=cerebro
+      - POSTGRES_DB=evolution
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: cerebro-redis
+    restart: unless-stopped
+    profiles: ["whatsapp"]
+    command: redis-server --maxmemory 128mb --maxmemory-policy allkeys-lru
+    volumes:
+      - ./redis-data:/data

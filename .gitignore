@@ -1,0 +1,10 @@
+n8n-data/
+postgres-data/
+redis-data/
+evolution-instances/
+node_modules/
+sessao-whatsapp/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/
+.env
