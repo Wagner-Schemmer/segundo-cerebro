@@ -6,5 +6,5 @@ node_modules/
 sessao-whatsapp/
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
-.obsidian/plugins/
+**/.obsidian/plugins/
 .env
