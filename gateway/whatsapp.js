@@ -4,7 +4,7 @@
 // Recebe: textos (conversa IA + /nota), documentos, imagens e áudios → cerebro/
 // Envia:  qualquer automação solta um .json em ./fila-envio e o Ulton entrega
 
-import { estado, conversar, salvarNota } from './lib.js'
+import { estado, conversar, salvarNota, listarSkills, obterSkill, esquecer } from './lib.js'
 import { transcrever, sintetizar, vozDisponivel } from './voz.js'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -245,6 +245,26 @@ async function conectar() {
             `🎙️ Respostas em voz: ${modoVoz.get(chatId) === false ? 'DESLIGADAS' : 'ligadas'}\n` +
             `👂 Ouvido (whisper): ${d.stt ? '✓' : '✗ instalando'}\n` +
             `🗣️ Boca (piper): ${d.tts ? '✓' : '✗ instalando'}`)
+          continue
+        }
+        if (comando.startsWith('/skills')) {
+          const lista = listarSkills()
+          await responder(chatId, lista.length
+            ? `🎯 Skills disponíveis:\n${lista.map(s => `• *${s.id}* — ${s.desc}`).join('\n')}\n\nUse: /skill <nome>`
+            : 'Nenhuma skill ainda. Crie .md em cerebro/sistema/skills/')
+          continue
+        }
+        if (comando.startsWith('/skill ')) {
+          const s = obterSkill(texto.slice(7).trim())
+          if (!s) { await responder(chatId, '❓ Skill não encontrada. Use /skills'); continue }
+          estado.skillsAtivas.set(`wa-${chatId}`, s)
+          esquecer.length // no-op
+          await responder(chatId, `🎯 Skill **${s.titulo}** ativada nesta conversa!\n(mande /esquecer pra desligar)`)
+          continue
+        }
+        if (comando === '/esquecer') {
+          esquecer(`wa-${chatId}`)
+          await responder(chatId, '🧹 Conversa e skill zeradas pra este chat.')
           continue
         }
         try {
