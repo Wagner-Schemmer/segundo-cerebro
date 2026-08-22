@@ -5,6 +5,7 @@
 // Envia:  qualquer automação solta um .json em ./fila-envio e o Ulton entrega
 
 import { estado, conversar, salvarNota } from './lib.js'
+import { transcrever, sintetizar, vozDisponivel } from './voz.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -27,6 +28,7 @@ const P = (await import('pino')).default({ level: 'silent' })
 const vistos = new Set()
 let sock = null
 const pendentes = new Map()   // respostas aguardando /ok
+const modoVoz = new Map()     // chatId -> responde também em nota de voz?
 let contadorAprovacao = 0
 let ultimoId = 0
 
@@ -56,6 +58,15 @@ async function nomeDoGrupo(chatId) {
 async function responder(chatId, texto, citando) {
   const enviada = await sock.sendMessage(chatId, { text: texto }, citando ? { quoted: citando } : {})
   if (enviada?.key?.id) marcarVisto(enviada.key.id)
+}
+
+async function responderVoz(chatId, texto, citando) {
+  const ogg = await sintetizar(texto)
+  try {
+    await sock.sendMessage(chatId,
+      { audio: fs.readFileSync(ogg), mimetype: 'audio/ogg; codecs=opus', ptt: true },
+      citando ? { quoted: citando } : {})
+  } finally { fs.rmSync(ogg, { force: true }) }
 }
 
 async function salvarArquivo(msg) {
@@ -168,13 +179,39 @@ async function conectar() {
 
       // ===== Arquivos: direto pro Obsidian (de qualquer pessoa) =====
       if (m.documentMessage || m.imageMessage || m.audioMessage || m.videoMessage) {
+        let onde = null
         try {
-          const onde = await salvarArquivo(msg)
-          if (onde) {
-            console.log(`📥 Arquivo salvo: ${onde}`)
-            if (!zonaLivre || chatId === chatEu) await responder(chatEu, `📥 Recebi um arquivo de ${numeroChat} e guardei: ${onde}`)
-          }
+          onde = await salvarArquivo(msg)
+          if (onde) console.log(`📥 Arquivo salvo: ${onde}`)
         } catch (e) { console.error('Erro ao salvar arquivo:', e.message) }
+
+        // 🎙️ MODO JARVIS: áudio na zona livre vira conversa por voz
+        if (m.audioMessage && zonaLivre && onde) {
+          const caminhoAbs = path.join(__dirname, '..', onde)
+          await responder(chatId, '🎤 Ouvindo…')
+          try {
+            let falado = await transcrever(caminhoAbs)
+            falado = falado.replace(/^\s*(oi+|ol[áa]|e a[íi]|hey)\s*(ultron)?\s*[,.!]?\s*/i, '').trim() || falado
+            if (!falado) {
+              await responder(chatId, '🤔 Não consegui entender o áudio. Manda de novo?')
+              continue
+            }
+            console.log(`🎤 [voz] ${falado.slice(0, 70)}`)
+            const resposta = await conversar(`wa-${chatId}`, `🗣️ ${falado}`)
+            await responder(chatId, `🗣️ _"${falado.slice(0, 150)}"_\n\n${resposta}`, msg)
+            if (modoVoz.get(chatId) !== false && vozDisponivel().tts) {
+              await responderVoz(chatId, resposta).catch(e => console.error('TTS:', e.message))
+            }
+          } catch (e) {
+            console.error('Falha no fluxo de voz:', e.message)
+            await responder(chatId, `⚠️ Problema com o áudio: ${e.message}`)
+          }
+          continue
+        }
+
+        if (onde && (!zonaLivre || chatId === chatEu)) {
+          await responder(chatEu, `📥 Recebi um arquivo de ${numeroChat} e guardei: ${onde}`)
+        }
         continue
       }
 
@@ -197,6 +234,17 @@ async function conectar() {
           const n = Number(comando.split(/\s+/)[1] ?? ultimoId)
           pendentes.delete(n)
           await responder(chatId, `🗑️ Sugestão #${n || ultimoId} descartada`)
+          continue
+        }
+        if (comando.startsWith('/voz')) {
+          const arg = comando.split(/\s+/)[1]
+          if (arg === 'off' || arg === 'desliga') modoVoz.set(chatId, false)
+          else if (arg === 'on' || arg === 'liga') modoVoz.set(chatId, true)
+          const d = vozDisponivel()
+          await responder(chatId,
+            `🎙️ Respostas em voz: ${modoVoz.get(chatId) === false ? 'DESLIGADAS' : 'ligadas'}\n` +
+            `👂 Ouvido (whisper): ${d.stt ? '✓' : '✗ instalando'}\n` +
+            `🗣️ Boca (piper): ${d.tts ? '✓' : '✗ instalando'}`)
           continue
         }
         try {
