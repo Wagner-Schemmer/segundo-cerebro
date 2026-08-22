@@ -5,13 +5,15 @@
   "description": "Gateway Telegram+WhatsApp -> Ollama do Segundo Cérebro",
   "scripts": {
     "start": "node --env-file=.env index.js",
-    "whatsapp": "node --env-file=.env whatsapp.js"
+    "whatsapp": "node --env-file=.env whatsapp.js",
+    "sigaa": "node --env-file=.env sigaa-check.js"
   },
   "dependencies": {
+    "qrcode-terminal": "^0.12.0",
     "telegraf": "^4.16.3"
   },
   "optionalDependencies": {
-    "@whiskeysockets/baileys": "^6.7.9",
-    "pino": "^9.4.0"
+    "@whiskeysockets/baileys": "^6.7.24",
+    "pino": "^9.14.0"
   }
 }

@@ -7,9 +7,9 @@ import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO } from './l
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, { handlerTimeout: 300_000 })
 
 bot.command('start', ctx => ctx.reply(
-  '🧠 Segundo Cérebro online!\n\n' +
+  '🤖 Ultron online!\n\n' +
   'Me mande qualquer texto que eu respondo.\n' +
-  '/nota <texto> — salva no inbox do Obsidian\n' +
+  '/nota <texto> — salva no Obsidian (#faculdade #trabalho #cursos #vida #projetos)\n' +
   '/modelo <nome> — troca o modelo Ollama\n' +
   '/status — RAM e modelos'
 ))
