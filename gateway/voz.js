@@ -21,6 +21,7 @@ function primeiroExistente(candidatos) {
 
 export function vozDisponivel() {
   const whisperBin = primeiroExistente([
+    path.join(DIR_VOZ, 'whisper/whisper-bin-ubuntu-x64/whisper-cli'),
     path.join(DIR_VOZ, 'whisper/bin/whisper-cli'),
     path.join(DIR_VOZ, 'whisper-bin-x64/whisper-cli'),
     path.join(DIR_VOZ, 'build/bin/whisper-cli'),
@@ -53,9 +54,9 @@ export async function transcrever(arquivoAudio) {
       fs.mkdirSync(TMP, { recursive: true })
       await run('ffmpeg', ['-y', '-i', arquivoAudio, '-ar', '16000', '-ac', '1', '-c:a', 'pcm_s16le', wav], { timeout: 60000 })
       const bin = primeiroExistente([
+        path.join(DIR_VOZ, 'whisper/whisper-bin-ubuntu-x64/whisper-cli'),
         path.join(DIR_VOZ, 'whisper/bin/whisper-cli'),
         path.join(DIR_VOZ, 'whisper-bin-x64/whisper-cli'),
-        path.join(DIR_VOZ, 'build/bin/whisper-cli'),
       ])
       const { stdout } = await run(bin,
         ['-m', path.join(DIR_VOZ, 'whisper-base.bin'), '-l', 'pt', '-nt', '-f', wav],
