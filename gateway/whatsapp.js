@@ -228,6 +228,9 @@ async function conectar() {
         } catch (e) { console.error('Erro ao salvar arquivo:', e.message) }
 
         // 🎙️ MODO JARVIS: áudio na zona livre vira conversa por voz
+        if (m.audioMessage && !zonaLivre) {
+          console.log(`🔇 Áudio ignorado: grupo "${await nomeDoGrupo(chatId)}" não é zona livre (${chatId})`)
+        }
         if (m.audioMessage && zonaLivre && onde) {
           const caminhoAbs = path.join(__dirname, '..', onde)
           await responder(chatId, '🎤 Ouvindo…')

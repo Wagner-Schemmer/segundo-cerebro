@@ -2,6 +2,7 @@
 // v2: memória persistente no Obsidian + skills criadas pelo usuário
 
 import fs from 'node:fs'
+import http from 'node:http'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -167,8 +168,28 @@ function registrarDiario(papel, canal, texto) {
   } catch { /* diário nunca derruba a conversa */ }
 }
 
-export async function conversar(id, texto, canal = 'chat') {
-  // memória automática antes de tudo
+// chamada HTTP direta ao Ollama: sem os limites escondidos do fetch (300s)
+function ollamaChat(corpoJson, esperaMs = 720_000) {
+  return new Promise((resolve, reject) => {
+    const url = new URL(`${OLLAMA_URL}/api/chat`)
+    const req = http.request(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      timeout: esperaMs,
+    }, res => {
+      let dados = ''
+      res.on('data', c => { dados += c })
+      res.on('end', () => {
+        try { resolve(JSON.parse(dados)) } catch { reject(new Error('resposta inválida do Ollama')) }
+      })
+    })
+    req.on('timeout', () => req.destroy(new Error('tempo esgotado esperando o Ollama')))
+    req.on('error', reject)
+    req.end(corpoJson)
+  })
+}
+
+export async function conversar(id, texto, canal = 'chat') {  // memória automática antes de tudo
   const novoFato = tentarLembrar(texto)
   const novaPessoa = novoFato ? null : tentarPessoa(texto)
 
@@ -176,19 +197,26 @@ export async function conversar(id, texto, canal = 'chat') {
   h.push({ role: 'user', content: texto })
   while (h.length > 16) h.shift()
 
-  const r = await fetch(`${OLLAMA_URL}/api/chat`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      model: estado.modelo,
-      messages: [{ role: 'system', content: montarSistema(id) }, ...h],
-      stream: false,
-      keep_alive: process.env.OLLAMA_KEEP_ALIVE ?? '5m',
-      options: { num_ctx: Number(process.env.OLLAMA_NUM_CTX ?? 2048) },
-    }),
+  const corpo = JSON.stringify({
+    model: estado.modelo,
+    messages: [{ role: 'system', content: montarSistema(id) }, ...h],
+    stream: false,
+    keep_alive: process.env.OLLAMA_KEEP_ALIVE ?? '5m',
+    options: { num_ctx: Number(process.env.OLLAMA_NUM_CTX ?? 2048) },
   })
-  if (!r.ok) throw new Error(`Ollama respondeu ${r.status}`)
-  const j = await r.json()
+
+  // máquina fraca: geração pode demorar minutos; 2 tentativas e paciência de 12min
+  let j
+  for (let tent = 1; tent <= 2; tent++) {
+    try {
+      j = await ollamaChat(corpo)
+      break
+    } catch (e) {
+      if (tent === 2) throw new Error(`Ollama não respondeu (${e.message})`)
+      console.log('⚠️ Ollama falhou, tentando de novo em 3s...')
+      await new Promise(res => setTimeout(res, 3000))
+    }
+  }
   let resposta = j.message?.content?.trim() || '(resposta vazia)'
 
   if (novoFato) resposta = `🧠 Gravado na memória: "${novoFato}".\n\n${resposta}`
