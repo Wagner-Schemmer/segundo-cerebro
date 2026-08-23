@@ -10,10 +10,13 @@ import { checarSIGAA, DIR_FACULDADE } from './sigaa.js'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const FILA_ENVIO = path.join(__dirname, 'fila-envio')
 
-function notificar(texto) {
+function notificar(texto, { soEu = false } = {}) {
   fs.mkdirSync(FILA_ENVIO, { recursive: true })
-  fs.writeFileSync(path.join(FILA_ENVIO, `sigaa-${Date.now()}.json`),
-    JSON.stringify({ para: 'eu', texto }))
+  const destinos = soEu ? ['eu'] : ['eu', 'grupo']
+  for (const para of destinos) {
+    fs.writeFileSync(path.join(FILA_ENVIO, `sigaa-${para}-${Date.now()}.json`),
+      JSON.stringify({ para, texto }))
+  }
 }
 
 async function main() {
@@ -47,6 +50,6 @@ async function main() {
 
 main().catch(e => {
   console.error('💥', e.message)
-  notificar(`⚠️ Robô do SIGAA com problema: ${e.message}`)
+  notificar(`⚠️ Robô do SIGAA com problema: ${e.message}`, { soEu: true })
   process.exit(1)
 })

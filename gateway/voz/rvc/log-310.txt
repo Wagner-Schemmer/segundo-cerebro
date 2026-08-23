@@ -1,0 +1,4 @@
+Activate with: source ambiente/bin/activate
+ + typing-extensions==4.16.0
+ + tqdm==4.70.0
+ + urllib3==2.7.0

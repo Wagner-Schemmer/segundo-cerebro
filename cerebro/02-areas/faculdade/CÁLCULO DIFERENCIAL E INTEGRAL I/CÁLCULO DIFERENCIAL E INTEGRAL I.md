@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-08-22
+atualizado: 2026-08-23
 tags: [faculdade, "cálculo diferencial e integral"]
 ---
 

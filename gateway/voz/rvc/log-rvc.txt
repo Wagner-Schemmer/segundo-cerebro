@@ -1,0 +1,3 @@
+ + numpy==2.5.2
+hint: `numpy` (v1.25.2) was included because `rvc-python` (v0.0.6) depends on `numpy`
+hint: `distutils` was removed from the standard library in Python 3.12. Consider adding a constraint (like `numpy >1.25.2`) to avoid building a version of `numpy` that depends on `distutils`.

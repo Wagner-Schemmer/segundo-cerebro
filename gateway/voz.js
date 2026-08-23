@@ -68,6 +68,27 @@ export async function transcrever(arquivoAudio) {
   })
 }
 
+/* ─────────── CONVERSÃO PRA VOZ DO ULTRON (RVC, James Spader) ─────────── */
+function rvcPronto() {
+  return fs.existsSync(path.join(DIR_VOZ, 'rvc/ambiente/bin/python'))
+    && fs.existsSync(path.join(DIR_VOZ, 'rvc/Ultron.pth'))
+}
+
+export async function converterUltron(entradaWav) {
+  const py = path.join(DIR_VOZ, 'rvc/ambiente/bin/python')
+  const script = path.join(DIR_VOZ, 'rvc/converter.py')
+  if (!fs.existsSync(py)) throw new Error('ambiente RVC não instalado')
+  const saida = entradaWav.replace(/\.wav$/, '-ultron.wav')
+  return comCadeado(async () => {
+    await run(py, ['-u', script, entradaWav, saida, '-4'], {
+      timeout: 420000,
+      maxBuffer: 20 * 1024 * 1024,
+      env: { ...process.env, OMP_NUM_THREADS: '2', MKL_NUM_THREADS: '2' },
+    })
+    return saida
+  })
+}
+
 /* ─────────── TEXTO → ÁUDIO (.ogg/opus pronto pro WhatsApp) ─────────── */
 function piperFalar(texto, saidaWav) {
   return new Promise((resolve, reject) => {
@@ -103,15 +124,26 @@ export async function sintetizar(texto, maxCaracteres = 420, estilo = 'cinema') 
         fala = fala.slice(0, maxCaracteres).replace(/\s+\S*$/, '') + '… A resposta completa está no texto.'
       }
       await piperFalar(fala, wav)
-      // estilo cinema: pitch grave + eco metálico (clima Ultron/Vingadores)
-      const filtro = estilo === 'cinema'
-        ? 'asetrate=22050*0.82,aresample=22050,atempo=1.06,aecho=0.7:0.55:55:0.28,lowpass=f=3400'
-        : 'anull'
-      await run('ffmpeg', ['-y', '-i', wav, '-af', filtro,
+
+      let wavFinal = wav
+      let filtro = 'anull'
+      if (estilo === 'ultron' && rvcPronto()) {
+        try {
+          wavFinal = await converterUltron(wav)
+          filtro = 'aecho=0.6:0.4:40:0.18,lowpass=f=5200'
+        } catch (e) {
+          console.error('RVC falhou, uso cinema:', e.message.slice(-100))
+        }
+      }
+      if (wavFinal === wav && estilo !== 'normal') {
+        filtro = 'asetrate=22050*0.82,aresample=22050,atempo=1.06,aecho=0.7:0.55:55:0.28,lowpass=f=3400'
+      }
+      await run('ffmpeg', ['-y', '-i', wavFinal, '-af', filtro,
         '-c:a', 'libopus', '-b:a', '48k', '-application', 'voip', '-ar', '48000', ogg], { timeout: 60000 })
       return ogg
     } finally {
       fs.rmSync(wav, { force: true })
+      fs.rmSync(wav.replace(/\.wav$/, '-ultron.wav'), { force: true })
     }
   })
 }

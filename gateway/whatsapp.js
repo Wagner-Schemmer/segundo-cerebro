@@ -106,23 +106,41 @@ async function salvarArquivo(msg) {
   return path.relative(path.join(__dirname, '..'), destino)
 }
 
+// Acha o grupo chamado exatamente "Ultron" (sala de comando)
+async function acharGrupoUltron() {
+  try {
+    const grupos = await sock.groupFetchAllParticipating()
+    return Object.values(grupos).find(g => g.subject === 'Ultron')?.id ?? null
+  } catch { return null }
+}
+
+let filaRodando = false
 async function processarFilaEnvio() {
-  if (!sock?.user) return
+  if (!sock?.user || filaRodando) return
+  filaRodando = true
   let pendentes
   try { pendentes = fs.readdirSync(FILA_ENVIO).filter(f => f.endsWith('.json')) } catch { return }
   for (const arquivo of pendentes) {
     const caminho = path.join(FILA_ENVIO, arquivo)
     try {
       const pedido = JSON.parse(fs.readFileSync(caminho, 'utf8'))
-      const numero = pedido.para === 'eu' || !pedido.para ? meuNumero() : String(pedido.para).replace(/\D/g, '')
-      await sock.sendMessage(`${numero}@s.whatsapp.net`, { text: pedido.texto })
-      console.log(`📤 Enviado para ${pedido.para === 'eu' ? 'você' : pedido.para}: ${String(pedido.texto).slice(0, 60)}`)
-      fs.unlinkSync(caminho)
+      let jid
+      if (pedido.para === 'grupo') {
+        jid = await acharGrupoUltron()
+        if (!jid) throw new Error('grupo Ultron não encontrado')
+      } else {
+        const numero = pedido.para === 'eu' || !pedido.para ? meuNumero() : String(pedido.para).replace(/\D/g, '')
+        jid = `${numero}@s.whatsapp.net`
+      }
+      await sock.sendMessage(jid, { text: pedido.texto })
+      console.log(`📤 Enviado para ${pedido.para ?? 'eu'}: ${String(pedido.texto).slice(0, 60)}`)
+      fs.rmSync(caminho, { force: true })
     } catch (e) {
       console.error(`⚠️ Falha na fila (${arquivo}): ${e.message}`)
-      fs.renameSync(caminho, caminho.replace(/\.json$/, '.falha'))
+      try { fs.renameSync(caminho, caminho.replace(/\.json$/, '.falha')) } catch {}
     }
   }
+  filaRodando = false
 }
 
 async function conectar() {
@@ -268,6 +286,9 @@ async function conectar() {
           else if (arg === 'cinema' || arg === 'filme') {
             estiloVoz.set(chatId, 'cinema')
             extra = '\n🎬 Estilo cinema: voz grave com eco metálico.'
+          } else if (arg === 'ultron') {
+            estiloVoz.set(chatId, 'ultron')
+            extra = '\n🤖 Estilo ULTRON: timbre do James Spader via RVC (mais lento pra converter).'
           } else if (arg === 'normal' || arg === 'natural') {
             estiloVoz.set(chatId, 'normal')
             extra = '\n🗣️ Estilo natural: sem efeitos.'
