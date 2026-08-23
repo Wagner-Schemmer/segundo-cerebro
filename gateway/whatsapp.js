@@ -44,15 +44,15 @@ function meuNumero() {
   return sock?.user?.id?.split(':')[0]?.split('@')[0] ?? null
 }
 
-// Nome dos grupos (cache pra não perguntar pro servidor toda hora)
+// Nome dos grupos (cache só de nomes válidos pra não travar em falha)
 const nomesGrupos = new Map()
 async function nomeDoGrupo(chatId) {
-  if (!nomesGrupos.has(chatId)) {
-    try {
-      nomesGrupos.set(chatId, (await sock.groupMetadata(chatId)).subject ?? '')
-    } catch { return '' }
-  }
-  return nomesGrupos.get(chatId)
+  if (nomesGrupos.has(chatId)) return nomesGrupos.get(chatId)
+  try {
+    const nome = (await sock.groupMetadata(chatId)).subject ?? ''
+    if (nome) nomesGrupos.set(chatId, nome)
+    return nome
+  } catch { return '' }
 }
 
 async function responder(chatId, texto, citando) {
@@ -69,6 +69,15 @@ async function responderVoz(chatId, texto, citando) {
   } finally { fs.rmSync(ogg, { force: true }) }
 }
 
+// download de mídia com tempo limite (o Baileys às vezes pendura pra sempre)
+function baixarMidia(msg, segundos = 45) {
+  return Promise.race([
+    downloadMediaMessage(msg, { reuploadRequest: sock.updateMediaMessage, logger: P }),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error(`mídia não baixou em ${segundos}s`)), segundos * 1000)),
+  ])
+}
+
 async function salvarArquivo(msg) {
   const m = msg.message
   const tipo = m.documentMessage ? 'document' : m.imageMessage ? 'image'
@@ -76,7 +85,14 @@ async function salvarArquivo(msg) {
   if (!tipo) return null
 
   fs.mkdirSync(ARQUIVOS_CEREBRO, { recursive: true })
-  const buffer = await downloadMediaMessage(msg, { reuploadRequest: sock.updateMediaMessage, logger: P })
+  console.log(`⬇️ baixando ${tipo}…`)
+  let midia = await baixarMidia(msg)
+  // versões novas do Baileys devolvem Buffer; antigas devolvem stream — aceito ambos
+  if (!Buffer.isBuffer(midia)) {
+    const pedacos = []
+    for await (const pedaco of midia) pedacos.push(pedaco)
+    midia = Buffer.concat(pedacos)
+  }
 
   const hoje = new Date().toISOString().slice(0, 10)
   const hora = new Date().toTimeString().slice(0, 5).replace(':', '')
@@ -84,7 +100,8 @@ async function salvarArquivo(msg) {
   const nomeOriginal = m.documentMessage?.fileName ?? `${tipo}-${hoje}${exts[tipo]}`
   const seguro = nomeOriginal.replace(/[^\w.\-\u00C0-\u024F ]/g, '_').slice(0, 80)
   const destino = path.join(ARQUIVOS_CEREBRO, `${hoje}-${hora}-${seguro}`)
-  fs.writeFileSync(destino, buffer)
+  fs.writeFileSync(destino, midia)
+  console.log(`⬇️ baixado: ${(midia.length / 1024).toFixed(0)}KB`)
   return path.relative(path.join(__dirname, '..'), destino)
 }
 
@@ -155,6 +172,8 @@ async function conectar() {
     console.log(`🔔 [diagnóstico] evento recebido: tipo=${type}, qtd=${messages.length}`)
     if (type !== 'notify') return
     for (const msg of messages) {
+      const tiposMsg = msg.message ? Object.keys(msg.message).join(',') : 'SEM-MESSAGE'
+      console.log(`🔬 bruto: id=${String(msg.key.id).slice(-6)} fromMe=${msg.key.fromMe} jid=${msg.key.remoteJid?.slice(0, 28)} tipos=[${tiposMsg}]`)
       if (!msg.message || vistos.has(msg.key.id)) continue
       marcarVisto(msg.key.id)
 
@@ -174,8 +193,12 @@ async function conectar() {
       if (msg.key.fromMe && !zonaLivre) continue
 
       const chatEu = `${meuNumero()}@s.whatsapp.net`
-      const m = msg.message
+      // WhatsApp às vezes embrulha mensagens (efêmeras/view-once) — desembrulha
+      const desembrulhar = x => x?.viewOnceMessage?.message ?? x?.viewOnceMessageV2?.message
+        ?? x?.ephemeralMessage?.message ?? x?.documentWithCaptionMessage?.message ?? x
+      const m = desembrulhar(msg.message)
       const texto = m.conversation ?? m.extendedTextMessage?.text ?? ''
+      console.log(`🔍 [${chatId.slice(0, 25)}] fromMe=${msg.key.fromMe} eu=${meuNumero()} audio=${!!m.audioMessage} doc=${!!m.documentMessage} img=${!!m.imageMessage} txt="${String(texto).slice(0, 30)}"`)
 
       // ===== Arquivos: direto pro Obsidian (de qualquer pessoa) =====
       if (m.documentMessage || m.imageMessage || m.audioMessage || m.videoMessage) {
