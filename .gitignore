@@ -8,3 +8,12 @@ sessao-whatsapp/
 .obsidian/workspace-mobile.json
 **/.obsidian/plugins/
 .env
+
+# modelos/binários de voz (pesados, ficam só na máquina)
+gateway/voz/rvc/
+gateway/voz/piper/
+gateway/voz/whisper/
+gateway/voz/*.onnx
+gateway/voz/*.bin
+gateway/voz/*.tar.gz
+gateway/voz/teste-*.wav
