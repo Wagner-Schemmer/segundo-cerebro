@@ -19,3 +19,4 @@ gateway/voz/*.tar.gz
 gateway/voz/teste-*.wav
 !gateway/voz/rvc/*.py
 !gateway/voz/faber.onnx.json
+gateway/wake/ambiente/

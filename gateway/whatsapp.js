@@ -173,6 +173,12 @@ async function conectar() {
     if (connection === 'open') {
       console.log('🤖 Ultron conectado ao WhatsApp!')
       console.log('💬 Teste: mande mensagem pra VOCÊ MESMO no WhatsApp')
+      try {
+        const grupos = await sock.groupFetchAllParticipating()
+        for (const g of Object.values(grupos)) {
+          console.log(`👥 grupo "${g.subject}" | jid=${g.id} ${g.subject === 'Ultron' ? '← ZONA LIVRE' : ''}`)
+        }
+      } catch (e) { console.log('⚠️ não listei os grupos:', e.message) }
       setInterval(processarFilaEnvio, 3000)
     }
     if (connection === 'close') {
