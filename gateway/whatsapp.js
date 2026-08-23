@@ -29,6 +29,7 @@ const vistos = new Set()
 let sock = null
 const pendentes = new Map()   // respostas aguardando /ok
 const modoVoz = new Map()     // chatId -> responde também em nota de voz?
+const estiloVoz = new Map()   // chatId -> 'cinema' (grave+eco) | 'natural'
 let contadorAprovacao = 0
 let ultimoId = 0
 
@@ -61,7 +62,7 @@ async function responder(chatId, texto, citando) {
 }
 
 async function responderVoz(chatId, texto, citando) {
-  const ogg = await sintetizar(texto)
+  const ogg = await sintetizar(texto, 420, estiloVoz.get(chatId) ?? 'cinema')
   try {
     await sock.sendMessage(chatId,
       { audio: fs.readFileSync(ogg), mimetype: 'audio/ogg; codecs=opus', ptt: true },
@@ -261,13 +262,22 @@ async function conectar() {
         }
         if (comando.startsWith('/voz')) {
           const arg = comando.split(/\s+/)[1]
+          let extra = ''
           if (arg === 'off' || arg === 'desliga') modoVoz.set(chatId, false)
           else if (arg === 'on' || arg === 'liga') modoVoz.set(chatId, true)
+          else if (arg === 'cinema' || arg === 'filme') {
+            estiloVoz.set(chatId, 'cinema')
+            extra = '\n🎬 Estilo cinema: voz grave com eco metálico.'
+          } else if (arg === 'normal' || arg === 'natural') {
+            estiloVoz.set(chatId, 'normal')
+            extra = '\n🗣️ Estilo natural: sem efeitos.'
+          }
           const d = vozDisponivel()
           await responder(chatId,
             `🎙️ Respostas em voz: ${modoVoz.get(chatId) === false ? 'DESLIGADAS' : 'ligadas'}\n` +
-            `👂 Ouvido (whisper): ${d.stt ? '✓' : '✗ instalando'}\n` +
-            `🗣️ Boca (piper): ${d.tts ? '✓' : '✗ instalando'}`)
+            `🎭 Estilo: ${estiloVoz.get(chatId) ?? 'cinema'}\n` +
+            `👂 Ouvido (whisper): ${d.stt ? '✓' : '✗'} | 🗣️ Boca (piper): ${d.tts ? '✓' : '✗'}` + extra +
+            `\n(opções: on/off · cinema/normal)`)
           continue
         }
         if (comando.startsWith('/skills')) {

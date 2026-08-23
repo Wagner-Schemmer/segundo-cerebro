@@ -85,7 +85,7 @@ function piperFalar(texto, saidaWav) {
   })
 }
 
-export async function sintetizar(texto, maxCaracteres = 420) {
+export async function sintetizar(texto, maxCaracteres = 420, estilo = 'cinema') {
   const d = vozDisponivel()
   if (!d.tts) throw new Error('piper não instalado ainda')
   return comCadeado(async () => {
@@ -103,7 +103,12 @@ export async function sintetizar(texto, maxCaracteres = 420) {
         fala = fala.slice(0, maxCaracteres).replace(/\s+\S*$/, '') + '… A resposta completa está no texto.'
       }
       await piperFalar(fala, wav)
-      await run('ffmpeg', ['-y', '-i', wav, '-c:a', 'libopus', '-b:a', '48k', '-application', 'voip', '-ar', '48000', ogg], { timeout: 60000 })
+      // estilo cinema: pitch grave + eco metálico (clima Ultron/Vingadores)
+      const filtro = estilo === 'cinema'
+        ? 'asetrate=22050*0.82,aresample=22050,atempo=1.06,aecho=0.7:0.55:55:0.28,lowpass=f=3400'
+        : 'anull'
+      await run('ffmpeg', ['-y', '-i', wav, '-af', filtro,
+        '-c:a', 'libopus', '-b:a', '48k', '-application', 'voip', '-ar', '48000', ogg], { timeout: 60000 })
       return ogg
     } finally {
       fs.rmSync(wav, { force: true })
