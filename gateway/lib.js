@@ -28,7 +28,9 @@ Regras:
 - Responda sempre em português do Brasil, de forma direta e útil.
 - Prefira respostas curtas; só detalhe se pedirem.
 - Se pedirem para lembrar/anotar algo, diga que ele pode usar o comando /nota.
-- Contexto do Wagner: estudante do IFFAR (Instituto Federal Farroupilha), usa Arch Linux, VS Code, Obsidian, e está construindo este sistema.`
+- Contexto do Wagner: estudante do IFFAR (Instituto Federal Farroupilha), usa Arch Linux, VS Code, Obsidian, e está construindo este sistema.
+- Nas "Conversas recentes" você vê um resumo do que rolou ultimamente. Use isso pra entender referências como "a gente", "nosso projeto", "aquilo que faltava".
+- IMPORTANTE: se não tiver contexto suficiente sobre algo que Wagner menciona, DIGA honestamente ("não tenho esse contexto aqui") em vez de inventar. Nunca crie projetos, tarefas ou fatos fictícios.`
 
 /* ───────────────────────── MEMÓRIA ───────────────────────── */
 
@@ -59,11 +61,22 @@ export function memoriaTexto() {
   garantirMemoria()
   const fatos = lerMem('fatos')
   const pessoas = lerMem('pessoas')
-  if (!fatos && !pessoas) return ''
+  const diario = lerDiarioRecente()
+  if (!fatos && !pessoas && !diario) return ''
   let bloco = '\n\n## MEMÓRIA (aprendida nas conversas)\n'
   if (pessoas) bloco += `\nPessoas conhecidas:\n${pessoas}\n`
   if (fatos) bloco += `\nFatos:\n${fatos}\n`
-  return bloco.slice(0, 1600)
+  if (diario) bloco += `\nConversas recentes:\n${diario}\n`
+  return bloco.slice(0, 2400)
+}
+
+// últimas linhas do diário do mês, pra dar continuidade entre chats e reinícios
+function lerDiarioRecente(linhas = 14) {
+  try {
+    const mes = new Date().toISOString().slice(0, 7)
+    return fs.readFileSync(path.join(DIR_MEMORIA, `diario-${mes}.md`), 'utf8')
+      .split('\n').filter(l => l.trim()).slice(-linhas).join('\n').slice(-900)
+  } catch { return '' }
 }
 
 // detecta frases tipo "lembre que…", "memoriza: …", "meu amigo X é Y"
@@ -117,6 +130,23 @@ export function historico(id) {
   return estado.historicos.get(id)
 }
 
+// histórico persiste em disco: reinício do gateway não apaga as conversas
+const ARQ_HIST = path.join(DIR_MEMORIA, 'historicos.json')
+function carregarHistoricos() {
+  try {
+    const dados = JSON.parse(fs.readFileSync(ARQ_HIST, 'utf8'))
+    for (const [k, v] of Object.entries(dados)) estado.historicos.set(k, v)
+  } catch {}
+}
+carregarHistoricos()
+
+function salvarHistoricos() {
+  try {
+    fs.mkdirSync(DIR_MEMORIA, { recursive: true })
+    fs.writeFileSync(ARQ_HIST, JSON.stringify(Object.fromEntries(estado.historicos)))
+  } catch {}
+}
+
 export function esquecer(id) { estado.historicos.delete(id); estado.skillsAtivas.delete(id) }
 
 function montarSistema(id) {
@@ -165,6 +195,7 @@ export async function conversar(id, texto, canal = 'chat') {
   else if (novaPessoa) resposta = `👤 Anotado: ${novaPessoa} está na sua rede de pessoas.\n\n${resposta}`
 
   h.push({ role: 'assistant', content: resposta })
+  salvarHistoricos()
   registrarDiario('Wagner', canal, texto)
   registrarDiario('Ultron', canal, resposta)
   return resposta
