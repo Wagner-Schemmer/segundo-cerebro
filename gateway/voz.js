@@ -4,6 +4,7 @@
 import { execFile, spawn } from 'node:child_process'
 import { promisify } from 'node:util'
 import fs from 'node:fs'
+import http from 'node:http'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -69,19 +70,56 @@ export async function transcrever(arquivoAudio) {
 }
 
 /* ─────────── CONVERSÃO PRA VOZ DO ULTRON (RVC, James Spader) ─────────── */
+const RVC_WORKER = 'http://127.0.0.1:3778'
+
 function rvcPronto() {
   return fs.existsSync(path.join(DIR_VOZ, 'rvc/ambiente/bin/python'))
     && fs.existsSync(path.join(DIR_VOZ, 'rvc/Ultron.pth'))
 }
 
+// POST com node:http (fetch do Node corta conexões lentas aos 300s)
+function postJson(url, obj, esperaMs = 600_000) {
+  return new Promise((resolve, reject) => {
+    const alvo = new URL(url)
+    const corpo = JSON.stringify(obj)
+    const req = http.request(alvo, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'content-length': Buffer.byteLength(corpo) },
+      timeout: esperaMs,
+    }, res => {
+      let dados = ''
+      res.on('data', c => { dados += c })
+      res.on('end', () => {
+        try { resolve({ status: res.statusCode, json: JSON.parse(dados) }) }
+        catch { reject(new Error('resposta inválida do worker')) }
+      })
+    })
+    req.on('timeout', () => req.destroy(new Error('tempo esgotado')))
+    req.on('error', reject)
+    req.end(corpo)
+  })
+}
+
 export async function converterUltron(entradaWav) {
-  const py = path.join(DIR_VOZ, 'rvc/ambiente/bin/python')
-  const script = path.join(DIR_VOZ, 'rvc/converter.py')
-  if (!fs.existsSync(py)) throw new Error('ambiente RVC não instalado')
   const saida = entradaWav.replace(/\.wav$/, '-ultron.wav')
+  if (!rvcPronto()) throw new Error('ambiente RVC não instalado')
   return comCadeado(async () => {
+    // caminho rápido: worker permanente com modelos já na RAM
+    try {
+      const r = await postJson(`${RVC_WORKER}/converter`, { entrada: entradaWav, saida, chave: -4 })
+      if (r.status === 200 && r.json.ok) {
+        console.log(`🎙️ voz do Ultron gerada em ${r.json.tempo}s (worker)`)
+        return saida
+      }
+      throw new Error(r.json.erro ?? `worker respondeu ${r.status}`)
+    } catch (e) {
+      console.log(`⚠️ worker RVC indisponível (${e.message}); usando conversor avulso`)
+    }
+    // reserva: processo avulso que recarrega os modelos (lento)
+    const py = path.join(DIR_VOZ, 'rvc/ambiente/bin/python')
+    const script = path.join(DIR_VOZ, 'rvc/converter.py')
     await run(py, ['-u', script, entradaWav, saida, '-4'], {
-      timeout: 420000,
+      timeout: 420_000,
       maxBuffer: 20 * 1024 * 1024,
       env: { ...process.env, OMP_NUM_THREADS: '2', MKL_NUM_THREADS: '2' },
     })
