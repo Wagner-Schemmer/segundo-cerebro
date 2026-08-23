@@ -25,6 +25,18 @@ trava = threading.Lock()
 pronto = threading.Event()
 vc_global = None
 
+# auto-desligamento: solta a RAM se ninguém converter por 10min (exit 0 = systemd não religa)
+ULTIMA = [time.time()]
+MIN_OCIOSO = 600
+
+
+def vigia():
+    while True:
+        time.sleep(60)
+        if pronto.is_set() and time.time() - ULTIMA[0] > MIN_OCIOSO:
+            print('[worker] ocioso demais, liberando RAM. tchau!', flush=True)
+            os._exit(0)
+
 
 def carregar_modelos():
     config = Config(LIB_DIR, 'cpu:0')
@@ -70,6 +82,7 @@ class Atende(BaseHTTPRequestHandler):
             return self._json(400, {'erro': 'arquivo de entrada nao existe'})
 
         with trava:
+            ULTIMA[0] = time.time()
             t0 = time.time()
             wav = vc_global.vc_single(
                 sid=1,
@@ -94,10 +107,12 @@ class Atende(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
+    threading.Thread(target=vigia, daemon=True).start()
     servidor = ThreadingHTTPServer(('127.0.0.1', PORTA), Atende)
     threading.Thread(target=servidor.serve_forever, daemon=True).start()
     print(f'[worker] porta {PORTA} aberta, carregando modelos...', flush=True)
     vc_global = carregar_modelos()
     pronto.set()
     print(f'[worker] PRONTO em {PORTA}', flush=True)
+    ULTIMA[0] = time.time()
     threading.Event().wait()

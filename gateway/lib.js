@@ -71,12 +71,13 @@ export function memoriaTexto() {
   return bloco.slice(0, 2400)
 }
 
-// últimas linhas do diário do mês, pra dar continuidade entre chats e reinícios
+// últimas falas do Wagner no diário (sem respostas do Ultron, pra não ecoar alucinação)
 function lerDiarioRecente(linhas = 14) {
   try {
     const mes = new Date().toISOString().slice(0, 7)
-    return fs.readFileSync(path.join(DIR_MEMORIA, `diario-${mes}.md`), 'utf8')
-      .split('\n').filter(l => l.trim()).slice(-linhas).join('\n').slice(-900)
+    const falas = fs.readFileSync(path.join(DIR_MEMORIA, `diario-${mes}.md`), 'utf8')
+      .split('\n').filter(l => l.trim().startsWith('- ') && l.includes('**Wagner:**'))
+    return falas.slice(-linhas).join('\n').slice(-900)
   } catch { return '' }
 }
 

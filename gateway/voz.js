@@ -100,20 +100,52 @@ function postJson(url, obj, esperaMs = 600_000) {
   })
 }
 
+function getJson(url, esperaMs = 5000) {
+  return new Promise((resolve, reject) => {
+    const req = http.get(url, { timeout: esperaMs }, res => {
+      let dados = ''
+      res.on('data', c => { dados += c })
+      res.on('end', () => {
+        try { resolve(JSON.parse(dados)) } catch { reject(new Error('resposta inválida')) }
+      })
+    })
+    req.on('timeout', () => req.destroy(new Error('tempo esgotado')))
+    req.on('error', reject)
+  })
+}
+
+const runBin = promisify(execFile)
+
+// acorda o worker (modelos na RAM custam ~1.4GB, então só ligamos ao usar a voz real)
+async function acordarWorker() {
+  try {
+    if ((await getJson(`${RVC_WORKER}/saude`)).pronto) return true
+  } catch {}
+  console.log('🎙️ despertando worker RVC...')
+  await runBin('systemctl', ['--user', 'start', 'cerebro-rvc']).catch(() => {})
+  for (let i = 0; i < 60; i++) {
+    await new Promise(r => setTimeout(r, 3000))
+    try { if ((await getJson(`${RVC_WORKER}/saude`)).pronto) return true } catch {}
+  }
+  return false
+}
+
 export async function converterUltron(entradaWav) {
   const saida = entradaWav.replace(/\.wav$/, '-ultron.wav')
   if (!rvcPronto()) throw new Error('ambiente RVC não instalado')
   return comCadeado(async () => {
     // caminho rápido: worker permanente com modelos já na RAM
-    try {
-      const r = await postJson(`${RVC_WORKER}/converter`, { entrada: entradaWav, saida, chave: -4 })
-      if (r.status === 200 && r.json.ok) {
-        console.log(`🎙️ voz do Ultron gerada em ${r.json.tempo}s (worker)`)
-        return saida
+    if (await acordarWorker()) {
+      try {
+        const r = await postJson(`${RVC_WORKER}/converter`, { entrada: entradaWav, saida, chave: -4 })
+        if (r.status === 200 && r.json.ok) {
+          console.log(`🎙️ voz do Ultron gerada em ${r.json.tempo}s (worker)`)
+          return saida
+        }
+        throw new Error(r.json.erro ?? `worker respondeu ${r.status}`)
+      } catch (e) {
+        console.log(`⚠️ worker falhou (${e.message}); usando conversor avulso`)
       }
-      throw new Error(r.json.erro ?? `worker respondeu ${r.status}`)
-    } catch (e) {
-      console.log(`⚠️ worker RVC indisponível (${e.message}); usando conversor avulso`)
     }
     // reserva: processo avulso que recarrega os modelos (lento)
     const py = path.join(DIR_VOZ, 'rvc/ambiente/bin/python')
