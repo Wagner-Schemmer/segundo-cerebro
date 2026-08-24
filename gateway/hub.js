@@ -128,7 +128,7 @@ ${ultimasFalas(10)}
 </div>
 </div>
 
-<script>fetch('/api/ollama').then(r=>r.json()).then(d=>{document.getElementById('ollama').innerHTML=d.vivo?'<span style="color:#4ade80;font-weight:bold">ativo</span> ('+d.modelo+')':'<span style="color:#f87171;font-weight:bold">fora do ar</span>'}).catch(()=>{document.getElementById('ollama').innerHTML='<span style="color:#f87171;font-weight:bold">fora do ar</span>'})</script>
+<script>fetch('/api/ollama').then(r=>r.json()).then(d=>{document.getElementById('ollama').innerHTML=d.vivo?'<span style="color:#4ade80;font-weight:bold">ativo</span>'+(d.modelo?' ('+d.modelo+' na RAM)':' <span style="color:#6b7280">(frio, carrega ao usar)</span>'):'<span style="color:#f87171;font-weight:bold">fora do ar</span>'}).catch(()=>{document.getElementById('ollama').innerHTML='<span style="color:#f87171;font-weight:bold">fora do ar</span>'})</script>
 </body></html>`
 }
 
@@ -138,7 +138,7 @@ http.createServer(async (req, res) => {
     try {
       const r = await fetch('http://localhost:11434/api/ps', { signal: AbortSignal.timeout(3000) })
       const d = await r.json()
-      vivo = d.models?.length > 0
+      vivo = true
       modelo = d.models?.[0]?.name ?? ''
     } catch {}
     res.writeHead(200, { 'Content-Type': 'application/json' })
