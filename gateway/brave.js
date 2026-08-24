@@ -46,8 +46,8 @@ function falarComAba(wsUrl, msg) {
 // texto legível da página (o "ver" do Ultron)
 export async function lerPagina(indice = 0) {
   const abas = await listarAbas()
-  if (!abas.length) throw new Error('nenhuma aba aberta')
-  const aba = abas[Math.min(indice, abas.length - 1)]
+  const aba = abas[Math.max(0, Math.min(indice, abas.length - 1))]
+  if (!aba) throw new Error('nenhuma página aberta no navegador')
   const r = await falarComAba(aba.webSocketDebuggerUrl, {
     method: 'Runtime.evaluate',
     params: { expression: 'document.body ? document.body.innerText.slice(0, 12000) : ""', returnByValue: true },
