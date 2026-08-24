@@ -335,19 +335,18 @@ setInterval(async () => {
 
 bot.catch(e => console.error('⚠️ erro no bot:', e?.message ?? e))
 
-// vigia: se o Telegram parar de responder por 3 min seguidos, reinicia o processo
-let ultimaVida = Date.now()
-bot.on('message', () => { ultimaVida = Date.now() })
-setInterval(async () => {
-  if (Date.now() - ultimaVida < 180_000) return
-  try {
-    const r = await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/getUpdates?timeout=0&limit=1`, { signal: AbortSignal.timeout(8000) })
-    await r.json()
-    // API responde mas o polling tá morto há 3+ min: recomeça do zero
-    console.log('🔄 Telegram surdo — reiniciando o gateway...')
-    process.exit(1) // systemd levanta de novo
-  } catch { /* internet caiu, espera mais */ }
-}, 60_000)
+// vigia: conta falhas seguidas do polling; se acumular, o systemd levanta de novo
+// (SEM chamar getUpdates por fora — isso conflitava com o próprio Telegraf!)
+let errosPolling = 0
+bot.on('polling_error', e => {
+  errosPolling++
+  console.error(`⚠️ polling erro #${errosPolling}: ${String(e.message).slice(0, 90)}`)
+  if (errosPolling >= 10) {
+    console.log('🔄 polling morto — reiniciando o gateway...')
+    process.exit(1)
+  }
+})
+bot.on('message', () => { errosPolling = 0 })
 
 bot.launch()
 console.log(`🧠 Gateway Telegram no ar | modelo: ${estado.modelo} | padrão: ${MODELO_PADRAO} | técnico: ${modoTecnico ? 'ON' : 'off'}`)
