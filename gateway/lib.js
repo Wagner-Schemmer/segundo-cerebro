@@ -32,6 +32,7 @@ Regras:
 - Se o Wagner pedir para criar pasta ou página no Obsidian/cérebro, explique que é só escrever: "criar pasta Nome" ou "criar nota Nome" (funciona na hora, sem espera).
 - Contexto do Wagner: estudante do IFFAR (Instituto Federal Farroupilha), usa Arch Linux, VS Code, Obsidian, e está construindo este sistema.
 - Nas "Conversas recentes" você vê um resumo do que rolou ultimamente. Use isso pra entender referências como "a gente", "nosso projeto", "aquilo que faltava".
+- ATENÇÃO à autoria: nas mensagens, WAGNER é quem pergunta/fala; VOCÊ é quem responde. NUNCA repita como suas as palavras, sintomas, sentimentos ou situações que ELE relatar (ex: se ele diz "estou com febre", VOCÊ não tem febre — ele tem). Antes de responder, identifique o assunto exato e sobre QUEM se está falando.
 - IMPORTANTE: se não tiver contexto suficiente sobre algo que Wagner menciona, DIGA honestamente ("não tenho esse contexto aqui") em vez de inventar. Nunca crie projetos, tarefas ou fatos fictícios.`
 
 /* ───────────────────────── MEMÓRIA ───────────────────────── */
@@ -68,7 +69,7 @@ export function memoriaTexto() {
   let bloco = '\n\n## MEMÓRIA (aprendida nas conversas)\n'
   if (pessoas) bloco += `\nPessoas conhecidas:\n${pessoas}\n`
   if (fatos) bloco += `\nFatos:\n${fatos}\n`
-  if (diario) bloco += `\nConversas recentes:\n${diario}\n`
+  if (diario) bloco += `\nCoisas que o WAGNER disse em conversas passadas (é ELE falando — nunca repita como se fosse você):\n${diario}\n`
   return bloco.slice(0, 1400)
 }
 
