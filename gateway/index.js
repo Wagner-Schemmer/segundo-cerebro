@@ -16,6 +16,7 @@ import { spawn } from 'node:child_process'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const executar = promisify(exec)
 const ARQ_DONO = path.join(__dirname, '.dono-telegram')
+const CEREBRO_VAULT = path.resolve(__dirname, '..', 'cerebro')
 const ARQ_MODO = path.join(__dirname, '.modo-tecnico')
 
 // Modo técnico: texto comum vira comando de shell (tipo opencode no celular)
@@ -298,6 +299,27 @@ bot.on('text', async ctx => {
       if (!ehDono(ctx)) return ctx.reply('💬 (modo técnico é só pro dono; desligue com /modo)')
       await ctx.sendChatAction('typing')
       return ctx.reply(`$ ${ctx.message.text}\n\n${await rodarComando(ctx.message.text)}`)
+    }
+
+    // criação direta no cérebro — instantâneo, sem IA no meio
+    const mCria = ctx.message.text.match(/^\s*\/?(?:cria|criar|nova?|novo)\s+(pasta|nota|p[áa]gina)\s+(.+)$/i)
+    if (mCria) {
+      const tipo = mCria[1].toLowerCase()
+      const partes = mCria[2].trim().replace(/^["']|["']$/g, '').split('/')
+        .map(p => p.trim().replace(/[^\p{L}\p{N} _.()-]/gu, '')).filter(Boolean)
+      if (!partes.length) return ctx.reply('🤔 Não entendi o nome. Ex: criar pasta faculdade/cálculo')
+      const cheio = path.join(CEREBRO_VAULT, ...partes)
+      try {
+        if (tipo === 'pasta') {
+          fs.mkdirSync(cheio, { recursive: true })
+          return ctx.reply(`📁 Pasta pronta no Obsidian: ${partes.join('/')}`)
+        }
+        fs.mkdirSync(path.dirname(cheio), { recursive: true })
+        const arq = cheio.endsWith('.md') ? cheio : `${cheio}.md`
+        if (fs.existsSync(arq)) return ctx.reply('📄 Já existe uma página com esse nome!')
+        fs.writeFileSync(arq, `# ${partes.at(-1)}\n\n`)
+        return ctx.reply(`📄 Página criada no Obsidian: ${partes.join('/')}.md`)
+      } catch (e) { return ctx.reply(`⚠️ ${e.message}`) }
     }
     await ctx.sendChatAction('typing')
     const resposta = await conversar(ctx.chat.id, ctx.message.text)
