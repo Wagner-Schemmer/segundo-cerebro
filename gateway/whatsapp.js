@@ -45,6 +45,9 @@ function meuNumero() {
   return sock?.user?.id?.split(':')[0]?.split('@')[0] ?? null
 }
 
+// JID do grupo "Ultron" (sala de comando), descoberto na conexão
+let jidUltron = null
+
 // Nome dos grupos (cache só de nomes válidos pra não travar em falha)
 const nomesGrupos = new Map()
 async function nomeDoGrupo(chatId) {
@@ -177,6 +180,7 @@ async function conectar() {
         const grupos = await sock.groupFetchAllParticipating()
         for (const g of Object.values(grupos)) {
           console.log(`👥 grupo "${g.subject}" | jid=${g.id} ${g.subject === 'Ultron' ? '← ZONA LIVRE' : ''}`)
+          if (g.subject === 'Ultron') jidUltron = g.id
         }
       } catch (e) { console.log('⚠️ não listei os grupos:', e.message) }
       setInterval(processarFilaEnvio, 3000)
@@ -209,9 +213,13 @@ async function conectar() {
       let zonaLivre = !chatId.endsWith('@g.us') && meuNumero() === numeroChat
 
       // Grupo chamado "Ultron" = sala de comando (como auto-chat). Outros grupos: silêncio.
+      // Usa o JID gravado na conexão (nome por mensagem falha quando o WhatsApp sincroniza devagar)
       if (chatId.endsWith('@g.us')) {
-        const nome = ((await nomeDoGrupo(chatId)) || '').toLowerCase()
-        if (nome !== 'ultron') continue
+        if (!jidUltron) {
+          const nome = ((await nomeDoGrupo(chatId)) || '').toLowerCase()
+          if (nome !== 'ultron') continue
+          jidUltron = chatId
+        } else if (chatId !== jidUltron) continue
         zonaLivre = true
       }
 
