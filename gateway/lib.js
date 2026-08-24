@@ -68,16 +68,16 @@ export function memoriaTexto() {
   if (pessoas) bloco += `\nPessoas conhecidas:\n${pessoas}\n`
   if (fatos) bloco += `\nFatos:\n${fatos}\n`
   if (diario) bloco += `\nConversas recentes:\n${diario}\n`
-  return bloco.slice(0, 2400)
+  return bloco.slice(0, 1400)
 }
 
 // últimas falas do Wagner no diário (sem respostas do Ultron, pra não ecoar alucinação)
-function lerDiarioRecente(linhas = 14) {
+function lerDiarioRecente(linhas = 6) {
   try {
     const mes = new Date().toISOString().slice(0, 7)
     const falas = fs.readFileSync(path.join(DIR_MEMORIA, `diario-${mes}.md`), 'utf8')
       .split('\n').filter(l => l.trim().startsWith('- ') && l.includes('**Wagner:**'))
-    return falas.slice(-linhas).join('\n').slice(-900)
+    return falas.slice(-linhas).join('\n').slice(-450)
   } catch { return '' }
 }
 

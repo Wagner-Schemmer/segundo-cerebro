@@ -14,11 +14,18 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 MODELO = os.path.join(DIR, 'vosk-model-small-pt-0.3')
 COMANDO_NODE = os.path.join(DIR, '..', 'comando-voz.mjs')
 BEEP = os.path.join(DIR, '..', 'voz', 'beep.wav')
-PALAVRA = 'ultron'
+# o vosk pequeno ouve "Ultron" como estas variações
+VARIANTES = {'ultron', 'outro', 'outron', 'oltron', 'uutron', 'rultro'}
 COOLDOWN = 8          # segundos entre um disparo e o próximo
 MAX_GRAVACAO = 9      # limite do comando falado
 SILÊNCIO_CORTE = 1.6  # encerra a gravação após tanto silêncio
 RMS_SILENCIO = 450    # limiar de "ninguém falando"
+
+
+def eh_wake(parcial: str) -> bool:
+    """Nome no comecinho da frase = chamada de verdade."""
+    palavras = parcial.lower().replace(',', ' ').split()
+    return any(v in palavras[:3] for v in VARIANTES)
 
 ocupado_ate = [0]
 
@@ -94,7 +101,7 @@ def main():
             continue  # processando fala anterior: não escuta
         if not recon.AcceptWaveform(pedaco):
             parcial = json.loads(recon.PartialResult()).get('partial', '')
-            if PALAVRA in parcial.lower() and time.time() >= ocupado_ate[0]:
+            if parcial and eh_wake(parcial) and time.time() >= ocupado_ate[0]:
                 ocupado_ate[0] = time.time() + COOLDOWN
                 log('🔥 WAKE WORD detectada!')
                 recon.Reset()
