@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const CEREBRO = path.resolve(__dirname, '..', 'cerebro')
 const MEMORIA = path.join(CEREBRO, 'sistema', 'memoria')
+const LOG_ANEXOS = path.join(MEMORIA, 'arquivos-recebidos.md')
 const FILA = path.join(__dirname, 'fila-envio')
 
 const PORTA = 3777
@@ -125,6 +126,10 @@ ${ultimasFalas(10)}
 <div class="cartao"><h2>🧩 Fatos & Pessoas</h2>
 <div class="fala" style="border-left-color:#34d399">${escapar(lerSeguro(path.join(MEMORIA, 'fatos.md')).slice(0, 600)) || '<i>vazio</i>'}</div>
 <div class="fala" style="border-left-color:#fbbf24">${escapar(lerSeguro(path.join(MEMORIA, 'pessoas.md')).slice(0, 400)) || '<i>vazio</i>'}</div>
+</div>
+
+<div class="cartao"><h2>📥 Arquivos organizados</h2>
+${lerSeguro(LOG_ANEXOS).trim().split('\n').filter(l => l.startsWith('- ')).slice(-8).reverse().map(l => `<div class="fala" style="border-left-color:#38bdf8">${escapar(l)}</div>`).join('\n') || '<i>nada por aqui ainda</i>'}
 </div>
 </div>
 
