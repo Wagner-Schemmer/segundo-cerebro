@@ -6,6 +6,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import os from 'node:os'
 import { fileURLToPath } from 'node:url'
+import { conversar } from './lib.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const CEREBRO = path.resolve(__dirname, '..', 'cerebro')
@@ -14,6 +15,40 @@ const LOG_ANEXOS = path.join(MEMORIA, 'arquivos-recebidos.md')
 const FILA = path.join(__dirname, 'fila-envio')
 
 const PORTA = 3777
+const PASTA_WEB = path.join(CEREBRO, '03-recursos', 'da-web')
+const FILA_ENVIO = path.join(__dirname, 'fila-envio')
+
+function slugDe(t) {
+  return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'pagina'
+}
+
+function salvarPagina({ titulo, url, texto }) {
+  fs.mkdirSync(PASTA_WEB, { recursive: true })
+  const base = path.join(PASTA_WEB, `${slugDe(titulo)}.md`)
+  let arquivo = base
+  if (fs.existsSync(arquivo)) arquivo = base.replace(/\.md$/, `-${Date.now()}.md`)
+  const conteudo = [
+    `# ${titulo}`, '',
+    `> 🔗 ${url}`,
+    `> 📅 salvo em ${new Date().toLocaleDateString('pt-BR')} pelo Ultron (botão do navegador)`, '',
+    String(texto ?? '').slice(0, 25000), '',
+  ].join('\n')
+  fs.writeFileSync(arquivo, conteudo)
+  return arquivo
+}
+
+// pergunta sobre a página: responde com o cérebro e entrega no Telegram
+async function perguntarSobre({ titulo, url, texto, pergunta }) {
+  const resposta = await conversar('web-perguntar',
+    `Baseado nesta página, responda em português. Se não estiver na página, diga o que sabe.\n\nPÁGINA: ${titulo} (${url})\n\n${String(texto ?? '').slice(0, 4000)}\n\nPERGUNTA: ${pergunta}`)
+  try {
+    fs.mkdirSync(FILA_ENVIO, { recursive: true })
+    fs.writeFileSync(path.join(FILA_ENVIO, `sigaa-telegram-${Date.now()}-web.json`),
+      JSON.stringify({ para: 'telegram', texto: `❓ ${pergunta}\n\n📄 ${titulo}\n\n${resposta}` }))
+  } catch {}
+  return resposta
+}
 
 function lerSeguro(arquivo) {
   try { return fs.readFileSync(arquivo, 'utf8') } catch { return '' }
@@ -149,6 +184,52 @@ http.createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' })
     return res.end(JSON.stringify({ vivo, modelo }))
   }
+
+  // botões do navegador falam com o cérebro aqui
+  if (req.method === 'POST' && (req.url === '/api/salvar' || req.url === '/api/perguntar')) {
+    let corpo = ''
+    req.on('data', c => { corpo += c; if (corpo.length > 200_000) req.destroy() })
+    req.on('end', async () => {
+      try {
+        const d = JSON.parse(corpo || '{}')
+        if (req.url === '/api/salvar') {
+          const arquivo = salvarPagina(d)
+          console.log(`💾 [web] salvo: ${path.basename(arquivo)}`)
+          res.writeHead(200, { 'Content-Type': 'application/json' })
+          return res.end(JSON.stringify({ ok: true, arquivo: path.basename(arquivo) }))
+        }
+        perguntarSobre(d).then(r => console.log(`❓ [web] respondido: ${d.pergunta}`))
+          .catch(e => console.error(`⚠️ [web] ${e.message}`))
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ ok: true, msg: 'processando, resposta vai pro Telegram' }))
+      } catch (e) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ ok: false, erro: e.message }))
+      }
+    })
+    return
+  }
+
+  // página pra instalar os botões na barra de favoritos
+  if (req.url === '/instalar') {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
+    return res.end(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Instalar botões do Ultron</title>
+<style>body{background:#0f172a;color:#e5e7eb;font-family:system-ui,sans-serif;max-width:640px;margin:40px auto;line-height:1.6}
+.botao{display:inline-block;background:#4f46e5;color:#fff;padding:10px 18px;border-radius:10px;margin:6px;font-weight:bold;text-decoration:none;cursor:grab}</style></head><body>
+<h1>🧠 Botões do Ultron no navegador</h1>
+<p><b>Arraste os dois botões abaixo</b> pra barra de favoritos do Brave (se a barra estiver escondida, aperte <code>Ctrl+Shift+B</code>):</p>
+<p>
+<a class="botao" href="javascript:(()=>{fetch('http://localhost:3777/api/salvar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({titulo:document.title,url:location.href,texto:document.body.innerText.slice(0,25000)})}).then(r=>r.json()).then(d=>alert(d.ok?'💾 Ultron guardou:\\n'+d.arquivo:'⚠️ falhou: '+d.erro)).catch(()=>alert('⚠️ hub não respondeu'))})()">💾 Salvar no cérebro</a>
+<a class="botao" href="javascript:(()=>{const q=prompt('Pergunta pro Ultron sobre esta página:');if(!q)return;fetch('http://localhost:3777/api/perguntar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({titulo:document.title,url:location.href,texto:document.body.innerText.slice(0,25000),pergunta:q})}).then(()=>alert('🧠 Ultron tá pensando... a resposta chega no seu Telegram!'))})()">❓ Perguntar ao Ultron</a>
+</p>
+<ol>
+<li><b>💾 Salvar no cérebro</b> — guarda a página inteira no Obsidian (<code>03-recursos/da-web/</code>) pra ver quando quiser.</li>
+<li><b>❓ Perguntar ao Ultron</b> — pergunta o que quiser sobre a página; ele pensa e <b>responde no seu Telegram</b>.</li>
+</ol>
+<p style="color:#94a3b8">Funciona em qualquer página, sem Telegram aberto. O cérebro roda aqui no seu notebook mesmo. ✅</p>
+</body></html>`)
+  }
+
   res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
   res.end(pagina())
 }).listen(PORTA, '127.0.0.1', () => console.log(`🌐 Hub do cérebro em http://localhost:${PORTA}`))
