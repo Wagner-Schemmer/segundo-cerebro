@@ -51,6 +51,8 @@ bot.command('start', ctx => ctx.reply(
   '/nota <texto> — salva no Obsidian (#faculdade #trabalho #cursos #vida #projetos)\n' +
   '/tarefa <texto> [prazo] — adiciona tarefa (ex: /tarefa pagar conta amanhã 14h)\n' +
   '/tarefas — lista pendentes · /feito <n> — conclui\n' +
+  '🖥️ Navegador: /abrir · /abas · /aba <n> · /fechar <n>\n' +
+  '📖 Página ativa: /ler (resumo) · /perguntar <dúvida> · /salvar (pro Obsidian)\n' +
   '/run <comando> — executa no notebook (só o dono)\n' +
   '/modelo <nome> — troca o modelo Ollama\n' +
   '/status — RAM e modelos'
@@ -227,6 +229,29 @@ async function paginaAtual() {
   if (!pagina.texto.trim()) throw new Error('página sem texto legível (vídeo ou imagem?)')
   return pagina
 }
+
+// recorta a página ativa pro Obsidian
+bot.command('salvar', async ctx => {
+  try {
+    await ctx.sendChatAction('typing')
+    const pag = await paginaAtual()
+    const pasta = path.join(os.homedir(), 'Documentos', 'segundo-cerebro', 'cerebro', '03-recursos', 'da-web')
+    fs.mkdirSync(pasta, { recursive: true })
+    const slug = pag.titulo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'pagina'
+    const arquivo = path.join(pasta, `${slug}.md`)
+    const conteudo = [
+      `# ${pag.titulo}`, '',
+      `> 🔗 ${pag.url}`,
+      `> 📅 salvo em ${new Date().toLocaleDateString('pt-BR')} pelo Ultron`, '',
+      pag.texto.slice(0, 25000), '',
+    ].join('\n')
+    let final = arquivo
+    if (fs.existsSync(final)) final = arquivo.replace(/\.md$/, `-${Date.now()}.md`)
+    fs.writeFileSync(final, conteudo)
+    ctx.reply(`💾 Guarduei no cérebro:\n📄 .../03-recursos/da-web/${path.basename(final)}`)
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`).catch(() => {}) }
+})
 
 bot.command('ler', async ctx => {
   try {
