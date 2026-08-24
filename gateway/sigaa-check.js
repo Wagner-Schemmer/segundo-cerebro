@@ -12,7 +12,7 @@ const FILA_ENVIO = path.join(__dirname, 'fila-envio')
 
 function notificar(texto, { soEu = false } = {}) {
   fs.mkdirSync(FILA_ENVIO, { recursive: true })
-  const destinos = soEu ? ['eu'] : ['eu', 'grupo']
+  const destinos = soEu ? ['eu', 'telegram'] : ['eu', 'grupo', 'telegram']
   for (const para of destinos) {
     fs.writeFileSync(path.join(FILA_ENVIO, `sigaa-${para}-${Date.now()}.json`),
       JSON.stringify({ para, texto }))

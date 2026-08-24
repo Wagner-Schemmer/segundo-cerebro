@@ -125,8 +125,39 @@ bot.on('text', async ctx => {
   }
 })
 
+/* ───────── FILA DE AVISOS (mesma pasta do WhatsApp, destino 'telegram') ───────── */
+const FILA_ENVIO = path.join(__dirname, 'fila-envio')
+let filaTgRodando = false
+
+async function processarFilaTelegram() {
+  if (!modoDonoRegistrado() || filaTgRodando) return
+  filaTgRodando = true
+  let pendentes
+  try { pendentes = fs.readdirSync(FILA_ENVIO).filter(f => f.startsWith('sigaa-telegram-') && f.endsWith('.json')) } catch { filaTgRodando = false; return }
+  const chatId = fs.readFileSync(ARQ_DONO, 'utf8').trim()
+  for (const arquivo of pendentes) {
+    const caminho = path.join(FILA_ENVIO, arquivo)
+    try {
+      const pedido = JSON.parse(fs.readFileSync(caminho, 'utf8'))
+      await bot.telegram.sendMessage(chatId, pedido.texto)
+      console.log(`📤 [tg] aviso entregue: ${String(pedido.texto).slice(0, 60)}`)
+      fs.rmSync(caminho, { force: true })
+    } catch (e) {
+      console.error(`⚠️ [tg] falha na fila (${arquivo}): ${e.message}`)
+      try { fs.renameSync(caminho, caminho.replace(/\.json$/, '.falha')) } catch {}
+    }
+  }
+  filaTgRodando = false
+}
+
+function modoDonoRegistrado() {
+  try { return !!fs.readFileSync(ARQ_DONO, 'utf8').trim() } catch { return false }
+}
+
+setInterval(processarFilaTelegram, 5_000)
+
 bot.launch()
-console.log(`🧠 Gateway Telegram no ar | modelo: ${estado.modelo} | padrão: ${MODELO_PADRAO}`)
+console.log(`🧠 Gateway Telegram no ar | modelo: ${estado.modelo} | padrão: ${MODELO_PADRAO} | técnico: ${modoTecnico ? 'ON' : 'off'}`)
 
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))

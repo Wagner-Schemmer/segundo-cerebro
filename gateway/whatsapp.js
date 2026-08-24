@@ -127,6 +127,8 @@ async function processarFilaEnvio() {
     const caminho = path.join(FILA_ENVIO, arquivo)
     try {
       const pedido = JSON.parse(fs.readFileSync(caminho, 'utf8'))
+      // telegram tem fila própria no gateway do Telegram
+      if (pedido.para === 'telegram') continue
       let jid
       if (pedido.para === 'grupo') {
         jid = await acharGrupoUltron()
