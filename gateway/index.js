@@ -12,6 +12,18 @@ import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO } from './l
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const executar = promisify(exec)
 const ARQ_DONO = path.join(__dirname, '.dono-telegram')
+const ARQ_MODO = path.join(__dirname, '.modo-tecnico')
+
+// Modo técnico: texto comum vira comando de shell (tipo opencode no celular)
+let modoTecnico = fs.existsSync(ARQ_MODO)
+
+function definirModo(ligado) {
+  modoTecnico = ligado
+  try {
+    if (ligado) fs.writeFileSync(ARQ_MODO, '1')
+    else fs.rmSync(ARQ_MODO, { force: true })
+  } catch {}
+}
 
 // O primeiro que usar /run vira o dono registrado (depois só ele)
 function ehDono(ctx) {
@@ -31,27 +43,41 @@ const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, { handlerTimeout: 300_0
 bot.command('start', ctx => ctx.reply(
   '🤖 Ultron online!\n\n' +
   'Me mande qualquer texto que eu respondo.\n' +
+  `/modo — alterna modo técnico (agora: ${modoTecnico ? 'LIGADO ⚡' : 'desligado 💬'})\n` +
   '/nota <texto> — salva no Obsidian (#faculdade #trabalho #cursos #vida #projetos)\n' +
   '/run <comando> — executa no notebook (só o dono)\n' +
   '/modelo <nome> — troca o modelo Ollama\n' +
   '/status — RAM e modelos'
 ))
 
+// Modo técnico: quando ligado, texto comum = comando de shell
+bot.command('modo', ctx => {
+  if (!ehDono(ctx)) return ctx.reply('🔒 Só o dono pode alternar o modo.')
+  definirModo(!modoTecnico)
+  ctx.reply(
+    modoTecnico
+      ? '⚡ MODO TÉCNICO LIGADO\nAgora todo texto que você mandar vira um comando executado no notebook (como opencode no celular).\nUse /modo pra voltar ao papo normal.'
+      : '💬 Modo técnico desligado — voltei a conversar normalmente e te avisar das coisas (auto-chat).'
+  )
+})
+
+async function rodarComando(cmd) {
+  try {
+    const { stdout, stderr } = await executar(cmd, { timeout: 120_000, maxBuffer: 1024 * 1024 })
+    let saida = (stdout + (stderr ? `\n${stderr}` : '')).trim() || '(sem saída)'
+    return saida.length > 3500 ? `${saida.slice(0, 3500)}\n…(cortado)` : saida
+  } catch (e) {
+    let saida = ((e.stdout ?? '') + (e.stderr ?? '')).trim() || e.message
+    return `❌ ${saida.length > 3500 ? `${saida.slice(0, 3500)}\n…(cortado)` : saida}`
+  }
+}
+
 bot.command('run', async ctx => {
   if (!ehDono(ctx)) return ctx.reply('🔒 Só o dono pode usar /run.')
   const cmd = ctx.message.text.split(' ').slice(1).join(' ').trim()
   if (!cmd) return ctx.reply('Uso: /run <comando>\nEx: /run npm run sigaa')
   await ctx.sendChatAction('typing')
-  try {
-    const { stdout, stderr } = await executar(cmd, { timeout: 120_000, maxBuffer: 1024 * 1024 })
-    let saida = (stdout + (stderr ? `\n${stderr}` : '')).trim() || '(sem saída)'
-    if (saida.length > 3500) saida = `${saida.slice(0, 3500)}\n…(cortado)`
-    await ctx.reply(`$ ${cmd}\n\n${saida}`)
-  } catch (e) {
-    let saida = ((e.stdout ?? '') + (e.stderr ?? '')).trim() || e.message
-    if (saida.length > 3500) saida = `${saida.slice(0, 3500)}\n…(cortado)`
-    await ctx.reply(`❌ $ ${cmd}\n\n${saida}`)
-  }
+  await ctx.reply(`$ ${cmd}\n\n${await rodarComando(cmd)}`)
 })
 
 bot.command('status', async ctx => ctx.reply(await statusMaquina()))
@@ -84,6 +110,12 @@ bot.command('nota', ctx => {
 
 bot.on('text', async ctx => {
   try {
+    // Modo técnico: texto comum vira comando (só o dono)
+    if (modoTecnico) {
+      if (!ehDono(ctx)) return ctx.reply('💬 (modo técnico é só pro dono; desligue com /modo)')
+      await ctx.sendChatAction('typing')
+      return ctx.reply(`$ ${ctx.message.text}\n\n${await rodarComando(ctx.message.text)}`)
+    }
     await ctx.sendChatAction('typing')
     const resposta = await conversar(ctx.chat.id, ctx.message.text)
     await ctx.reply(resposta)
