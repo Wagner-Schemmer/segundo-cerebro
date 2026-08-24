@@ -143,13 +143,12 @@ bot.command('feito', ctx => {
   ctx.reply(`🎉 Boa! "${t.texto}" concluída.`)
 })
 
-/* ───────── BRAVE ESTUDOS (companheiro de curso) ───────── */
-const PERFIL_ESTUDOS = path.join(os.homedir(), '.config', 'segundo-cerebro', 'perfil-brave')
+/* ───────── BRAVE (o navegador do Wagner, com canal de controle) ───────── */
 let abaSel = 0 // índice da aba que o Ultron "olha"
 
 function acordarBrave() {
-  spawn('/usr/bin/flatpak', ['run', 'com.brave.Browser',
-    `--user-data-dir=${PERFIL_ESTUDOS}`, '--remote-debugging-port=9222', '--no-first-run'],
+  // usa o perfil padrão dele; a porta de controle vem do brave-flags.conf
+  spawn('/usr/bin/flatpak', ['run', 'com.brave.Browser'],
     { detached: true, stdio: 'ignore' }).unref()
 }
 
@@ -162,12 +161,12 @@ async function esperarBrave(segundos = 25) {
 }
 
 bot.command('estudos', async ctx => {
-  if (await bravo.bravoVivo()) return ctx.reply('🖥️ Brave de estudos já tá aberto!')
+  if (await bravo.bravoVivo()) return ctx.reply('🖥️ Seu Brave já tá conectado comigo!')
   await ctx.sendChatAction('typing')
   acordarBrave()
   ctx.reply(await esperarBrave()
-    ? '🖥️ Brave de estudos aberto! Abra seu curso nele e me chame com /ler ou /perguntar.'
-    : '⚠️ Não consegui abrir o Brave de estudos.')
+    ? '🖥️ Brave aberto e conectado! Abra o que quiser e me chame com /ler ou /perguntar.'
+    : '⚠️ Não consegui conectar no Brave. Fecha ele por completo (menu → Sair) e abre de novo.')
 })
 
 bot.command('abas', async ctx => {
@@ -216,7 +215,7 @@ bot.command('abrir', async ctx => {
   } catch (e) {
     if (/não está aberto/.test(e.message)) {
       acordarBrave()
-      if (await esperarBrave()) return ctx.reply('🖥️ Abri o Brave de estudos — manda de novo o que quer abrir!')
+      if (await esperarBrave()) return ctx.reply('🖥️ Abri seu Brave — manda de novo o que quer abrir!')
     }
     ctx.reply(`⚠️ ${e.message}`)
   }
