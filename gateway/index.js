@@ -95,6 +95,19 @@ bot.command('limpar', ctx => {
   ctx.reply('🧹 Memória desta conversa zerada! Vou te tratar como se fosse a primeira vez (seus fatos e notas continuam guardados).')
 })
 
+// descarrega o modelo da RAM (~1GB livres); recarrega sozinho na próxima mensagem
+bot.command('frio', async ctx => {
+  await ctx.sendChatAction('typing')
+  try {
+    await fetch(`${process.env.OLLAMA_URL}/api/generate`, {
+      method: 'POST',
+      body: JSON.stringify({ model: estado.modelo, keep_alive: 0 }),
+      signal: AbortSignal.timeout(15000),
+    })
+    ctx.reply('🧊 Modelo descarregado — ~1GB de RAM devolvida ao sistema.\nNa próxima mensagem eu esquento de novo sozinho.')
+  } catch { ctx.reply('⚠️ Não consegui falar com o Ollama.') }
+})
+
 bot.command('modelo', ctx => {
   const nome = ctx.message.text.split(' ').slice(1).join(' ').trim()
   if (!nome) return ctx.reply(`Modelo ativo: ${estado.modelo}\nUso: /modelo qwen2.5:3b`)
