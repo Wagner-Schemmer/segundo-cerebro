@@ -86,6 +86,7 @@ def main():
     modelo = Model(MODELO)
     recon = KaldiRecognizer(modelo, 16000)
     log('ouvindo. Diga "Ultron" 🎙️')
+    ultimos = ['', time.time()]
 
     ffmpeg = subprocess.Popen(
         ['ffmpeg', '-loglevel', 'error', '-f', 'pulse', '-i', 'default',
@@ -101,6 +102,11 @@ def main():
             continue  # processando fala anterior: não escuta
         if not recon.AcceptWaveform(pedaco):
             parcial = json.loads(recon.PartialResult()).get('partial', '')
+            # diagnóstico: mostra o que escuta (no máx a cada 4s)
+            if parcial and parcial != ultimos[0] and time.time() - ultimos[1] > 4:
+                ultimos[0] = parcial
+                ultimos[1] = time.time()
+                log(f'👂 "{parcial}"')
             if parcial and eh_wake(parcial) and time.time() >= ocupado_ate[0]:
                 ocupado_ate[0] = time.time() + COOLDOWN
                 log('🔥 WAKE WORD detectada!')
