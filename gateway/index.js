@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
 import { exec } from 'node:child_process'
 import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO } from './lib.js'
+import { addTarefa, listarTarefas, fazerTarefa, proximasVencer, marcarLembrado, separarPrazo } from './tarefas.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const executar = promisify(exec)
@@ -45,6 +46,8 @@ bot.command('start', ctx => ctx.reply(
   'Me mande qualquer texto que eu respondo.\n' +
   `/modo — alterna modo técnico (agora: ${modoTecnico ? 'LIGADO ⚡' : 'desligado 💬'})\n` +
   '/nota <texto> — salva no Obsidian (#faculdade #trabalho #cursos #vida #projetos)\n' +
+  '/tarefa <texto> [prazo] — adiciona tarefa (ex: /tarefa pagar conta amanhã 14h)\n' +
+  '/tarefas — lista pendentes · /feito <n> — conclui\n' +
   '/run <comando> — executa no notebook (só o dono)\n' +
   '/modelo <nome> — troca o modelo Ollama\n' +
   '/status — RAM e modelos'
@@ -108,6 +111,35 @@ bot.command('nota', ctx => {
   ctx.reply(`📝 Salvo em ${arquivo}`)
 })
 
+/* ───────── TAREFAS ───────── */
+const fmtPrazo = ms => new Date(ms).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+
+bot.command('tarefa', ctx => {
+  const bruto = ctx.message.text.split(' ').slice(1).join(' ').trim()
+  if (!bruto) return ctx.reply('Uso: /tarefa <o que fazer> [prazo]\nEx: /tarefa pagar conta amanhã 14h\nEx: /tarefa entregar trabalho 30/8')
+  const { texto, prazo } = separarPrazo(bruto)
+  const t = addTarefa(texto, prazo)
+  ctx.reply(`✅ Tarefa #${t.id}: ${t.texto}${t.prazo ? `\n📅 prazo: ${fmtPrazo(t.prazo)}` : '\n(sem prazo — me lembro mesmo assim quando quiser)'}`)
+})
+
+bot.command('tarefas', ctx => {
+  const pendentes = listarTarefas()
+  if (!pendentes.length) return ctx.reply('🎉 Nenhuma tarefa pendente!')
+  ctx.reply(
+    '📋 Pendentes:\n' +
+    pendentes.map(t => `#${t.id} — ${t.texto}${t.prazo ? ` (📅 ${fmtPrazo(t.prazo)})` : ''}`).join('\n') +
+    '\n\nMarcar como feita: /feito <número>'
+  )
+})
+
+bot.command('feito', ctx => {
+  const n = parseInt(ctx.message.text.split(' ')[1], 10)
+  if (!n) return ctx.reply('Uso: /feito <número da tarefa>')
+  const t = fazerTarefa(n)
+  if (!t) return ctx.reply(`🤔 Não achei a tarefa #${n} aberta. Veja a lista: /tarefas`)
+  ctx.reply(`🎉 Boa! "${t.texto}" concluída.`)
+})
+
 bot.on('text', async ctx => {
   try {
     // Modo técnico: texto comum vira comando (só o dono)
@@ -155,6 +187,18 @@ function modoDonoRegistrado() {
 }
 
 setInterval(processarFilaTelegram, 5_000)
+
+// Lembretes de tarefas: checa a cada minuto, avisa uma vez só
+setInterval(async () => {
+  for (const t of proximasVencer()) {
+    marcarLembrado(t.id)
+    if (modoDonoRegistrado()) {
+      const chatId = fs.readFileSync(ARQ_DONO, 'utf8').trim()
+      bot.telegram.sendMessage(chatId, `⏰ Lembrete: ${t.texto}${t.prazo ? ` (era pra ${fmtPrazo(t.prazo)})` : ''}`).catch(() => {})
+      console.log(`⏰ lembrete enviado: #${t.id} ${t.texto}`)
+    }
+  }
+}, 60_000)
 
 bot.launch()
 console.log(`🧠 Gateway Telegram no ar | modelo: ${estado.modelo} | padrão: ${MODELO_PADRAO} | técnico: ${modoTecnico ? 'ON' : 'off'}`)
