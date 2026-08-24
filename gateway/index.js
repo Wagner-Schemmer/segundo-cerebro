@@ -8,7 +8,7 @@ import os from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
 import { exec } from 'node:child_process'
-import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO } from './lib.js'
+import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO, esquecer } from './lib.js'
 import { addTarefa, listarTarefas, fazerTarefa, proximasVencer, marcarLembrado, separarPrazo } from './tarefas.js'
 import * as bravo from './brave.js'
 import { spawn } from 'node:child_process'
@@ -89,6 +89,11 @@ bot.command('run', async ctx => {
 })
 
 bot.command('status', async ctx => ctx.reply(await statusMaquina()))
+
+bot.command('limpar', ctx => {
+  esquecer(ctx.chat.id)
+  ctx.reply('🧹 Memória desta conversa zerada! Vou te tratar como se fosse a primeira vez (seus fatos e notas continuam guardados).')
+})
 
 bot.command('modelo', ctx => {
   const nome = ctx.message.text.split(' ').slice(1).join(' ').trim()
