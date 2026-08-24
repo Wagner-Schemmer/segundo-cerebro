@@ -344,7 +344,15 @@ async function conectar() {
             const conteudo = texto.slice(5).trim()
             resposta = conteudo ? `📝 Salvo: ${salvarNota(conteudo)}` : 'Uso: /nota #area texto'
           } else {
-            resposta = await conversar(`wa-${chatId}`, texto)
+            sock.sendPresenceUpdate('composing', chatId).catch(() => {})
+            // se demorar demais, dá sinal de vida (máquina fraca às vezes leva minutos)
+            const sinal = setTimeout(async () => {
+              try {
+                sock.sendPresenceUpdate('composing', chatId).catch(() => {})
+                await responder(chatId, '🧠 pensando com calma, já te respondo…')
+              } catch {}
+            }, 45_000)
+            try { resposta = await conversar(`wa-${chatId}`, texto) } finally { clearTimeout(sinal) }
           }
           await responder(chatId, resposta, msg)
         } catch (e) {
