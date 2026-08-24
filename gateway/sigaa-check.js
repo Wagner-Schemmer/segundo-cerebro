@@ -10,11 +10,13 @@ import { checarSIGAA, DIR_FACULDADE } from './sigaa.js'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const FILA_ENVIO = path.join(__dirname, 'fila-envio')
 
+// Telegram é o canal principal; WhatsApp fica de reserva
+// (aviso normal → telegram + grupo do whats; erro grave → também na conversa privada)
 function notificar(texto, { soEu = false } = {}) {
   fs.mkdirSync(FILA_ENVIO, { recursive: true })
-  const destinos = soEu ? ['eu', 'telegram'] : ['eu', 'grupo', 'telegram']
+  const destinos = soEu ? ['eu', 'telegram'] : ['grupo', 'telegram']
   for (const para of destinos) {
-    fs.writeFileSync(path.join(FILA_ENVIO, `sigaa-${para}-${Date.now()}.json`),
+    fs.writeFileSync(path.join(FILA_ENVIO, `sigaa-${para}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}.json`),
       JSON.stringify({ para, texto }))
   }
 }
