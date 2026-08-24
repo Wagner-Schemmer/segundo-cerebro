@@ -4,11 +4,14 @@
 import { Telegraf } from 'telegraf'
 import fs from 'node:fs'
 import path from 'node:path'
+import os from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
 import { exec } from 'node:child_process'
 import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO } from './lib.js'
 import { addTarefa, listarTarefas, fazerTarefa, proximasVencer, marcarLembrado, separarPrazo } from './tarefas.js'
+import * as bravo from './brave.js'
+import { spawn } from 'node:child_process'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const executar = promisify(exec)
@@ -138,6 +141,112 @@ bot.command('feito', ctx => {
   const t = fazerTarefa(n)
   if (!t) return ctx.reply(`🤔 Não achei a tarefa #${n} aberta. Veja a lista: /tarefas`)
   ctx.reply(`🎉 Boa! "${t.texto}" concluída.`)
+})
+
+/* ───────── BRAVE ESTUDOS (companheiro de curso) ───────── */
+const PERFIL_ESTUDOS = path.join(os.homedir(), '.config', 'segundo-cerebro', 'perfil-brave')
+let abaSel = 0 // índice da aba que o Ultron "olha"
+
+function acordarBrave() {
+  spawn('/usr/bin/flatpak', ['run', 'com.brave.Browser',
+    `--user-data-dir=${PERFIL_ESTUDOS}`, '--remote-debugging-port=9222', '--no-first-run'],
+    { detached: true, stdio: 'ignore' }).unref()
+}
+
+async function esperarBrave(segundos = 25) {
+  for (let i = 0; i < segundos * 2; i++) {
+    if (await bravo.bravoVivo()) return true
+    await new Promise(r => setTimeout(r, 500))
+  }
+  return false
+}
+
+bot.command('estudos', async ctx => {
+  if (await bravo.bravoVivo()) return ctx.reply('🖥️ Brave de estudos já tá aberto!')
+  await ctx.sendChatAction('typing')
+  acordarBrave()
+  ctx.reply(await esperarBrave()
+    ? '🖥️ Brave de estudos aberto! Abra seu curso nele e me chame com /ler ou /perguntar.'
+    : '⚠️ Não consegui abrir o Brave de estudos.')
+})
+
+bot.command('abas', async ctx => {
+  try {
+    const abas = await bravo.listarAbas()
+    if (!abas.length) return ctx.reply('Nenhuma aba aberta.')
+    abaSel = Math.min(abaSel, abas.length - 1)
+    ctx.reply(
+      '🗂️ Abas:\n' +
+      abas.map((a, i) => `${i === abaSel ? '👉' : ' '} ${i + 1}. ${a.title.slice(0, 60)}`).join('\n') +
+      '\n\nSelecionar: /aba <n> · Fechar: /fechar <n>'
+    )
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`) }
+})
+
+bot.command('aba', async ctx => {
+  const n = parseInt(ctx.message.text.split(' ')[1], 10)
+  try {
+    const abas = await bravo.listarAbas()
+    if (!n || n > abas.length) return ctx.reply(`Uso: /aba <1-${abas.length}>`)
+    abaSel = n - 1
+    await bravo.focar(abas[abaSel].id)
+    ctx.reply(`👉 Olhando: ${abas[abaSel].title.slice(0, 70)}`)
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`) }
+})
+
+bot.command('fechar', async ctx => {
+  const n = parseInt(ctx.message.text.split(' ')[1], 10)
+  try {
+    const abas = await bravo.listarAbas()
+    if (!n || n > abas.length) return ctx.reply(`Uso: /fechar <1-${abas.length}>`)
+    await bravo.fechar(abas[n - 1].id)
+    ctx.reply(`🗑️ Fechei a aba ${n}`)
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`) }
+})
+
+bot.command('abrir', async ctx => {
+  const alvo = ctx.message.text.split(' ').slice(1).join(' ').trim()
+  if (!alvo) return ctx.reply('Uso: /abrir <site> — ex: /abrir coursera.org\nOu pesquisa: /abrir como fazer pão')
+  try {
+    await ctx.sendChatAction('typing')
+    const ehUrl = /^[\w-]+(\.[\w-]+)+/.test(alvo) && !alvo.includes(' ')
+    const aba = ehUrl ? await bravo.abrir(alvo) : await bravo.pesquisar(alvo)
+    abaSel = (await bravo.listarAbas()).findIndex(a => a.id === aba.id)
+    ctx.reply(ehUrl ? `🌐 ${alvo} aberto` : `🔎 Pesquisei "${alvo}" no navegador`)
+  } catch (e) {
+    if (/não está aberto/.test(e.message)) {
+      acordarBrave()
+      if (await esperarBrave()) return ctx.reply('🖥️ Abri o Brave de estudos — manda de novo o que quer abrir!')
+    }
+    ctx.reply(`⚠️ ${e.message}`)
+  }
+})
+
+// lê a página selecionada
+async function paginaAtual() {
+  const pagina = await bravo.lerPagina(abaSel)
+  if (!pagina.texto.trim()) throw new Error('página sem texto legível (vídeo ou imagem?)')
+  return pagina
+}
+
+bot.command('ler', async ctx => {
+  try {
+    await ctx.sendChatAction('typing')
+    const pag = await paginaAtual()
+    const resposta = await conversar('brave-ler', `Resuma em até 6 frases o conteúdo desta página da web, em português:\n\nTÍTULO: ${pag.titulo}\n\n${pag.texto.slice(0, 4000)}`)
+    await ctx.reply(`📖 ${pag.titulo.slice(0, 80)}\n\n${resposta}`)
+  } catch (e) { ctx.reply(`⚠️ ${e.message}\n(Dica: /estudos pra abrir, /aba <n> pra escolher a página)`).catch(() => {}) }
+})
+
+bot.command('perguntar', async ctx => {
+  const q = ctx.message.text.split(' ').slice(1).join(' ').trim()
+  if (!q) return ctx.reply('Uso: /perguntar <dúvida sobre a página>\nEx: /perguntar explica o que é recursão')
+  try {
+    await ctx.sendChatAction('typing')
+    const pag = await paginaAtual()
+    const resposta = await conversar('brave-perguntar', `Baseado nesta página da web, responda em português. Se não estiver na página, diga o que sabe.\n\nPÁGINA: ${pag.titulo}\n\n${pag.texto.slice(0, 4000)}\n\nPERGUNTA: ${q}`)
+    await ctx.reply(`❓ ${q}\n\n${resposta}`)
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`).catch(() => {}) }
 })
 
 bot.on('text', async ctx => {
