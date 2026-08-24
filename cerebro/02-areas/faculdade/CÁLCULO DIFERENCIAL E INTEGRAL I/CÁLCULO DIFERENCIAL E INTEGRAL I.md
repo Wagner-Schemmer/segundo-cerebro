@@ -1,21 +1,24 @@
 ---
-tipo: materia
-sigaa: true
-atualizado: 2026-08-23
-tags: [faculdade, "cálculo diferencial e integral"]
+materia: Cálculo Diferencial e Integral I
+tipo: estudo
+tags: [faculdade, cálculo, matemática]
 ---
 
-# CÁLCULO DIFERENCIAL E INTEGRAL I
+# 📐 Cálculo Diferencial e Integral I
 
-## 📋 Atividades e prazos (via SIGAA)
+> Disciplina do IFFAR — anotações e resoluções.
 
-- 🧪 **04/09/2026** — Avaliação: 1ª Avaliação
+## 📅 Aulas
+- [[Aula 1 - Limites]]
+- [[Aula 2 - Derivadas]]
+- [[Aula 3 - Integrais]]
 
-## 🔑 Conceitos-chave
-- 
+## 📌 Conceitos-chave
+- Limites e continuidade
+- Derivação e aplicações
+- Integral definida e indefinida
+- Teorema Fundamental do Cálculo
 
-## ❓ Dúvidas
-- 
-
-## 📎 Anexos
-(vão pra pasta anexos/ deste diretório)
+## 🔗 Relacionados
+- [[BANCO DE DADOS I/BANCO DE DADOS I]] — também é matéria deste semestre
+- [[Materiais/Propriedades dos Determinantes]] — material de apoio

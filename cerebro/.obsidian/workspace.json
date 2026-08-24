@@ -11,14 +11,10 @@
             "id": "826a0f5daf367508",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "02-areas/cursos/Cursos.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Cursos"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
             }
           }
         ]
@@ -83,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "de16a528a8963a8f",
@@ -185,13 +182,28 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "0b3e01d3b8dd5188",
+  "active": "826a0f5daf367508",
   "lastOpenFiles": [
+    "00-inbox/Índice.md",
+    "02-areas/faculdade/Materiais/Propriedades dos Determinantes.md",
+    "03-recursos/Índice.md",
+    "01-projetos/Índice.md",
+    "02-areas/Índice.md",
+    "00-inbox/2026-08-24.md",
+    "02-areas/cursos/cybersecurity",
+    "anexos/audios/2026-08-24-1313-audio-2026-08-24.ogg",
+    "anexos/audios/2026-08-23-2138-audio-2026-08-23.ogg",
+    "anexos/audios/2026-08-23-1905-audio-2026-08-23.ogg",
+    "anexos/audios/2026-08-23-1829-audio-2026-08-23.ogg",
+    "anexos/audios/2026-08-23-1813-audio-2026-08-23.ogg",
+    "anexos/audios/2026-08-22-2022-audio-2026-08-22.ogg",
+    "anexos/audios",
+    "02-areas/faculdade/Materiais/2026-08-23-1112-Atividade_02_-_Propriedades_dos_determinantes.pdf",
+    "02-areas/faculdade/Materiais",
     "02-areas/cursos/Cursos.md",
+    "02-areas/cursos/Dashboard.md",
     "🗺️ Mapa do Cérebro.md",
     "🏠 Dashboard.md",
-    "Sem título 1.base",
-    "Sem título.base",
     "2026-08-24.md",
     "Sem título.canvas",
     "01-projetos/2026-08-22-segundo-cerebro.md",

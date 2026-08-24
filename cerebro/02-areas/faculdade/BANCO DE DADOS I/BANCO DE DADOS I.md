@@ -1,21 +1,17 @@
 ---
-tipo: materia
-sigaa: true
-atualizado: 2026-08-23
-tags: [faculdade, "banco de dados i"]
+materia: Banco de Dados I
+tipo: estudo
+tags: [faculdade, banco-de-dados, sql]
 ---
 
-# BANCO DE DADOS I
+# 🗄️ Banco de Dados I
 
-## 📋 Atividades e prazos (via SIGAA)
+> Disciplina do IFFAR — modelagem, SQL, normalização.
 
-- 📝 **19/08/2026 20:59** — Atividade 02 - Modelos de dados
+## 📅 Tópicos
+- [[Modelagem Entidade-Relacionamento]]
+- [[SQL Básico]]
+- [[Normalização]]
 
-## 🔑 Conceitos-chave
-- 
-
-## ❓ Dúvidas
-- 
-
-## 📎 Anexos
-(vão pra pasta anexos/ deste diretório)
+## 🔗 Relacionados
+- [[CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I]] — mesma grade
