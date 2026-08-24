@@ -17,6 +17,45 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const executar = promisify(exec)
 const ARQ_DONO = path.join(__dirname, '.dono-telegram')
 const CEREBRO_VAULT = path.resolve(__dirname, '..', 'cerebro')
+
+// extrai pedido de criação de pasta/página de frases naturais
+// retorna { tipo: 'pasta'|'nota', partes: ['Cursos','cybersecurity'] } ou null
+function extrairCriacao(texto) {
+  const t = texto.toLowerCase()
+  if (!/\bcria(r|ndo|ções|ção)?\b|\bcrie(m)?\b|\bnomea(r|ndo)\b/.test(t)) return null
+  const mtipo = t.match(/\b(pasta|nota|p[áa]gina)\b/)
+  if (!mtipo) return null
+  const tipo = mtipo[1] === 'pasta' ? 'pasta' : 'nota'
+
+  // forma direta: "criar pasta Cursos/cybersecurity"
+  const direto = texto.match(/^\s*\/?(?:cria|criar|nova?|novo)\s+(?:pasta|nota|p[áa]gina)\s+(.+)$/i)
+  if (direto) {
+    const partes = direto[1].trim().replace(/^["']|["']$/g, '').split('/')
+      .map(p => p.trim().replace(/[^\p{L}\p{N} _.()-]/gu, '')).filter(Boolean)
+    return partes.length ? { tipo, partes } : null
+  }
+
+  // frase natural: exige nome explícito ("como X", "chamada X", "nomeada X" ou "entre aspas")
+  let nome = null
+  const mn = texto.match(/(?:chamad[ao]|nomead[ao]|com (?:o )?nome(?: de)?|como)\s+["“']?([\p{L}\p{N}][\p{L}\p{N} _/.-]*?)["”']?\s*[?.!；]?$/iu)
+  if (mn) nome = mn[1].trim().replace(/\s+no obsidia+n\w*$/i, '').trim()
+  else {
+    const mq = texto.match(/["“']([^"”']{1,60})["”']/u)
+    if (mq) nome = mq[1].trim()
+  }
+  if (!nome || /^(ela|ele|essa|esse|esta|este|aquela|aquele|a pasta|o arquivo)$/i.test(nome)) return null
+
+  // pai opcional: "dentro de Cursos", "em Cursos", "na pasta Cursos"
+  let pai = null
+  const mp = texto.match(/dentro d[eao]\s+(?:pasta\s+)?["']?([\p{L}\p{N}][\p{L}\p{N} _-]*?)["']?\s*(?:,|\s+e\b|\s+que\b|$)/iu)
+    || texto.match(/\bem\b\s+(?:pasta\s+)?["']?([\p{L}\p{N}][\p{L}\p{N} _-]*?)["']?\s*(?:,|\s+e\b|\s+que\b|$)/iu)
+  if (mp) pai = mp[1].trim()
+  if (pai && pai.toLowerCase() === nome.toLowerCase()) pai = null
+
+  const limpa = s => s.split('/').map(x => x.trim().replace(/[^\p{L}\p{N} _.()-]/gu, '')).filter(Boolean)
+  const partes = [...(pai ? limpa(pai) : []), ...limpa(nome)]
+  return partes.length ? { tipo, partes } : null
+}
 const ARQ_MODO = path.join(__dirname, '.modo-tecnico')
 
 // Modo técnico: texto comum vira comando de shell (tipo opencode no celular)
@@ -302,12 +341,11 @@ bot.on('text', async ctx => {
     }
 
     // criação direta no cérebro — instantâneo, sem IA no meio
-    const mCria = ctx.message.text.match(/^\s*\/?(?:cria|criar|nova?|novo)\s+(pasta|nota|p[áa]gina)\s+(.+)$/i)
-    if (mCria) {
-      const tipo = mCria[1].toLowerCase()
-      const partes = mCria[2].trim().replace(/^["']|["']$/g, '').split('/')
-        .map(p => p.trim().replace(/[^\p{L}\p{N} _.()-]/gu, '')).filter(Boolean)
-      if (!partes.length) return ctx.reply('🤔 Não entendi o nome. Ex: criar pasta faculdade/cálculo')
+    // entende tanto comando direto ("criar pasta X") quanto frase natural
+    // ("quero uma pasta dentro de Cursos e nomear como cybersecurity")
+    const criacao = extrairCriacao(ctx.message.text)
+    if (criacao) {
+      const { tipo, partes } = criacao
       const cheio = path.join(CEREBRO_VAULT, ...partes)
       try {
         if (tipo === 'pasta') {

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "🗺️ Mapa do Cérebro.md",
+                "file": "02-areas/cursos/Cursos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "🗺️ Mapa do Cérebro"
+              "title": "Cursos"
             }
           }
         ]
@@ -83,8 +83,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "de16a528a8963a8f",
@@ -186,8 +185,10 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "826a0f5daf367508",
+  "active": "0b3e01d3b8dd5188",
   "lastOpenFiles": [
+    "02-areas/cursos/Cursos.md",
+    "🗺️ Mapa do Cérebro.md",
     "🏠 Dashboard.md",
     "Sem título 1.base",
     "Sem título.base",
@@ -196,7 +197,6 @@
     "01-projetos/2026-08-22-segundo-cerebro.md",
     "_templates/Projeto.md",
     "_templates/Nota de Estudo.md",
-    "🗺️ Mapa do Cérebro.md",
     "🗺️ Mapa do Cérebro.canvas"
   ]
 }
