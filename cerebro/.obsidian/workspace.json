@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "de16a528a8963a8f",
@@ -184,7 +183,12 @@
   },
   "active": "826a0f5daf367508",
   "lastOpenFiles": [
+    "🗺️ Mapa do Cérebro.md",
+    "🗺️ Mapa do Cérebro.canvas",
+    "02-areas/cursos/Dashboard.md",
     "00-inbox/Índice.md",
+    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
+    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
     "02-areas/faculdade/Materiais/Propriedades dos Determinantes.md",
     "03-recursos/Índice.md",
     "01-projetos/Índice.md",
@@ -201,14 +205,11 @@
     "02-areas/faculdade/Materiais/2026-08-23-1112-Atividade_02_-_Propriedades_dos_determinantes.pdf",
     "02-areas/faculdade/Materiais",
     "02-areas/cursos/Cursos.md",
-    "02-areas/cursos/Dashboard.md",
-    "🗺️ Mapa do Cérebro.md",
     "🏠 Dashboard.md",
     "2026-08-24.md",
     "Sem título.canvas",
     "01-projetos/2026-08-22-segundo-cerebro.md",
     "_templates/Projeto.md",
-    "_templates/Nota de Estudo.md",
-    "🗺️ Mapa do Cérebro.canvas"
+    "_templates/Nota de Estudo.md"
   ]
 }

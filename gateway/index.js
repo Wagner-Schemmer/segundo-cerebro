@@ -7,7 +7,7 @@ import path from 'node:path'
 import os from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
-import { exec } from 'node:child_process'
+import { exec, execFile } from 'node:child_process'
 import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO, esquecer } from './lib.js'
 import { addTarefa, listarTarefas, fazerTarefa, proximasVencer, marcarLembrado, separarPrazo } from './tarefas.js'
 import * as bravo from './brave.js'
@@ -146,6 +146,18 @@ bot.command('frio', async ctx => {
     })
     ctx.reply('🧊 Modelo descarregado — ~1GB de RAM devolvida ao sistema.\nNa próxima mensagem eu esquento de novo sozinho.')
   } catch { ctx.reply('⚠️ Não consegui falar com o Ollama.') }
+})
+
+// modo leve total: mata opencode, descarrega modelo, limpa cache
+bot.command('leve', async ctx => {
+  if (!ehDono(ctx)) return ctx.reply('🔒 Só o dono.')
+  await ctx.sendChatAction('typing')
+  try {
+    const { stdout } = await execFile('/home/wagner/modo-leve.sh', { timeout: 30_000 })
+    await ctx.reply(`⚡ Modo leve ativado:\n${stdout}`)
+  } catch (e) {
+    await ctx.reply(`⚠️ ${e.message}`)
+  }
 })
 
 bot.command('modelo', ctx => {
