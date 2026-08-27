@@ -5,6 +5,7 @@ import fs from 'node:fs'
 import http from 'node:http'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { spawn } from 'node:child_process'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -273,8 +274,8 @@ export async function transcreverAudio(url) {
   const { execFile } = await import('node:child_process')
   const { promisify } = await import('node:util')
   const execFileAsync = promisify(execFile)
-const WHISPER = path.join(__dirname, '..', 'voz', 'whisper', 'whisper-bin-ubuntu-x64', 'whisper-cli')
-const MODEL = path.join(__dirname, '..', 'voz', 'whisper-base.bin')
+  const WHISPER = path.join(__dirname, 'voz', 'whisper', 'whisper-bin-ubuntu-x64', 'whisper-cli')
+  const MODEL = path.join(__dirname, 'voz', 'whisper-base.bin')
   const TMP = `/tmp/ultron-audio-${Date.now()}.ogg`
   
   // Baixa áudio
@@ -282,31 +283,46 @@ const MODEL = path.join(__dirname, '..', 'voz', 'whisper-base.bin')
   if (!res.ok) throw new Error(`Falha ao baixar áudio: ${res.status}`)
   fs.writeFileSync(TMP, Buffer.from(await res.arrayBuffer()))
   
-  // Converte para WAV 16kHz mono (whisper precisa)
+  // Converte para WAV 16kHz mono (whisper precisa) — rápido
   const WAV = TMP.replace('.ogg', '.wav')
   await new Promise((resolve, reject) => {
-    const ffmpeg = spawn('ffmpeg', ['-y', '-i', TMP, '-ar', '16000', '-ac', '1', WAV])
+    const ffmpeg = spawn('ffmpeg', ['-y', '-i', TMP, '-ar', '16000', '-ac', '1', '-loglevel', 'error', WAV])
     ffmpeg.on('close', code => code === 0 ? resolve() : reject(new Error('ffmpeg falhou')))
     ffmpeg.on('error', reject)
   })
   
-  // Roda whisper
-  const { stdout } = await execFileAsync(WHISPER, ['-m', MODEL, '-f', WAV, '-l', 'pt', '-otxt'], { timeout: 120_000 })
+  // Roda whisper RÁPIDO: -t 4 threads, sem timestamps
+  const { stdout } = await execFileAsync(WHISPER, [
+    '-m', MODEL,
+    '-f', WAV,
+    '-l', 'pt',
+    '-t', '4',
+    '--no-timestamps',
+    '-otxt'
+  ], { timeout: 120_000 })
+  
   fs.rmSync(TMP, { force: true })
   fs.rmSync(WAV, { force: true })
   return stdout.trim()
 }
 
-// Sintetiza voz via piper (TTS local)
+// Sintetiza voz via piper (TTS local) — OTIMIZADO PARA VELOCIDADE
 export async function sintetizarVoz(texto, voz = 'pt-br') {
-const PIPER = path.join(__dirname, '..', 'voz', 'piper', 'piper')
-const MODELO = path.join(__dirname, '..', 'voz', 'faber.onnx')
+  const PIPER = path.join(__dirname, 'voz', 'piper', 'piper')
+  const MODELO = path.join(__dirname, 'voz', 'faber.onnx')
   const SAIDA = `/tmp/ultron-tts-${Date.now()}.wav`
   
   if (!fs.existsSync(MODELO)) throw new Error('Modelo Piper não encontrado')
   
+  // Piper rápido: --length_scale 1.1 (mais rápido) --noise_scale 0.33 --noise_w 0.1
   await new Promise((resolve, reject) => {
-    const p = spawn(PIPER, ['-m', MODELO, '-o', SAIDA], { stdio: ['pipe', 'inherit', 'inherit'] })
+    const p = spawn(PIPER, [
+      '-m', MODELO,
+      '-o', SAIDA,
+      '--length_scale', '1.1',
+      '--noise_scale', '0.33',
+      '--noise_w', '0.1'
+    ], { stdio: ['pipe', 'ignore', 'ignore'] })
     p.stdin.write(texto)
     p.stdin.end()
     p.on('close', code => code === 0 ? resolve() : reject(new Error('Piper falhou')))
