@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "de16a528a8963a8f",
@@ -183,11 +184,13 @@
   },
   "active": "826a0f5daf367508",
   "lastOpenFiles": [
+    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "🗺️ Mapa do Cérebro.md",
+    "02-areas/trabalho/Trabalho.md",
+    "02-areas/trabalho/Dashboard.md",
     "🗺️ Mapa do Cérebro.canvas",
     "02-areas/cursos/Dashboard.md",
     "00-inbox/Índice.md",
-    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
     "02-areas/faculdade/Materiais/Propriedades dos Determinantes.md",
     "03-recursos/Índice.md",

@@ -266,6 +266,56 @@ export function salvarNota(texto) {
 
 /* ───────────────────────── STATUS ───────────────────────── */
 
+/* ───────── VOICE (STT/TTS) ───────── */
+
+// Transcreve áudio via whisper.cpp local
+export async function transcreverAudio(url) {
+  const { execFile } = await import('node:child_process')
+  const { promisify } = await import('node:util')
+  const execFileAsync = promisify(execFile)
+const WHISPER = path.join(__dirname, '..', 'voz', 'whisper', 'whisper-bin-ubuntu-x64', 'whisper-cli')
+const MODEL = path.join(__dirname, '..', 'voz', 'whisper-base.bin')
+  const TMP = `/tmp/ultron-audio-${Date.now()}.ogg`
+  
+  // Baixa áudio
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`Falha ao baixar áudio: ${res.status}`)
+  fs.writeFileSync(TMP, Buffer.from(await res.arrayBuffer()))
+  
+  // Converte para WAV 16kHz mono (whisper precisa)
+  const WAV = TMP.replace('.ogg', '.wav')
+  await new Promise((resolve, reject) => {
+    const ffmpeg = spawn('ffmpeg', ['-y', '-i', TMP, '-ar', '16000', '-ac', '1', WAV])
+    ffmpeg.on('close', code => code === 0 ? resolve() : reject(new Error('ffmpeg falhou')))
+    ffmpeg.on('error', reject)
+  })
+  
+  // Roda whisper
+  const { stdout } = await execFileAsync(WHISPER, ['-m', MODEL, '-f', WAV, '-l', 'pt', '-otxt'], { timeout: 120_000 })
+  fs.rmSync(TMP, { force: true })
+  fs.rmSync(WAV, { force: true })
+  return stdout.trim()
+}
+
+// Sintetiza voz via piper (TTS local)
+export async function sintetizarVoz(texto, voz = 'pt-br') {
+const PIPER = path.join(__dirname, '..', 'voz', 'piper', 'piper')
+const MODELO = path.join(__dirname, '..', 'voz', 'faber.onnx')
+  const SAIDA = `/tmp/ultron-tts-${Date.now()}.wav`
+  
+  if (!fs.existsSync(MODELO)) throw new Error('Modelo Piper não encontrado')
+  
+  await new Promise((resolve, reject) => {
+    const p = spawn(PIPER, ['-m', MODELO, '-o', SAIDA], { stdio: ['pipe', 'inherit', 'inherit'] })
+    p.stdin.write(texto)
+    p.stdin.end()
+    p.on('close', code => code === 0 ? resolve() : reject(new Error('Piper falhou')))
+    p.on('error', reject)
+  })
+  
+  return SAIDA
+}
+
 export async function statusMaquina() {
   const os = await import('node:os')
   const livre = (os.freemem() / 1024 ** 3).toFixed(2)

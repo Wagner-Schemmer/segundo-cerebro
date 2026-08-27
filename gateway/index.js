@@ -8,7 +8,7 @@ import os from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
 import { exec, execFile } from 'node:child_process'
-import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO, esquecer } from './lib.js'
+import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO, esquecer, transcreverAudio, sintetizarVoz } from './lib.js'
 import { addTarefa, listarTarefas, fazerTarefa, proximasVencer, marcarLembrado, separarPrazo } from './tarefas.js'
 import * as bravo from './brave.js'
 import { spawn } from 'node:child_process'
@@ -329,8 +329,76 @@ bot.command('ler', async ctx => {
     const pag = await paginaAtual()
     const resposta = await conversar('brave-ler', `Resuma em até 6 frases o conteúdo desta página da web, em português:\n\nTÍTULO: ${pag.titulo}\n\n${pag.texto.slice(0, 4000)}`)
     await ctx.reply(`📖 ${pag.titulo.slice(0, 80)}\n\n${resposta}`)
-  } catch (e) { ctx.reply(`⚠️ ${e.message}\n(Dica: /estudos pra abrir, /aba <n> pra escolher a página)`).catch(() => {}) }
+} catch (e) { ctx.reply(`⚠️ ${e.message}`).catch(() => {}) }
 })
+
+/* ───────── NOVOS COMANDOS ÚTEIS ───────── */
+
+// SIGAA manual check
+bot.command('sigaa', async ctx => {
+  await ctx.sendChatAction('typing')
+  ctx.reply('🔍 Verificando SIGAA...')
+  try {
+    const { checarSIGAA } = await import('./sigaa-check.js')
+    const { novas } = await checarSIGAA()
+    if (novas.length === 0) return ctx.reply('✅ SIGAA verificado — nenhuma novidade.')
+    ctx.reply(`📬 ${novas.length} item(ns) novo(s):\n` + novas.map(n => `• ${n.titulo} (${n.prazo})`).join('\n'))
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`) }
+})
+
+// Voz: sintetiza e manda áudio
+bot.command('voz', async ctx => {
+  const texto = ctx.message.text.split(' ').slice(1).join(' ').trim()
+  if (!texto) return ctx.reply('Uso: /voz <texto para falar>\nEx: /voz Olá Wagner, tudo bem?')
+  try {
+    await ctx.sendChatAction('record_voice')
+    const { sintetizarVoz } = await import('./lib.js')
+    const arquivo = await sintetizarVoz(texto, 'pt-br')
+    await ctx.replyWithVoice({ source: arquivo })
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`) }
+})
+
+// Ajuda completa
+bot.command('ajuda', ctx => ctx.reply(
+  '🤖 <b>Ultron — Comandos Completos</b>\n\n' +
+  '<b>💬 Conversa & Memória</b>\n' +
+  '• Qualquer texto → conversa normal\n' +
+  '• <code>/limpar</code> — zera memória desta conversa\n' +
+  '• <code>/modo</code> — alterna modo técnico (comandos shell)\n\n' +
+  '<b>📝 Notas & Tarefas</b>\n' +
+  '• <code>/nota #area texto</code> — salva no Obsidian\n' +
+  '• <code>/tarefa texto [prazo]</code> — adiciona tarefa\n' +
+  '• <code>/tarefas</code> — lista pendentes\n' +
+  '• <code>/feito <n></code> — marca como feita\n\n' +
+  '<b>🧠 SIGAA (Faculdade)</b>\n' +
+  '• <code>/sigaa</code> — verifica novidades agora\n' +
+  '• Avisos automáticos chegam aqui sozinhos (7h)\n\n' +
+  '<b>🖥️ Navegador (Brave)</b>\n' +
+  '• <code>/estudos</code> — abre/conecta Brave\n' +
+  '• <code>/abas</code> — lista abas\n' +
+  '• <code>/aba <n></code> — seleciona aba\n' +
+  '• <code>/abrir site</code> — abre site ou pesquisa\n' +
+  '• <code>/fechar <n></code> — fecha aba\n' +
+  '• <code>/ler</code> — resume página ativa\n' +
+  '• <code>/perguntar <dúvida></code> — pergunta sobre a página\n' +
+  '• <code>/salvar</code> — guarda página no Obsidian\n\n' +
+  '<b>🎙️ Voz</b>\n' +
+  '• <code>/voz texto</code> — Ultron fala (envia áudio)\n' +
+  '• Mande áudio → eu transcrevo e respondo\n\n' +
+  '<b>⚙️ Sistema</b>\n' +
+  '• <code>/status</code> — RAM, modelo, fila\n' +
+  '• <code>/modelo <nome></code> — troca modelo Ollama\n' +
+  '• <code>/frio</code> — descarrega modelo (libera 1GB RAM)\n' +
+  '• <code>/leve</code> — modo leve (mata opencode + frio)\n' +
+  '• <code>/run <cmd></code> — executa comando (só dono)\n' +
+  '• <code>/limpar</code> — zera memória do chat\n' +
+  '• <code>/ajuda</code> — esta mensagem\n\n' +
+  '<b>💡 Dicas</b>\n' +
+  '• Use <code>#faculdade #trabalho #cursos #vida #projetos</code> nas notas\n' +
+  '• Prazos: "amanhã 14h", "hoje 19h", "30/8", "sem prazo"\n' +
+  '• Criação natural: "criar pasta Cursos/cybersecurity"\n' +
+  '• Mande áudio que eu transcrevo e respondo', { parse_mode: 'HTML' })
+)
 
 bot.command('perguntar', async ctx => {
   const q = ctx.message.text.split(' ').slice(1).join(' ').trim()
@@ -340,7 +408,7 @@ bot.command('perguntar', async ctx => {
     const pag = await paginaAtual()
     const resposta = await conversar('brave-perguntar', `Baseado nesta página da web, responda em português. Se não estiver na página, diga o que sabe.\n\nPÁGINA: ${pag.titulo}\n\n${pag.texto.slice(0, 4000)}\n\nPERGUNTA: ${q}`)
     await ctx.reply(`❓ ${q}\n\n${resposta}`)
-  } catch (e) { ctx.reply(`⚠️ ${e.message}`).catch(() => {}) }
+  } catch (e) { ctx.reply(`⚠️ ${e.message}`) }
 })
 
 bot.on('text', async ctx => {
@@ -378,6 +446,20 @@ bot.on('text', async ctx => {
     console.error(e)
     ctx.reply(`⚠️ Erro: ${e.message}\nOllama está rodando? (systemctl status ollama)`)
   }
+})
+
+/* ───────── VOICE MESSAGE HANDLER (áudio do usuário) ───────── */
+bot.on('voice', async ctx => {
+  try {
+    await ctx.sendChatAction('typing')
+    const { transcreverAudio } = await import('./lib.js')
+    const fileId = ctx.message.voice.file_id
+    const link = await ctx.telegram.getFileLink(fileId)
+    const texto = await transcreverAudio(link.href)
+    if (!texto.trim()) return ctx.reply('🤔 Não entendi o áudio. Tenta falar mais perto do microfone.')
+    const resposta = await conversar(ctx.chat.id, texto)
+    await ctx.reply(`🎙️ Você disse: "${texto}"\n\n${resposta}`)
+  } catch (e) { ctx.reply(`⚠️ Erro no áudio: ${e.message}`) }
 })
 
 /* ───────── FILA DE AVISOS (mesma pasta do WhatsApp, destino 'telegram') ───────── */
