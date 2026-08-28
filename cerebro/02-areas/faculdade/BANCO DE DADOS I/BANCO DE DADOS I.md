@@ -55,6 +55,7 @@ sigaa_id: 70F07D213BE85A763C0039D9186169E8108E3CEB
 ---
 
 ## 📎 Anexos
+- [[anexos/teste-hub.pdf]]
 
 > Arquivos salvos em `anexos/`
 

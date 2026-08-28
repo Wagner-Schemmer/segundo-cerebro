@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
+                "file": "02-areas/faculdade/Faculdade.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "FUNDAMENTOS DA COMPUTAÇÃO"
+              "title": "Faculdade"
             }
           }
         ]
@@ -187,6 +187,8 @@
   },
   "active": "826a0f5daf367508",
   "lastOpenFiles": [
+    "02-areas/faculdade/METODOLOGIA EXTENSIONISTA/METODOLOGIA EXTENSIONISTA.md",
+    "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
     "00-inbox/arquivos/2026-08-27-1350-audio-2026-08-27.ogg",
     "00-inbox/arquivos/2026-08-27-1324-audio-2026-08-27.ogg",
     "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
@@ -210,7 +212,6 @@
     "anexos/audios/2026-08-23-1813-audio-2026-08-23.ogg",
     "anexos/audios/2026-08-22-2022-audio-2026-08-22.ogg",
     "anexos/audios",
-    "02-areas/faculdade/Materiais/2026-08-23-1112-Atividade_02_-_Propriedades_dos_determinantes.pdf",
     "02-areas/cursos/Cursos.md",
     "🏠 Dashboard.md",
     "2026-08-24.md",

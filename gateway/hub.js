@@ -173,6 +173,45 @@ ${lerSeguro(LOG_ANEXOS).trim().split('\n').filter(l => l.startsWith('- ')).slice
 }
 
 http.createServer(async (req, res) => {
+  // CORS para o SIGAA mandar arquivos direto pro vault
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204, { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' });
+    return res.end();
+  }
+  const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type' };
+  if (req.method === 'POST' && req.url === '/api/arquivo') {
+    let corpo = ''
+    req.on('data', c => { corpo += c; if (corpo.length > 80_000_000) req.destroy() })
+    req.on('end', () => {
+      try {
+        const { materia, nome, base64 } = JSON.parse(corpo || '{}')
+        if (!materia || !nome || !base64) throw new Error('materia/nome/base64 obrigatório')
+        const pasta = path.join(CEREBRO, '02-areas', 'faculdade', String(materia).replace(/[\\/:*?"<>|]/g,'-').trim(), 'anexos')
+        fs.mkdirSync(pasta, { recursive: true })
+        const ext = path.extname(nome) || '.pdf'
+        let base = String(nome).replace(/[\\/:*?"<>|]/g,'-').trim().slice(0,120)
+        if (!base.toLowerCase().endsWith(ext.toLowerCase())) base += ext
+        let dest = path.join(pasta, base)
+        let n=1; while(fs.existsSync(dest)){ dest = path.join(pasta, base.replace(/(\.[^.]+)$/, `-${n}$1`)); n++ }
+        fs.writeFileSync(dest, Buffer.from(base64, 'base64'))
+        // atualiza nota da matéria
+        const nota = path.join(path.dirname(pasta), String(materia).replace(/[\\/:*?"<>|]/g,'-').trim() + '.md')
+        if (fs.existsSync(nota)) {
+          let md = fs.readFileSync(nota,'utf8')
+          if (!md.includes(path.basename(dest))) {
+            if (!md.includes('## 📎 Anexos')) md += `\n## 📎 Anexos\n`
+            md = md.replace('## 📎 Anexos', `## 📎 Anexos\n- [[anexos/${path.basename(dest)}]]`)
+            fs.writeFileSync(nota, md)
+          }
+        }
+        fs.appendFileSync(LOG_ANEXOS, `- ${new Date().toLocaleString('pt-BR')} — \`${path.basename(dest)}\` → \`${String(materia)}/anexos/\`\n`)
+        console.log(`📎 [sigaa] ${path.basename(dest)} → ${String(materia)}/anexos/`)
+        res.writeHead(200, { ...cors, 'Content-Type': 'application/json' })
+        return res.end(JSON.stringify({ ok:true, arquivo: path.basename(dest) }))
+      } catch(e){ res.writeHead(400, { ...cors, 'Content-Type':'application/json'}); return res.end(JSON.stringify({ok:false, erro:e.message})) }
+    })
+    return
+  }
   if (req.url === '/api/ollama') {
     let vivo = false, modelo = ''
     try {
