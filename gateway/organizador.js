@@ -57,6 +57,19 @@ function ignorado(caminho) {
 
 function destinoPara(caminho) {
   if (INSTALADORES.test(caminho)) return { pasta: PASTA_INSTALADORES, foraDoVault: true }
+  // se for PDF/PPT do SIGAA e temos matéria atual (definida pelo script do navegador há <15min), manda para a pasta da matéria
+  try {
+    const statMateria = fs.statSync('/tmp/ultima-materia-sigaa.txt')
+    const recente = Date.now() - statMateria.mtimeMs < 15*60*1000
+    const ehDocAcademico = /\.(pdf|pptx?|docx?|odt)$/i.test(caminho)
+    if (recente && ehDocAcademico) {
+      const materia = fs.readFileSync('/tmp/ultima-materia-sigaa.txt','utf8').trim().replace(/[\\/:*?"<>|]/g,'-')
+      const pastaMateria = path.join(CEREBRO, '02-areas', 'faculdade', materia, 'anexos')
+      if (materia && fs.existsSync(path.join(CEREBRO, '02-areas','faculdade', materia))) {
+        return { pasta: pastaMateria, foraDoVault: false }
+      }
+    }
+  } catch {}
   const regra = REGRAS.find(r => r.teste.test(caminho))
   if (!regra) return null // desconhecido: fica onde está
   return { pasta: path.join(VAULT, regra.destino), foraDoVault: false }

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02-areas/faculdade/Faculdade.md",
+                "file": "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Faculdade"
+              "title": "BANCO DE DADOS I"
             }
           }
         ]
@@ -99,6 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -187,11 +188,23 @@
   },
   "active": "826a0f5daf367508",
   "lastOpenFiles": [
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Conjuntos_numricos.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Slide_01_-_Aula_de_apresentao_Tpicos_de_ALGA.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_da_Incluso-Excluso.pdf",
+    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Algumas_Tcnicas_de_Demonstrao.pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Conjunes_-_coordenao.pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Concordncia_verbal_-_respostas.pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Operaes_com_conjuntos.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_de_Induo_Finita.pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Reviso_ConjuntosLJ_relaoes_e_funes.pdf",
+    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Anlise_Combinatria-_parte_2.pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Teoria_dos_conjuntos.pdf",
+    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/falsos_cognatos.jpg",
+    "02-areas/faculdade/BANCO DE DADOS I/anexos/falsos_cognatos.jpg",
+    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
+    "02-areas/faculdade/Faculdade.md",
     "02-areas/faculdade/METODOLOGIA EXTENSIONISTA/METODOLOGIA EXTENSIONISTA.md",
     "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
-    "00-inbox/arquivos/2026-08-27-1350-audio-2026-08-27.ogg",
-    "00-inbox/arquivos/2026-08-27-1324-audio-2026-08-27.ogg",
-    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "🗺️ Mapa do Cérebro.md",
     "02-areas/trabalho/Trabalho.md",
     "02-areas/trabalho/Dashboard.md",
@@ -204,14 +217,6 @@
     "01-projetos/Índice.md",
     "02-areas/Índice.md",
     "00-inbox/2026-08-24.md",
-    "02-areas/cursos/cybersecurity",
-    "anexos/audios/2026-08-24-1313-audio-2026-08-24.ogg",
-    "anexos/audios/2026-08-23-2138-audio-2026-08-23.ogg",
-    "anexos/audios/2026-08-23-1905-audio-2026-08-23.ogg",
-    "anexos/audios/2026-08-23-1829-audio-2026-08-23.ogg",
-    "anexos/audios/2026-08-23-1813-audio-2026-08-23.ogg",
-    "anexos/audios/2026-08-22-2022-audio-2026-08-22.ogg",
-    "anexos/audios",
     "02-areas/cursos/Cursos.md",
     "🏠 Dashboard.md",
     "2026-08-24.md",

@@ -179,6 +179,11 @@ http.createServer(async (req, res) => {
     return res.end();
   }
   const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type' };
+  if (req.method === 'POST' && req.url === '/api/materia-atual') {
+    let corpo=''; req.on('data',c=>corpo+=c); req.on('end',()=>{
+      try{ const {materia}=JSON.parse(corpo||'{}'); fs.writeFileSync('/tmp/ultima-materia-sigaa.txt', String(materia||'')); res.writeHead(200,{...cors,'Content-Type':'application/json'}); return res.end(JSON.stringify({ok:true, materia})); }catch(e){ res.writeHead(400,{...cors,'Content-Type':'application/json'}); return res.end(JSON.stringify({ok:false,erro:e.message})) }
+    }); return
+  }
   if (req.method === 'POST' && req.url === '/api/arquivo') {
     let corpo = ''
     req.on('data', c => { corpo += c; if (corpo.length > 80_000_000) req.destroy() })

@@ -55,6 +55,14 @@ sigaa_id: 70F07D213BE85A763C0039D9186169E8108E3CEB
 ---
 
 ## 📎 Anexos
+- [[anexos/Atividade 03 - Modelagem conceitual (1).pdf]]
+- [[anexos/Atributos e especialização.pdf]]
+- [[anexos/Entidades e relacionamentos.pdf]]
+- [[anexos/Atividade 02 - Modelos de dados.pdf]]
+- [[anexos/Modelos de dados.pdf]]
+- [[anexos/Atividade 01 - Conceitos básicos em BD.pdf]]
+- [[anexos/Conceitos básicos em Banco de Dados-1.pdf]]
+- [[anexos/Apresentação da disciplina.pdf]]
 - [[anexos/teste-hub.pdf]]
 
 > Arquivos salvos em `anexos/`
