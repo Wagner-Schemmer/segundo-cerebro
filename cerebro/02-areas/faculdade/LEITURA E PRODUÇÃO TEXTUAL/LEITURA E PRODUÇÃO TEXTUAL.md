@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, leitura, produção-textual, redação, interpretação]
 sigaa_id: 71EAC92384A6F2C22270692DB43C402D6B6D94AE
+estado: ativo
 ---
 
 # 📖 Leitura e Produção Textual
@@ -56,6 +57,8 @@ sigaa_id: 71EAC92384A6F2C22270692DB43C402D6B6D94AE
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

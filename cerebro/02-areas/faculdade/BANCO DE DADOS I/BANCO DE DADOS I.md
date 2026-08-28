@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, banco-de-dados, sql, modelagem]
 sigaa_id: 70F07D213BE85A763C0039D9186169E8108E3CEB
+estado: ativo
 ---
 
 # 🗄️ Banco de Dados I
@@ -66,6 +67,8 @@ sigaa_id: 70F07D213BE85A763C0039D9186169E8108E3CEB
 - [[anexos/teste-hub.pdf]]
 
 > Arquivos salvos em `anexos/`
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ```dataview
 TABLE WITHOUT ID file.link AS "Arquivo", file.size AS "Tamanho"

@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, inglês, técnico, leitura, vocabulário]
 sigaa_id: A4B289E26D6F47AB1AB1DE77B4A511302F9B3304
+estado: ativo
 ---
 
 # 🇬🇧 Inglês Técnico
@@ -57,6 +58,8 @@ sigaa_id: A4B289E26D6F47AB1AB1DE77B4A511302F9B3304
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

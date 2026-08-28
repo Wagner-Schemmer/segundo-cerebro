@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, extensão, metodologia, projeto-social, comunidade]
 sigaa_id: ABF4DC1E15E009946FFC6A46E8B849EF3CC344AB
+estado: ativo
 ---
 
 # 🤝 Metodologia Extensionista
@@ -57,6 +58,8 @@ sigaa_id: ABF4DC1E15E009946FFC6A46E8B849EF3CC344AB
 |  | Relatório final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

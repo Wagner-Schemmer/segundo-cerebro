@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, fundamentos, arquitetura, sistemas-operacionais, redes]
 sigaa_id: 7B37B3A98C90DD5569D11E5838111DD8845421FB
+estado: ativo
 ---
 
 # 🖥️ Fundamentos da Computação
@@ -56,6 +57,8 @@ sigaa_id: 7B37B3A98C90DD5569D11E5838111DD8845421FB
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

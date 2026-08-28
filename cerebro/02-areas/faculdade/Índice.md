@@ -4,20 +4,19 @@
 
 ---
 
-## 📊 Visão Geral
+## 📊 Visão Geral — clique no título da matéria para abrir. Estado editável nas Propriedades do arquivo.
 
-| Matéria | Código | Turma | CH | Status | Pasta |
-|---------|--------|-------|-----|--------|-------|
-| [Banco de Dados I](BANCO%20DE%20DADOS%20I/BANCO%20DE%20DADOS%20I.md) | 11011077 | 2611 | 72h | 🟢 Ativa | `BANCO DE DADOS I/` |
-| [Cálculo Diferencial e Integral I](CÁLCULO%20DIFERENCIAL%20E%20INTEGRAL%20I/CÁLCULO%20DIFERENCIAL%20E%20INTEGRAL%20I.md) | 11011067 | 2611 | 72h | 🟢 Ativa | `CÁLCULO DIFERENCIAL E INTEGRAL I/` |
-| [Inglês Técnico](INGLÊS%20TÉCNICO/INGLÊS%20TÉCNICO.md) | 11011068 | 2611 | 36h | 🟢 Ativa | `INGLÊS TÉCNICO/` |
-| [Metodologia Extensionista](METODOLOGIA%20EXTENSIONISTA/METODOLOGIA%20EXTENSIONISTA.md) | 11011069 | 2611 | 36h | 🟢 Ativa | `METODOLOGIA EXTENSIONISTA/` |
-| [Tópicos de Álgebra Linear e Geometria Analítica](TÓPICOS%20DE%20ÁLGEBRA%20LINEAR%20E%20GEOMETRIA%20ANALÍTICA/TÓPICOS%20DE%20ÁLGEBRA%20LINEAR%20E%20GEOMETRIA%20ANALÍTICA.md) | 11011066 | 2611 | 72h | 🟢 Ativa | `TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/` |
-| [Algoritmos e Programação](ALGORITMOS%20E%20PROGRAMAÇÃO/ALGORITMOS%20E%20PROGRAMAÇÃO.md) | 11011059 | 2611 | 108h | 🟢 Ativa | `ALGORITMOS E PROGRAMAÇÃO/` |
-| [Fundamentos da Computação](FUNDAMENTOS%20DA%20COMPUTAÇÃO/FUNDAMENTOS%20DA%20COMPUTAÇÃO.md) | 11011060 | 2611 | 72h | 🟢 Ativa | `FUNDAMENTOS DA COMPUTAÇÃO/` |
-| [Leitura e Produção Textual](LEITURA%20E%20PRODUÇÃO%20TEXTUAL/LEITURA%20E%20PRODUÇÃO%20TEXTUAL.md) | 11011063 | 2611 | 36h | 🟢 Ativa | `LEITURA E PRODUÇÃO TEXTUAL/` |
-| [Lógica Matemática](LÓGICA%20MATEMÁTICA/LÓGICA%20MATEMÁTICA.md) | 11011062 | 2611 | 72h | 🟢 Ativa | `LÓGICA MATEMÁTICA/` |
-| [Matemática Discreta](MATEMÁTICA%20DISCRETA/MATEMÁTICA%20DISCRETA.md) | 11011061 | 2611 | 72h | 🟢 Ativa | `MATEMÁTICA DISCRETA/` |
+```dataview
+TABLE WITHOUT ID
+  link(file.link, materia) AS "Matéria",
+  codigo AS "Código",
+  ch AS "CH",
+  choice(estado = "ativo", "🟢 Ativo", "⚪ Inativo") AS "Estado",
+  file.folder AS "Pasta"
+FROM "02-areas/faculdade"
+WHERE tipo = "estudo"
+SORT estado DESC, materia ASC
+```
 
 ---
 

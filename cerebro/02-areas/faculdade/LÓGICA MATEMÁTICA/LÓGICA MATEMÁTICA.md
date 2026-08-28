@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, lógica, matemática, prova, teoria-dos-conjuntos]
 sigaa_id: F43C160AC2CB8FD68EF14F68078F4F74B5B88753
+estado: ativo
 ---
 
 # 🧮 Lógica Matemática
@@ -57,6 +58,8 @@ sigaa_id: F43C160AC2CB8FD68EF14F68078F4F74B5B88753
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

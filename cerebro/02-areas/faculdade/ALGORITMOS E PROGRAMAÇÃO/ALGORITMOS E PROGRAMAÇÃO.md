@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, algoritmos, programação, lógica, c, python]
 sigaa_id: 31C9E187E6321422A836879896FC877F78F345BE
+estado: ativo
 ---
 
 # 💻 Algoritmos e Programação
@@ -57,6 +58,8 @@ sigaa_id: 31C9E187E6321422A836879896FC877F78F345BE
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

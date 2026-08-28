@@ -2,6 +2,7 @@
 materia: Dashboard Faculdade
 tipo: dashboard
 tags: [faculdade, dashboard, visão-geral]
+estado: ativo
 ---
 
 # 🎓 Dashboard — Faculdade (2026.2)
@@ -17,11 +18,11 @@ TABLE WITHOUT ID
   link(file.link, materia) AS "Matéria",
   codigo AS "Código",
   ch AS "CH",
-  turma AS "Turma",
-  "🟢" AS "Status"
+  choice(estado = "ativo", "🟢 Ativo", "⚪ Inativo") AS "Estado",
+  turma AS "Turma"
 FROM "02-areas/faculdade"
-WHERE file.name != "Dashboard.md" AND file.name != "Índice.md" AND file.name != "Faculdade.md"
-SORT ch DESC
+WHERE tipo = "estudo"
+SORT estado DESC, ch DESC
 ```
 
 ---

@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, álgebra-linear, geometria-analítica, matrizes, vetores]
 sigaa_id: F53C4C961A954D46083449332C20557149239023
+estado: ativo
 ---
 
 # 📐 Tópicos de Álgebra Linear e Geometria Analítica
@@ -56,6 +57,8 @@ sigaa_id: F53C4C961A954D46083449332C20557149239023
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

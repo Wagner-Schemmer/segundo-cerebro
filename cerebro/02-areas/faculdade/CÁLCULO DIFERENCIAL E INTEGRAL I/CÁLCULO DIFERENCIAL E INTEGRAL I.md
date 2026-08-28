@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, cálculo, matemática, limites, derivadas, integrais]
 sigaa_id: 5D631E39ABC1CC8B0D201EB673CD20373F74DA60
+estado: ativo
 ---
 
 # 📐 Cálculo Diferencial e Integral I
@@ -58,6 +59,8 @@ sigaa_id: 5D631E39ABC1CC8B0D201EB673CD20373F74DA60
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

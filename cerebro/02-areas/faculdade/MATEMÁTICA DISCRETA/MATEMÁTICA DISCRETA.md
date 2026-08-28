@@ -8,6 +8,7 @@ professor:
 tipo: estudo
 tags: [faculdade, matemática-discreta, combinatória, grafos, recursão]
 sigaa_id: 8D4D39729A2B7AF5F039AD16E1E80F7DAEC33B95
+estado: ativo
 ---
 
 # 🔢 Matemática Discreta
@@ -57,6 +58,8 @@ sigaa_id: 8D4D39729A2B7AF5F039AD16E1E80F7DAEC33B95
 |  | Prova Final | ⬜ Pendente |  |
 
 ---
+
+> Estado: `VIEW[{estado}]` — mude em Propriedades (ativo/inativo)
 
 ## 📎 Anexos
 

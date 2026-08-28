@@ -3,6 +3,7 @@ materia: Cálculo Diferencial e Integral I
 tipo: estudo
 tags: [faculdade, cálculo, determinantes, material-apoio]
 source: PDF baixado da disciplina
+estado: ativo
 ---
 
 # 📐 Propriedades dos Determinantes
