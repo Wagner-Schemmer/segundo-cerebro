@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
+                "file": "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "BANCO DE DADOS I"
+              "title": "CÁLCULO DIFERENCIAL E INTEGRAL I"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
+                "file": "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -188,20 +188,21 @@
   },
   "active": "826a0f5daf367508",
   "lastOpenFiles": [
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Conjuntos_numricos.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Slide_01_-_Aula_de_apresentao_Tpicos_de_ALGA.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_da_Incluso-Excluso.pdf",
-    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Algumas_Tcnicas_de_Demonstrao.pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Conjunes_-_coordenao.pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Concordncia_verbal_-_respostas.pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Operaes_com_conjuntos.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_de_Induo_Finita.pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Reviso_ConjuntosLJ_relaoes_e_funes.pdf",
-    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Anlise_Combinatria-_parte_2.pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Teoria_dos_conjuntos.pdf",
+    "02-areas/faculdade/BANCO DE DADOS I/anexos/Mrio_Antonio_Perini_-_Gramtica_descritiva_do_portugus_brasileiro_-_Sujeito.pdf",
+    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Teoria_dos_Nmeros_parte_2.pdf",
+    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Teoria_dos_Nmeros.pdf",
+    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Relaes_e_Funes.pdf",
+    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Relaes.pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Sobre_as_origens_do_AI5_-_Rodrigo_Motta.pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Mrio_Antonio_Perini_-_Gramtica_descritiva_do_portugus_brasileiro_-_Sujeito (1).pdf",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Mrio_Antonio_Perini_-_Gramtica_descritiva_do_portugus_brasileiro_-_Sujeito.pdf",
+    "02-areas/faculdade/LÓGICA MATEMÁTICA/anexos/Relacoes_Logicas.pdf",
+    "02-areas/faculdade/LÓGICA MATEMÁTICA/anexos/DesafioLogica.pdf",
+    "02-areas/faculdade/LÓGICA MATEMÁTICA/anexos/Aula_5.pdf",
+    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
+    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "02-areas/faculdade/INGLÊS TÉCNICO/anexos/falsos_cognatos.jpg",
     "02-areas/faculdade/BANCO DE DADOS I/anexos/falsos_cognatos.jpg",
-    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "02-areas/faculdade/Faculdade.md",
     "02-areas/faculdade/METODOLOGIA EXTENSIONISTA/METODOLOGIA EXTENSIONISTA.md",
     "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
@@ -211,7 +212,6 @@
     "🗺️ Mapa do Cérebro.canvas",
     "02-areas/cursos/Dashboard.md",
     "00-inbox/Índice.md",
-    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
     "02-areas/faculdade/Materiais/Propriedades dos Determinantes.md",
     "03-recursos/Índice.md",
     "01-projetos/Índice.md",
