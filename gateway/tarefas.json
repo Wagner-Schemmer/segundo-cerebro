@@ -12,5 +12,40 @@
     "prazo": null,
     "feita": true,
     "lembrado": false
+  },
+  {
+    "id": 3,
+    "texto": "Teste Calendar - Entrega trabalho BD",
+    "prazo": 1788194927337,
+    "feita": false,
+    "lembrado": false
+  },
+  {
+    "id": 4,
+    "texto": "[METODOLOGIA EXTENSIONISTA] Avaliação: 1ª Avaliação (avaliacao 14/09/2026)",
+    "prazo": 1789344000000,
+    "feita": false,
+    "lembrado": false
+  },
+  {
+    "id": 5,
+    "texto": "[CÁLCULO DIFERENCIAL E INTEGRAL I] Avaliação: 1ª Avaliação (avaliacao 04/09/2026)",
+    "prazo": 1788480000000,
+    "feita": false,
+    "lembrado": false
+  },
+  {
+    "id": 6,
+    "texto": "[METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extensão (tarefa 12/09/2026)",
+    "prazo": 1789171200000,
+    "feita": false,
+    "lembrado": false
+  },
+  {
+    "id": 7,
+    "texto": "[BANCO DE DADOS I] Atividade 03 - Modelagem conceitual (tarefa 02/09/2026)",
+    "prazo": 1788307200000,
+    "feita": false,
+    "lembrado": false
   }
 ]

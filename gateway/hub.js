@@ -7,6 +7,7 @@ import path from 'node:path'
 import os from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { conversar } from './lib.js'
+import { criarMaterial } from './notion.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const CEREBRO = path.resolve(__dirname, '..', 'cerebro')
@@ -211,6 +212,8 @@ http.createServer(async (req, res) => {
         }
         fs.appendFileSync(LOG_ANEXOS, `- ${new Date().toLocaleString('pt-BR')} — \`${path.basename(dest)}\` → \`${String(materia)}/anexos/\`\n`)
         console.log(`📎 [sigaa] ${path.basename(dest)} → ${String(materia)}/anexos/`)
+        // sync Notion Materiais (fire-and-forget)
+        criarMaterial({ titulo: path.basename(dest), materia: String(materia), tipo: ext.replace('.','').toUpperCase(), link: '', conteudo: `Arquivo SIGAA • ${String(materia)} • ${new Date().toLocaleDateString('pt-BR')}` }).catch(e=>console.error('Notion Materiais erro:',e.message))
         res.writeHead(200, { ...cors, 'Content-Type': 'application/json' })
         return res.end(JSON.stringify({ ok:true, arquivo: path.basename(dest) }))
       } catch(e){ res.writeHead(400, { ...cors, 'Content-Type':'application/json'}); return res.end(JSON.stringify({ok:false, erro:e.message})) }

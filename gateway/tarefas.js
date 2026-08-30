@@ -39,6 +39,11 @@ export function addTarefa(texto, prazo = null) {
   const t = { id: tarefas.reduce((m, x) => Math.max(m, x.id), 0) + 1, texto, prazo, feita: false, lembrado: false }
   tarefas.push(t)
   salvar()
+  // sync Notion Minhas tarefas (fire-and-forget)
+  import('./notion.js').then(m=>{
+    const prazoISO = prazo ? new Date(prazo).toISOString().slice(0,10) : null
+    m.criarTarefa({ nome: texto.slice(0,180), status: 'Não iniciada', prazo: prazoISO, prioridade: 'Média', descricao: `Criada via Telegram • ${new Date().toLocaleString('pt-BR')}` }).catch(e=>console.error('Notion Tarefas erro:',e.message))
+  }).catch(()=>{})
   return t
 }
 

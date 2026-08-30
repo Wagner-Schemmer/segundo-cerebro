@@ -201,5 +201,19 @@ export async function checarSIGAA() {
     quando: new Date().toISOString(),
   }, null, 2))
 
+  // sync atividades -> Notion + vault Tarefas (só novidades pra não duplicar)
+  try {
+    const { criarTarefa } = await import('./notion.js')
+    const tarefasMod = await import('./tarefas.js')
+    for (const a of novas) {
+      const [d,m,aa] = (a.prazo||'').split('/')
+      const prazo = d&&m&&aa ? `${aa}-${m.padStart(2,'0')}-${d.padStart(2,'0')}` : null
+      const nome = `${a.turma ? a.turma+': ' : ''}${a.titulo}`.slice(0,180)
+      criarTarefa({ nome, status: 'Não iniciada', prazo, prioridade: a.tipo==='avaliacao'?'Alta':'Média', descricao: `${a.tipo} • ${a.periodo} • prazo ${a.prazo} ${a.hora}`.slice(0,1500) }).catch(()=>{})
+      const prazoMs = prazo ? new Date(prazo).getTime() : null
+      tarefasMod.addTarefa(`${a.turma ? '['+a.turma+'] ' : ''}${a.titulo} (${a.tipo} ${a.prazo})`, prazoMs)
+    }
+  } catch {}
+
   return { atividades, materias, novas }
 }
