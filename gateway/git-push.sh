@@ -9,5 +9,6 @@ fi
 git add -A
 msg="sync $(date '+%Y-%m-%d %H:%M') — vault + Notion + SIGAA"
 git commit -m "$msg" || true
-git push origin main 2>&1 | head -20
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+git push origin "$BRANCH" 2>&1 | head -20
 echo "push ok $msg"
