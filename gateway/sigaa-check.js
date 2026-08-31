@@ -35,8 +35,11 @@ async function main() {
   // ordena por prazo
   atividades.sort((a, b) => (a.prazo.split('/').reverse().join('') > b.prazo.split('/').reverse().join('') ? 1 : -1))
 
-  let msg = `🎓 *ULTRON ACADÊMICO*\n`
-  if (novas.length) msg += `🆕 ${novas.length} novidade(s)!\n`
+  if (!novas.length) {
+    console.log('nenhuma novidade, sem notificar')
+    return { atividades, materias, novas }
+  }
+  let msg = `🎓 *ULTRON ACADÊMICO* — 🆕 ${novas.length} novidade(s)!\n`
   msg += `📚 ${materias.length} matérias com atividades:\n\n`
   for (const a of atividades.slice(0, 12)) {
     const icone = a.tipo === 'tarefa' ? '📝' : '🧪'
