@@ -1,19 +1,18 @@
 ---
  tipo: curso
  plataforma: HTB Academy
- progresso: 1.2%
- atualizados: 2026-08-31
+ progresso: null%
+ atualizados: 2026-09-01
 ---
 
 # 🎯 HTB Academy
 
 ## 📊 Progresso
-- **GENERAL:** 1.2%
+- **GENERAL:** null%
 - **OFFENSIVE:** 0% | DEFENSIVE 0% | PURPLE 0%
 
 ## ✅ Concluídos
-- [x] Intro To Academy
-- [x] Intro To Academy
+- (nenhum além de Intro)
 
 ## 📚 Favoritos / Recomendados
 - Learning Process, Linux Fundamentals, Network Enumeration With Nmap, etc (veja Modules Library)

@@ -11,10 +11,14 @@
             "id": "826a0f5daf367508",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "type": "markdown",
+              "state": {
+                "file": "02-areas/faculdade/BANCO DE DADOS I/Atividade 03 - Modelagem Conceitual.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Atividade 03 - Modelagem Conceitual"
             }
           }
         ]
@@ -182,29 +186,30 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "0b3e01d3b8dd5188",
+  "active": "826a0f5daf367508",
   "lastOpenFiles": [
-    "anexos/apostilas-ebooks/Informao_no_verbal_1.docx.pdf",
-    "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/anexos/FundamentosDaComputacao2026.pdf",
+    "02-areas/faculdade/BANCO DE DADOS I/anexos/aula_00_-_Apresentac807a771o_da_disciplina_2026.pdf",
+    "02-areas/faculdade/BANCO DE DADOS I/Atividade 03 - Modelagem Conceitual.md",
+    "02-areas/faculdade/BANCO DE DADOS I/anexos/aula_05_-_Modelagem_conceitual_parte2.pdf",
+    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/Atividade_02_-_Propriedades_dos_determinantes.pdf",
+    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/PDF_03_e_Lista_3_-_Determinantes_parte_1.pdf",
+    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/PDF_04_Lista_04_-_Determinantes_parte_2.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_de_Induo_Finita.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_da_Incluso-Excluso.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/O_Teorema_Fundamental_do_Algoritmo_de_Euclides.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Gabarito_da_lista_02.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Gabarito_da_lista_01.pdf",
+    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/funcao1-resumido.pdf",
     "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
-    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/skimming-scanning.pdf",
     "🗺️ Mapa do Cérebro.md",
     "02-areas/Índice.md",
     "02-areas/faculdade/Faculdade.md",
-    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/PDF_04_Lista_04_-_Determinantes_parte_2.pdf",
-    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/Skimming_exerccios.docx.pdf",
-    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/estratgias_de_leitura_-_cognatos.pdf",
     "02-areas/faculdade/INGLÊS TÉCNICO/anexos/falsos_cognatos.jpg",
     "02-areas/faculdade/INGLÊS TÉCNICO/INGLÊS TÉCNICO.md",
     "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/LEITURA E PRODUÇÃO TEXTUAL.md",
     "02-areas/faculdade/Índice.md",
     "02-areas/faculdade/ALGORITMOS E PROGRAMAÇÃO/ALGORITMOS E PROGRAMAÇÃO.md",
     "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
-    "02-areas/faculdade/BANCO DE DADOS I/anexos/Mrio_Antonio_Perini_-_Gramtica_descritiva_do_portugus_brasileiro_-_Sujeito.pdf",
-    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Teoria_dos_Nmeros_parte_2.pdf",
-    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Teoria_dos_Nmeros.pdf",
-    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Relaes_e_Funes.pdf",
-    "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Relaes.pdf",
     "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "02-areas/faculdade/BANCO DE DADOS I/anexos/falsos_cognatos.jpg",
     "02-areas/faculdade/METODOLOGIA EXTENSIONISTA/METODOLOGIA EXTENSIONISTA.md",
@@ -222,7 +227,6 @@
     "2026-08-24.md",
     "Sem título.canvas",
     "01-projetos/2026-08-22-segundo-cerebro.md",
-    "_templates/Projeto.md",
-    "_templates/Nota de Estudo.md"
+    "_templates/Projeto.md"
   ]
 }
