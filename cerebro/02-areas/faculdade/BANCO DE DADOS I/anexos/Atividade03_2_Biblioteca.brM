@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="FAB4-60-39B0-DC-6D70-90-85">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="C6A5-B9-3DF4-A2-B9F7-53-DB">
 <InfoDiagrama ID="1">
 <Versao Valor="3.2.0"/>
 <Autores/>
@@ -33,7 +33,7 @@
 <Ancorado Valor="false"/>
 <DirecaoFromInspector Valor="0"/>
 <Autosize Valor="true"/>
-<Identificador Valor="false"/>
+<Identificador Valor="true"/>
 <Opcional Valor="false"/>
 <Multivalorado Valor="false"/>
 <CardMinFromString Valor="1"/>
@@ -111,7 +111,7 @@
 <Ancorado Valor="false"/>
 <DirecaoFromInspector Valor="0"/>
 <Autosize Valor="true"/>
-<Identificador Valor="false"/>
+<Identificador Valor="true"/>
 <Opcional Valor="false"/>
 <Multivalorado Valor="false"/>
 <CardMinFromString Valor="1"/>
@@ -155,7 +155,7 @@
 <Ancorado Valor="false"/>
 <DirecaoFromInspector Valor="0"/>
 <Autosize Valor="true"/>
-<Identificador Valor="false"/>
+<Identificador Valor="true"/>
 <Opcional Valor="false"/>
 <Multivalorado Valor="false"/>
 <CardMinFromString Valor="1"/>
@@ -191,7 +191,7 @@
 <Relacionamento ID="14">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.classifica.nome_1</Texto>
+<Texto>diagrama.pertence.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>

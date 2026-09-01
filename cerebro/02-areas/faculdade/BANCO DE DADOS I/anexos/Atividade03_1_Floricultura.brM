@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="2AE9-6C-D8F0-56-9553-29-59">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="FF86-C5-1BD2-19-BB5E-E4-5B">
 <InfoDiagrama ID="1">
 <Versao Valor="3.2.0"/>
 <Autores/>
@@ -33,7 +33,7 @@
 <Ancorado Valor="false"/>
 <DirecaoFromInspector Valor="0"/>
 <Autosize Valor="true"/>
-<Identificador Valor="false"/>
+<Identificador Valor="true"/>
 <Opcional Valor="false"/>
 <Multivalorado Valor="false"/>
 <CardMinFromString Valor="1"/>
@@ -104,14 +104,14 @@
 <Atributo ID="8">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.nome.nome_2</Texto>
+<Texto>diagrama.Codigo do produto.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
 <Ancorado Valor="false"/>
 <DirecaoFromInspector Valor="0"/>
 <Autosize Valor="true"/>
-<Identificador Valor="false"/>
+<Identificador Valor="true"/>
 <Opcional Valor="false"/>
 <Multivalorado Valor="false"/>
 <CardMinFromString Valor="1"/>
@@ -121,7 +121,7 @@
 <Atributo ID="9">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.tipo.nome_1</Texto>
+<Texto>diagrama.Nome.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -138,7 +138,7 @@
 <Atributo ID="10">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.preco.nome_1</Texto>
+<Texto>diagrama.Descricao.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -155,7 +155,7 @@
 <Atributo ID="11">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.estoque.nome_1</Texto>
+<Texto>diagrama.Preco.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -169,20 +169,27 @@
 <CardMaxFromString Valor="n"/>
 <TipoAtributo Valor=""/>
 </Atributo>
-<Entidade ID="12">
+<Atributo ID="12">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.VENDA.nome_1</Texto>
+<Texto>diagrama.Categoria.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
 <Ancorado Valor="false"/>
-<AtributosOcultos Valor=""/>
-</Entidade>
+<DirecaoFromInspector Valor="0"/>
+<Autosize Valor="true"/>
+<Identificador Valor="false"/>
+<Opcional Valor="false"/>
+<Multivalorado Valor="false"/>
+<CardMinFromString Valor="1"/>
+<CardMaxFromString Valor="n"/>
+<TipoAtributo Valor=""/>
+</Atributo>
 <Atributo ID="13">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.id.nome_1</Texto>
+<Texto>diagrama.Quantidade em estoque.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -196,54 +203,37 @@
 <CardMaxFromString Valor="n"/>
 <TipoAtributo Valor=""/>
 </Atributo>
-<Atributo ID="14">
+<Entidade ID="14">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.data.nome_1</Texto>
-<Observacao/>
-<Dicionario/>
-<Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
-<Ancorado Valor="false"/>
-<DirecaoFromInspector Valor="0"/>
-<Autosize Valor="true"/>
-<Identificador Valor="false"/>
-<Opcional Valor="false"/>
-<Multivalorado Valor="false"/>
-<CardMinFromString Valor="1"/>
-<CardMaxFromString Valor="n"/>
-<TipoAtributo Valor=""/>
-</Atributo>
-<Atributo ID="15">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
-<DisablePainted Valor="false"/>
-<Texto>diagrama.valorTotal.nome_1</Texto>
-<Observacao/>
-<Dicionario/>
-<Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
-<Ancorado Valor="false"/>
-<DirecaoFromInspector Valor="0"/>
-<Autosize Valor="true"/>
-<Identificador Valor="false"/>
-<Opcional Valor="false"/>
-<Multivalorado Valor="false"/>
-<CardMinFromString Valor="1"/>
-<CardMaxFromString Valor="n"/>
-<TipoAtributo Valor=""/>
-</Atributo>
-<Entidade ID="16">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
-<DisablePainted Valor="false"/>
-<Texto>diagrama.ITEM_VENDA.nome_1</Texto>
+<Texto>diagrama.PEDIDO.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
 <Ancorado Valor="false"/>
 <AtributosOcultos Valor=""/>
 </Entidade>
-<Atributo ID="17">
+<Atributo ID="15">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.quantidade.nome_1</Texto>
+<Texto>diagrama.Codigo do pedido.nome_1</Texto>
+<Observacao/>
+<Dicionario/>
+<Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+<Ancorado Valor="false"/>
+<DirecaoFromInspector Valor="0"/>
+<Autosize Valor="true"/>
+<Identificador Valor="true"/>
+<Opcional Valor="false"/>
+<Multivalorado Valor="false"/>
+<CardMinFromString Valor="1"/>
+<CardMaxFromString Valor="n"/>
+<TipoAtributo Valor=""/>
+</Atributo>
+<Atributo ID="16">
+<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<DisablePainted Valor="false"/>
+<Texto>diagrama.Data.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -257,19 +247,44 @@
 <CardMaxFromString Valor="n"/>
 <TipoAtributo Valor=""/>
 </Atributo>
-<Relacionamento ID="18">
+<Atributo ID="17">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.realiza.nome_1</Texto>
+<Texto>diagrama.Valor.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
 <Ancorado Valor="false"/>
-</Relacionamento>
+<DirecaoFromInspector Valor="0"/>
+<Autosize Valor="true"/>
+<Identificador Valor="false"/>
+<Opcional Valor="false"/>
+<Multivalorado Valor="false"/>
+<CardMinFromString Valor="1"/>
+<CardMaxFromString Valor="n"/>
+<TipoAtributo Valor=""/>
+</Atributo>
+<Atributo ID="18">
+<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<DisablePainted Valor="false"/>
+<Texto>diagrama.Status.nome_1</Texto>
+<Observacao/>
+<Dicionario/>
+<Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+<Ancorado Valor="false"/>
+<DirecaoFromInspector Valor="0"/>
+<Autosize Valor="true"/>
+<Identificador Valor="false"/>
+<Opcional Valor="false"/>
+<Multivalorado Valor="false"/>
+<CardMinFromString Valor="1"/>
+<CardMaxFromString Valor="n"/>
+<TipoAtributo Valor=""/>
+</Atributo>
 <Relacionamento ID="19">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.contem.nome_1</Texto>
+<Texto>diagrama.possui.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -278,7 +293,7 @@
 <Relacionamento ID="20">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.compoe.nome_1</Texto>
+<Texto>diagrama.contem.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
