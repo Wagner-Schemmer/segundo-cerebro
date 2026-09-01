@@ -13,7 +13,7 @@ const VAULT = path.join(CEREBRO, 'anexos')
 const LOG = path.join(CEREBRO, 'sistema', 'memoria', 'arquivos-recebidos.md')
 
 // pastas vigiadas
-const VIGIADAS = [os.homedir() + '/Downloads', os.homedir() + '/Área de trabalho', os.homedir() + '/Documentos']
+const VIGIADAS = [os.homedir() + '/Downloads', os.homedir() + '/Área de trabalho', os.homedir() + '/Documentos', os.homedir() + '/Organizado']
 
 // nunca mexer nisso
 const EXCLUIR_CAMINHOS = [

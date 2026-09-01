@@ -11,14 +11,10 @@
             "id": "826a0f5daf367508",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "02-areas/faculdade/Índice.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Índice"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
             }
           }
         ]
@@ -186,9 +182,22 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "826a0f5daf367508",
+  "active": "0b3e01d3b8dd5188",
   "lastOpenFiles": [
+    "anexos/apostilas-ebooks/Informao_no_verbal_1.docx.pdf",
+    "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/anexos/FundamentosDaComputacao2026.pdf",
+    "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
+    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/skimming-scanning.pdf",
+    "🗺️ Mapa do Cérebro.md",
+    "02-areas/Índice.md",
     "02-areas/faculdade/Faculdade.md",
+    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/PDF_04_Lista_04_-_Determinantes_parte_2.pdf",
+    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/Skimming_exerccios.docx.pdf",
+    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/estratgias_de_leitura_-_cognatos.pdf",
+    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/falsos_cognatos.jpg",
+    "02-areas/faculdade/INGLÊS TÉCNICO/INGLÊS TÉCNICO.md",
+    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/LEITURA E PRODUÇÃO TEXTUAL.md",
+    "02-areas/faculdade/Índice.md",
     "02-areas/faculdade/ALGORITMOS E PROGRAMAÇÃO/ALGORITMOS E PROGRAMAÇÃO.md",
     "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
     "02-areas/faculdade/BANCO DE DADOS I/anexos/Mrio_Antonio_Perini_-_Gramtica_descritiva_do_portugus_brasileiro_-_Sujeito.pdf",
@@ -196,17 +205,9 @@
     "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Teoria_dos_Nmeros.pdf",
     "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Relaes_e_Funes.pdf",
     "02-areas/faculdade/MATEMÁTICA DISCRETA/anexos/Relaes.pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Sobre_as_origens_do_AI5_-_Rodrigo_Motta.pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Mrio_Antonio_Perini_-_Gramtica_descritiva_do_portugus_brasileiro_-_Sujeito (1).pdf",
-    "02-areas/faculdade/LEITURA E PRODUÇÃO TEXTUAL/anexos/Mrio_Antonio_Perini_-_Gramtica_descritiva_do_portugus_brasileiro_-_Sujeito.pdf",
-    "02-areas/faculdade/LÓGICA MATEMÁTICA/anexos/Relacoes_Logicas.pdf",
-    "02-areas/faculdade/LÓGICA MATEMÁTICA/anexos/DesafioLogica.pdf",
     "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
-    "02-areas/faculdade/INGLÊS TÉCNICO/anexos/falsos_cognatos.jpg",
     "02-areas/faculdade/BANCO DE DADOS I/anexos/falsos_cognatos.jpg",
     "02-areas/faculdade/METODOLOGIA EXTENSIONISTA/METODOLOGIA EXTENSIONISTA.md",
-    "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
-    "🗺️ Mapa do Cérebro.md",
     "02-areas/trabalho/Trabalho.md",
     "02-areas/trabalho/Dashboard.md",
     "🗺️ Mapa do Cérebro.canvas",
@@ -215,7 +216,6 @@
     "02-areas/faculdade/Materiais/Propriedades dos Determinantes.md",
     "03-recursos/Índice.md",
     "01-projetos/Índice.md",
-    "02-areas/Índice.md",
     "00-inbox/2026-08-24.md",
     "02-areas/cursos/Cursos.md",
     "🏠 Dashboard.md",
