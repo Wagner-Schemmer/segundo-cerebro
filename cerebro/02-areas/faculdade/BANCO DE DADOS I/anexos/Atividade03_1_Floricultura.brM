@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="FF86-C5-1BD2-19-BB5E-E4-5B">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="9978-1B-1624-83-DB80-46-2">
 <InfoDiagrama ID="1">
 <Versao Valor="3.2.0"/>
 <Autores/>
@@ -14,7 +14,7 @@
 <Realce Valor="false"/>
 </InfoDiagrama>
 <Entidade ID="2">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="70" Left="500" Top="120" Width="140"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.CLIENTE.nome_1</Texto>
 <Observacao/>
@@ -92,7 +92,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Entidade ID="7">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="70" Left="120" Top="350" Width="140"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.PRODUTO.nome_1</Texto>
 <Observacao/>
@@ -204,7 +204,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Entidade ID="14">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="70" Left="120" Top="80" Width="140"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.PEDIDO.nome_1</Texto>
 <Observacao/>
@@ -282,16 +282,16 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Relacionamento ID="19">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="60" Left="320" Top="130" Width="80"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.possui.nome_1</Texto>
+<Texto>diagrama.realiza.nome_1</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
 <Ancorado Valor="false"/>
 </Relacionamento>
 <Relacionamento ID="20">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="60" Left="120" Top="220" Width="80"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.contem.nome_1</Texto>
 <Observacao/>
