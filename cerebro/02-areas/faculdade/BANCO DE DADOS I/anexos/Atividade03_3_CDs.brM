@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="54BC-F9-318B-3E-AE46-33-2E">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="7E37-20-6730-D-62B4-6B-52">
 <InfoDiagrama ID="1">
 <Versao Valor="3.2.0"/>
 <Autores/>
@@ -14,7 +14,7 @@
 <Realce Valor="false"/>
 </InfoDiagrama>
 <Entidade ID="2">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="80" Left="120" Top="80" Width="150"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.DISCO.nome_1</Texto>
 <Observacao/>
@@ -75,7 +75,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Entidade ID="6">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="80" Left="400" Top="200" Width="150"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.MUSICA.nome_1</Texto>
 <Observacao/>
@@ -136,7 +136,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Entidade ID="10">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="80" Left="650" Top="80" Width="150"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.COMPOSITOR.nome_1</Texto>
 <Observacao/>
@@ -180,7 +180,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Entidade ID="13">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="80" Left="120" Top="350" Width="150"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.ARTISTA.nome_1</Texto>
 <Observacao/>
@@ -224,7 +224,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Relacionamento ID="16">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="60" Left="250" Top="150" Width="90"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.faixa.nome_1</Texto>
 <Observacao/>
@@ -233,7 +233,7 @@
 <Ancorado Valor="false"/>
 </Relacionamento>
 <Relacionamento ID="17">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="60" Left="520" Top="130" Width="90"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.composicao.nome_1</Texto>
 <Observacao/>
@@ -242,7 +242,7 @@
 <Ancorado Valor="false"/>
 </Relacionamento>
 <Relacionamento ID="18">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="60" Left="120" Top="240" Width="90"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.interpreta.nome_1</Texto>
 <Observacao/>
