@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="24EB-E1-19B5-F-542-92-B9">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="84D-6-E16E-4F-E8E2-3C-C">
 <InfoDiagrama ID="1">
 <Versao Valor="3.2.0"/>
 <Autores/>
@@ -26,7 +26,7 @@
 <Atributo ID="3">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.codigo.nome_1</Texto>
+<Texto>codigo</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -43,7 +43,7 @@
 <Atributo ID="4">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.nome.nome_1</Texto>
+<Texto>nome</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -60,7 +60,7 @@
 <Atributo ID="5">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.cpf.nome_1</Texto>
+<Texto>cpf</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -77,7 +77,7 @@
 <Atributo ID="6">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.telefone.nome_1</Texto>
+<Texto>telefone</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -94,7 +94,7 @@
 <Atributo ID="7">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.email.nome_1</Texto>
+<Texto>email</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -121,7 +121,7 @@
 <Atributo ID="9">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.codigo.nome_2</Texto>
+<Texto>codigo</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -138,7 +138,7 @@
 <Atributo ID="10">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.nome.nome_2</Texto>
+<Texto>nome</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -155,7 +155,7 @@
 <Atributo ID="11">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.descricao.nome_1</Texto>
+<Texto>descricao</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -172,7 +172,7 @@
 <Atributo ID="12">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.duracao.nome_1</Texto>
+<Texto>duracao</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -189,7 +189,7 @@
 <Atributo ID="13">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.valor.nome_1</Texto>
+<Texto>valor</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -216,7 +216,7 @@
 <Atributo ID="15">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.codigo.nome_3</Texto>
+<Texto>codigo</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -233,7 +233,7 @@
 <Atributo ID="16">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.nome.nome_3</Texto>
+<Texto>nome</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -250,7 +250,7 @@
 <Atributo ID="17">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.cidade.nome_1</Texto>
+<Texto>cidade</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -267,7 +267,7 @@
 <Atributo ID="18">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.pais.nome_1</Texto>
+<Texto>pais</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -294,7 +294,7 @@
 <Atributo ID="20">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.codigo.nome_4</Texto>
+<Texto>codigo</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -311,7 +311,7 @@
 <Atributo ID="21">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.dataReserva.nome_1</Texto>
+<Texto>dataReserva</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -328,7 +328,7 @@
 <Atributo ID="22">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.qtdPessoas.nome_1</Texto>
+<Texto>qtdPessoas</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -345,7 +345,7 @@
 <Atributo ID="23">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.situacao.nome_1</Texto>
+<Texto>situacao</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -372,7 +372,7 @@
 <Atributo ID="25">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.codigo.nome_5</Texto>
+<Texto>codigo</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -389,7 +389,7 @@
 <Atributo ID="26">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.nome.nome_4</Texto>
+<Texto>nome</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -406,7 +406,7 @@
 <Atributo ID="27">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.telefone.nome_2</Texto>
+<Texto>telefone</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -423,7 +423,7 @@
 <Atributo ID="28">
 <Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
-<Texto>diagrama.idioma.nome_1</Texto>
+<Texto>idioma</Texto>
 <Observacao/>
 <Dicionario/>
 <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -438,7 +438,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Relacionamento ID="29">
-<Bounds Height="60" Left="420" Top="100" Width="90"/>
+<Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.inclui.nome_1</Texto>
 <Observacao/>
@@ -447,7 +447,7 @@
 <Ancorado Valor="false"/>
 </Relacionamento>
 <Relacionamento ID="30">
-<Bounds Height="60" Left="300" Top="200" Width="90"/>
+<Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.acompanha.nome_1</Texto>
 <Observacao/>
@@ -456,7 +456,7 @@
 <Ancorado Valor="false"/>
 </Relacionamento>
 <Relacionamento ID="31">
-<Bounds Height="60" Left="180" Top="200" Width="90"/>
+<Bounds Height="100" Left="10" Top="10" Width="150"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.faz.nome_1</Texto>
 <Observacao/>
