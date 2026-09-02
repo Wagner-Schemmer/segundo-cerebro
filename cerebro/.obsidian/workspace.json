@@ -11,14 +11,17 @@
             "id": "826a0f5daf367508",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "02-areas/faculdade/BANCO DE DADOS I/Atividade 03 - Modelagem Conceitual.md",
-                "mode": "source",
-                "source": false
+                "file": "🗺️ Mapa Completo.canvas",
+                "viewState": {
+                  "x": 265.4853381669072,
+                  "y": 331.0362669582738,
+                  "zoom": -1.2000000000000002
+                }
               },
-              "icon": "lucide-file",
-              "title": "Atividade 03 - Modelagem Conceitual"
+              "icon": "lucide-layout-dashboard",
+              "title": "🗺️ Mapa Completo"
             }
           }
         ]
@@ -188,8 +191,12 @@
   },
   "active": "826a0f5daf367508",
   "lastOpenFiles": [
-    "02-areas/faculdade/BANCO DE DADOS I/anexos/aula_00_-_Apresentac807a771o_da_disciplina_2026.pdf",
+    "🗺️ Mapa do Cérebro.canvas",
+    "🗺️ Mapa Completo.canvas",
+    "Sem título.base",
+    "Sem título.canvas",
     "02-areas/faculdade/BANCO DE DADOS I/Atividade 03 - Modelagem Conceitual.md",
+    "02-areas/faculdade/BANCO DE DADOS I/anexos/aula_00_-_Apresentac807a771o_da_disciplina_2026.pdf",
     "02-areas/faculdade/BANCO DE DADOS I/anexos/aula_05_-_Modelagem_conceitual_parte2.pdf",
     "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/Atividade_02_-_Propriedades_dos_determinantes.pdf",
     "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/PDF_03_e_Lista_3_-_Determinantes_parte_1.pdf",
@@ -198,8 +205,6 @@
     "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_da_Incluso-Excluso.pdf",
     "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/O_Teorema_Fundamental_do_Algoritmo_de_Euclides.pdf",
     "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Gabarito_da_lista_02.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Gabarito_da_lista_01.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/funcao1-resumido.pdf",
     "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
     "🗺️ Mapa do Cérebro.md",
     "02-areas/Índice.md",
@@ -215,7 +220,6 @@
     "02-areas/faculdade/METODOLOGIA EXTENSIONISTA/METODOLOGIA EXTENSIONISTA.md",
     "02-areas/trabalho/Trabalho.md",
     "02-areas/trabalho/Dashboard.md",
-    "🗺️ Mapa do Cérebro.canvas",
     "02-areas/cursos/Dashboard.md",
     "00-inbox/Índice.md",
     "02-areas/faculdade/Materiais/Propriedades dos Determinantes.md",
@@ -225,7 +229,6 @@
     "02-areas/cursos/Cursos.md",
     "🏠 Dashboard.md",
     "2026-08-24.md",
-    "Sem título.canvas",
     "01-projetos/2026-08-22-segundo-cerebro.md",
     "_templates/Projeto.md"
   ]
