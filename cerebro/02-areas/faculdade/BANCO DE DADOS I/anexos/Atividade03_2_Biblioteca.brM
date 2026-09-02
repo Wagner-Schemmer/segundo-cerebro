@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="87D-72-62CD-D-7D33-31-72">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="6C23-DC-297-94-DDA5-71-60">
 <InfoDiagrama ID="1">
 <Versao Valor="3.2.0"/>
 <Autores/>
@@ -180,7 +180,7 @@
 <TipoAtributo Valor=""/>
 </Atributo>
 <Relacionamento ID="13">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="60" Left="280" Top="120" Width="90"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.escreve.nome_1</Texto>
 <Observacao/>
@@ -189,7 +189,7 @@
 <Ancorado Valor="false"/>
 </Relacionamento>
 <Relacionamento ID="14">
-<Bounds Height="100" Left="10" Top="10" Width="150"/>
+<Bounds Height="60" Left="120" Top="200" Width="90"/>
 <DisablePainted Valor="false"/>
 <Texto>diagrama.pertence.nome_1</Texto>
 <Observacao/>
