@@ -11,17 +11,14 @@
             "id": "826a0f5daf367508",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "🗺️ Mapa Completo.canvas",
-                "viewState": {
-                  "x": 265.4853381669072,
-                  "y": 331.0362669582738,
-                  "zoom": -1.2000000000000002
-                }
+                "file": "🏠 Dashboard.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "🗺️ Mapa Completo"
+              "icon": "lucide-file",
+              "title": "🏠 Dashboard"
             }
           }
         ]
@@ -58,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:banco de dados 1",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -191,22 +188,24 @@
   },
   "active": "826a0f5daf367508",
   "lastOpenFiles": [
-    "🗺️ Mapa do Cérebro.canvas",
+    "anexos/compactados/open-notebook-main.zip",
+    "02-areas/faculdade/Aulas/iffar/BD/exercicos prontos/Exercicios_01_-_Resolvidos.pdf",
+    "02-areas/faculdade/Aulas/iffar/BD/exercicos prontos/Atividade_02_-_Resolvida.pdf",
+    "02-areas/faculdade/Aulas/iffar/Calculo 1/funcao2-novo.pdf",
+    "02-areas/faculdade/Aulas/iffar/Calculo 1/funcao1-resumido.pdf",
+    "02-areas/faculdade/Aulas/iffar/Calculo 1/PDF_01_e_lista_01_-_Matrizes.pdf",
+    "02-areas/faculdade/Aulas/iffar/BD/exercicos prontos",
+    "02-areas/faculdade/Aulas/iffar/BD/aula_02_-_Modelos_de_Dados.pdf",
+    "02-areas/faculdade/Aulas/iffar/BD/aula_01_-_Conceitos_ba769sicos.pdf",
+    "02-areas/faculdade/Aulas/iffar/BD/Exerci769cios_01_-_Conceitos_ba769sicos.pdf",
+    "02-areas/faculdade/Aulas/iffar/BD/Atividade_02_-_Modelos_de_dados.pdf",
     "🗺️ Mapa Completo.canvas",
-    "Sem título.base",
+    "🗺️ Mapa do Cérebro.canvas",
+    "🗺️ Mapa do Cérebro.md",
     "Sem título.canvas",
     "02-areas/faculdade/BANCO DE DADOS I/Atividade 03 - Modelagem Conceitual.md",
-    "02-areas/faculdade/BANCO DE DADOS I/anexos/aula_00_-_Apresentac807a771o_da_disciplina_2026.pdf",
-    "02-areas/faculdade/BANCO DE DADOS I/anexos/aula_05_-_Modelagem_conceitual_parte2.pdf",
-    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/Atividade_02_-_Propriedades_dos_determinantes.pdf",
-    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/PDF_03_e_Lista_3_-_Determinantes_parte_1.pdf",
-    "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/anexos/PDF_04_Lista_04_-_Determinantes_parte_2.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_de_Induo_Finita.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Princpio_da_Incluso-Excluso.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/O_Teorema_Fundamental_do_Algoritmo_de_Euclides.pdf",
-    "02-areas/faculdade/TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA/anexos/Gabarito_da_lista_02.pdf",
+    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "02-areas/faculdade/FUNDAMENTOS DA COMPUTAÇÃO/FUNDAMENTOS DA COMPUTAÇÃO.md",
-    "🗺️ Mapa do Cérebro.md",
     "02-areas/Índice.md",
     "02-areas/faculdade/Faculdade.md",
     "02-areas/faculdade/INGLÊS TÉCNICO/anexos/falsos_cognatos.jpg",
@@ -215,7 +214,6 @@
     "02-areas/faculdade/Índice.md",
     "02-areas/faculdade/ALGORITMOS E PROGRAMAÇÃO/ALGORITMOS E PROGRAMAÇÃO.md",
     "02-areas/faculdade/CÁLCULO DIFERENCIAL E INTEGRAL I/CÁLCULO DIFERENCIAL E INTEGRAL I.md",
-    "02-areas/faculdade/BANCO DE DADOS I/BANCO DE DADOS I.md",
     "02-areas/faculdade/BANCO DE DADOS I/anexos/falsos_cognatos.jpg",
     "02-areas/faculdade/METODOLOGIA EXTENSIONISTA/METODOLOGIA EXTENSIONISTA.md",
     "02-areas/trabalho/Trabalho.md",
