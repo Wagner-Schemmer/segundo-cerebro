@@ -14,3 +14,4 @@
 - 31/08/2026, 19:45:42 — `Imagens_sem_legenda.pdf` (~/Downloads/Imagens_sem_legenda.pdf) → `anexos/apostilas-ebooks/Imagens_sem_legenda.pdf`
 - 31/08/2026, 19:45:55 — `Legendas.docx.pdf` (~/Downloads/Legendas.docx.pdf) → `anexos/apostilas-ebooks/Legendas.docx.pdf`
 - 31/08/2026, 19:48:48 — `Informao_no_verbal_1.docx.pdf` (~/Downloads/Informao_no_verbal_1.docx.pdf) → `anexos/apostilas-ebooks/Informao_no_verbal_1.docx.pdf`
+- 09/09/2026, 21:34:52 — `projeto_monitoramento_animal.pdf` (~/Downloads/projeto_monitoramento_animal.pdf) → `anexos/apostilas-ebooks/projeto_monitoramento_animal.pdf`
