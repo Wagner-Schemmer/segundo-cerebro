@@ -18,7 +18,7 @@ const sock = makeWASocket({ version, auth: state, printQRInTerminal: false });
 sock.ev.on("creds.update", saveCreds);
 sock.ev.on("connection.update", async ({ connection, qr, lastDisconnect }) => {
   if (qr) {
-    await QRCode.toFile("/tmp/wa-qr.png", qr, { width: 400, margin: 2 });
+    await QRCode.toFile("/tmp/qr/wa-qr.png", qr, { width: 400, margin: 2 });
     console.log("QR-GERADO");
   }
   if (connection === "open") {
@@ -33,4 +33,4 @@ sock.ev.on("connection.update", async ({ connection, qr, lastDisconnect }) => {
     console.log("LOGOFF definitivo, QR novo necessário");
   }
 });
-setTimeout(() => { console.log("TIMEOUT 120s"); process.exit(2); }, 120000).unref();
+setTimeout(() => { console.log("TIMEOUT 120s"); process.exit(2); }, 600000).unref();
