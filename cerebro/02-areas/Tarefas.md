@@ -7,6 +7,11 @@
 - [ ] [CÁLCULO DIFERENCIAL E INTEGRAL I] Avaliação: 1ª Avaliação (avaliacao 04/09/2026) 📅 03/09, 21:00 *(# 5)*
 - [ ] [METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extensão (tarefa 12/09/2026) 📅 11/09, 21:00 *(# 6)*
 - [ ] [BANCO DE DADOS I] Atividade 03 - Modelagem conceitual (tarefa 02/09/2026) 📅 01/09, 21:00 *(# 7)*
+- [ ] [INGLÊS TÉCNICO] Respostas atividade figura-legenda (tarefa 07/09/2026) 📅 06/09, 21:00 *(# 8)*
+- [ ] [INGLÊS TÉCNICO] Article science daily (tarefa 07/09/2026) 📅 06/09, 21:00 *(# 9)*
+- [ ] [BANCO DE DADOS I] Atividade 04 - Modelagem conceitual (2) (tarefa 09/09/2026) 📅 08/09, 21:00 *(# 10)*
+- [ ] [BANCO DE DADOS I] Atividade 05 - Mapeamento entre modelos (tarefa 16/09/2026) 📅 15/09, 21:00 *(# 11)*
+- [ ] [BANCO DE DADOS I] Avaliação: 1ª Avaliação (avaliacao 23/09/2026) 📅 22/09, 21:00 *(# 12)*
 
 <details><summary>🗂️ Concluídas recentemente</summary>
 

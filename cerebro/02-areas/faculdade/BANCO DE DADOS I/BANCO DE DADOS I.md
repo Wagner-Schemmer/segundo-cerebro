@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-08-30
+atualizado: 2026-09-10
 tags: [faculdade, "banco de dados i"]
 ---
 
@@ -9,7 +9,9 @@ tags: [faculdade, "banco de dados i"]
 
 ## 📋 Atividades e prazos (via SIGAA)
 
-- 📝 **02/09/2026 23:59** — Atividade 03 - Modelagem conceitual (1)
+- 📝 **09/09/2026 23:59** — Atividade 04 - Modelagem conceitual (2)
+- 📝 **16/09/2026 23:59** — Atividade 05 - Mapeamento entre modelos
+- 🧪 **23/09/2026** — Avaliação: 1ª Avaliação
 
 ## 🔑 Conceitos-chave
 - 
