@@ -19,7 +19,18 @@ function textOf(msg) {
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState("./sessao-whatsapp");
   const { version } = await fetchLatestBaileysVersion();
-  const sock = makeWASocket({ version, auth: state, printQRInTerminal: false });
+  const sock = makeWASocket({
+    version,
+    auth: state,
+    printQRInTerminal: false,
+    markOnlineOnConnect: false,
+    syncFullHistory: false,
+    emitOwnEvents: false,
+    keepAliveIntervalMs: 25000,
+    connectTimeoutMs: 60000,
+    defaultQueryTimeoutMs: 60000,
+    retryRequestDelayMs: 2000,
+  });
   sock.ev.on("creds.update", saveCreds);
 
   sock.ev.on("messages.upsert", async ({ messages }) => {
