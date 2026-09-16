@@ -15,3 +15,4 @@
 - 31/08/2026, 19:45:55 — `Legendas.docx.pdf` (~/Downloads/Legendas.docx.pdf) → `anexos/apostilas-ebooks/Legendas.docx.pdf`
 - 31/08/2026, 19:48:48 — `Informao_no_verbal_1.docx.pdf` (~/Downloads/Informao_no_verbal_1.docx.pdf) → `anexos/apostilas-ebooks/Informao_no_verbal_1.docx.pdf`
 - 09/09/2026, 21:34:52 — `projeto_monitoramento_animal.pdf` (~/Downloads/projeto_monitoramento_animal.pdf) → `anexos/apostilas-ebooks/projeto_monitoramento_animal.pdf`
+- 16/09/2026, 19:53:11 — `opencode-debug-20260916T225303.zip` (~/Downloads/opencode-debug-20260916T225303.zip) → `anexos/compactados/opencode-debug-20260916T225303.zip`
