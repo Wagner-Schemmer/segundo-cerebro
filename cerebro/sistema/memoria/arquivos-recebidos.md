@@ -16,3 +16,6 @@
 - 31/08/2026, 19:48:48 — `Informao_no_verbal_1.docx.pdf` (~/Downloads/Informao_no_verbal_1.docx.pdf) → `anexos/apostilas-ebooks/Informao_no_verbal_1.docx.pdf`
 - 09/09/2026, 21:34:52 — `projeto_monitoramento_animal.pdf` (~/Downloads/projeto_monitoramento_animal.pdf) → `anexos/apostilas-ebooks/projeto_monitoramento_animal.pdf`
 - 16/09/2026, 19:53:11 — `opencode-debug-20260916T225303.zip` (~/Downloads/opencode-debug-20260916T225303.zip) → `anexos/compactados/opencode-debug-20260916T225303.zip`
+- 19/09/2026, 11:32:44 — `teste-doc.pdf` (~/Downloads/teste-doc.pdf) → `anexos/apostilas-ebooks/teste-doc.pdf`
+- 19/09/2026, 11:32:44 — `foto-teste.jpg` (~/Downloads/foto-teste.jpg) → `anexos/imagens/foto-teste.jpg`
+- 19/09/2026, 11:32:44 — `pacote-teste.zip` (~/Downloads/pacote-teste.zip) → `anexos/compactados/pacote-teste.zip`
