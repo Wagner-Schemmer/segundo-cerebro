@@ -22,3 +22,7 @@
 - 19/09/2026, 11:33:23 — `logtest.txt` (~/Downloads/logtest.txt) → `anexos/textos/logtest.txt`
 - 19/09/2026, 11:33:55 — `teste2.pdf` (~/Downloads/teste2.pdf) → `anexos/apostilas-ebooks/teste2.pdf`
 - 19/09/2026, 11:33:55 — `foto2.png` (~/Downloads/foto2.png) → `anexos/imagens/foto2.png`
+- 19/09/2026, 11:51:14 — `modelo-teste.stl` (~/Downloads/modelo-teste.stl) → `~/Documentos/Arquivo/Modelos-3D/modelo-teste.stl`
+- 19/09/2026, 11:51:14 — `diagrama-teste.brMt` (~/Downloads/diagrama-teste.brMt) → `~/Documentos/atividade_brmodelo/diagrama-teste.brMt`
+- 19/09/2026, 11:51:14 — `script-teste.py` (~/Downloads/script-teste.py) → `~/Documentos/Projetos/_inbox/script-teste.py`
+- 19/09/2026, 11:51:14 — `app-teste.deb` (~/Downloads/app-teste.deb) → `~/Downloads/instaladores/app-teste.deb`

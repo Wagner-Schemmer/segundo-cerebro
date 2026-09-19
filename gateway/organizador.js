@@ -34,8 +34,17 @@ const REGRAS = [
   { teste: /\.(zip|rar|7z|tar|tar\.gz|tgz|bz2|xz)$/i, destino: 'compactados' },
 ]
 // instaladores ficam FORA do vault (software não é conhecimento)
-const INSTALADORES = /\.(deb|rpm|appimage|exe|msi|dmg|pkg|flatpak|snap)$/i
+const INSTALADORES = /\.(deb|rpm|appimage|exe|msi|dmg|pkg|flatpak|flatpakref|snap|jar)$/i
 const PASTA_INSTALADORES = os.homedir() + '/Downloads/instaladores'
+// brModelo -> pasta da atividade (fora do vault)
+const BRMODELO = /\.(chc|brmt)$/i
+const PASTA_BRMODELO = os.homedir() + '/Documentos/atividade_brmodelo'
+// modelos 3D/impressao -> Arquivo (fora do vault, arquivos grandes)
+const MODELOS_3D = /\.(stl|obj|blend|fbx|3mf|gcode)$/i
+const PASTA_MODELOS_3D = os.homedir() + '/Documentos/Arquivo/Modelos-3D'
+// codigo solto baixado -> inbox dentro de Projetos (fora do vault)
+const CODIGO = /\.(sh|py|js|ts|tsx|jsx|rs|go|java|c|h|cpp|hpp|css|scss|json|yml|yaml|toml|sql|vue)$/i
+const PASTA_CODE_INBOX = os.homedir() + '/Documentos/Projetos/_inbox'
 
 const pendentes = new Map() // arquivo -> timer de estabilização
 
@@ -57,6 +66,9 @@ function ignorado(caminho) {
 
 function destinoPara(caminho) {
   if (INSTALADORES.test(caminho)) return { pasta: PASTA_INSTALADORES, foraDoVault: true }
+  if (BRMODELO.test(caminho)) return { pasta: PASTA_BRMODELO, foraDoVault: true }
+  if (MODELOS_3D.test(caminho)) return { pasta: PASTA_MODELOS_3D, foraDoVault: true }
+  if (CODIGO.test(caminho)) return { pasta: PASTA_CODE_INBOX, foraDoVault: true }
   // se for PDF/PPT do SIGAA e temos matéria atual (definida pelo script do navegador há <15min), manda para a pasta da matéria
   try {
     const statMateria = fs.statSync('/tmp/ultima-materia-sigaa.txt')
@@ -80,7 +92,7 @@ function mover(caminho) {
     const st = fs.statSync(caminho)
     if (!st.isFile()) return
     const alvo = destinoPara(caminho)
-    if (!alvo || alvo.pasta.startsWith(path.dirname(caminho) + path.sep)) return
+    if (!alvo || alvo.pasta === path.dirname(caminho)) return
 
     fs.mkdirSync(alvo.pasta, { recursive: true })
     let final = path.join(alvo.pasta, path.basename(caminho))
