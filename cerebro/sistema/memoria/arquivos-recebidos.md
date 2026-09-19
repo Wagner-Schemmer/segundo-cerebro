@@ -19,3 +19,6 @@
 - 19/09/2026, 11:32:44 — `teste-doc.pdf` (~/Downloads/teste-doc.pdf) → `anexos/apostilas-ebooks/teste-doc.pdf`
 - 19/09/2026, 11:32:44 — `foto-teste.jpg` (~/Downloads/foto-teste.jpg) → `anexos/imagens/foto-teste.jpg`
 - 19/09/2026, 11:32:44 — `pacote-teste.zip` (~/Downloads/pacote-teste.zip) → `anexos/compactados/pacote-teste.zip`
+- 19/09/2026, 11:33:23 — `logtest.txt` (~/Downloads/logtest.txt) → `anexos/textos/logtest.txt`
+- 19/09/2026, 11:33:55 — `teste2.pdf` (~/Downloads/teste2.pdf) → `anexos/apostilas-ebooks/teste2.pdf`
+- 19/09/2026, 11:33:55 — `foto2.png` (~/Downloads/foto2.png) → `anexos/imagens/foto2.png`
