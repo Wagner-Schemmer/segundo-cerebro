@@ -26,3 +26,7 @@
 - 19/09/2026, 11:51:14 — `diagrama-teste.brMt` (~/Downloads/diagrama-teste.brMt) → `~/Documentos/atividade_brmodelo/diagrama-teste.brMt`
 - 19/09/2026, 11:51:14 — `script-teste.py` (~/Downloads/script-teste.py) → `~/Documentos/Projetos/_inbox/script-teste.py`
 - 19/09/2026, 11:51:14 — `app-teste.deb` (~/Downloads/app-teste.deb) → `~/Downloads/instaladores/app-teste.deb`
+- 30/09/2026, 20:18:51 — `databov-logo
+.jpeg` (~/Downloads/databov-logo
+.jpeg) → `anexos/imagens/databov-logo
+.jpeg`
