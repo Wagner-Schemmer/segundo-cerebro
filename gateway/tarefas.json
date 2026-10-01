@@ -18,69 +18,79 @@
     "texto": "Teste Calendar - Entrega trabalho BD",
     "prazo": 1788194927337,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "13348703-ac55-4423-a20e-d945a95b0b19"
   },
   {
     "id": 4,
     "texto": "[METODOLOGIA EXTENSIONISTA] Avaliação: 1ª Avaliação (avaliacao 14/09/2026)",
     "prazo": 1789344000000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "b26205b7-b3a3-4a89-80f0-3d83e4cf2faa"
   },
   {
     "id": 5,
     "texto": "[CÁLCULO DIFERENCIAL E INTEGRAL I] Avaliação: 1ª Avaliação (avaliacao 04/09/2026)",
     "prazo": 1788480000000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "eefd8930-7df6-414b-983f-4ace49c0ca8f"
   },
   {
     "id": 6,
     "texto": "[METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extensão (tarefa 12/09/2026)",
     "prazo": 1789171200000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "6039842d-a021-4c91-8213-87f49e39c264"
   },
   {
     "id": 7,
     "texto": "[BANCO DE DADOS I] Atividade 03 - Modelagem conceitual (tarefa 02/09/2026)",
     "prazo": 1788307200000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "5d5e6ff3-cb6a-456a-93ca-609f98fc008a"
   },
   {
     "id": 8,
     "texto": "[INGLÊS TÉCNICO] Respostas atividade figura-legenda (tarefa 07/09/2026)",
     "prazo": 1788739200000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "be50a967-08a0-4de6-934c-b3c900f6076a"
   },
   {
     "id": 9,
     "texto": "[INGLÊS TÉCNICO] Article science daily (tarefa 07/09/2026)",
     "prazo": 1788739200000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "db47ab73-cd5c-4680-9a3d-174ad90da169"
   },
   {
     "id": 10,
     "texto": "[BANCO DE DADOS I] Atividade 04 - Modelagem conceitual (2) (tarefa 09/09/2026)",
     "prazo": 1788912000000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "42cb9c78-2989-473e-b290-b7afc8e952b8"
   },
   {
     "id": 11,
     "texto": "[BANCO DE DADOS I] Atividade 05 - Mapeamento entre modelos (tarefa 16/09/2026)",
     "prazo": 1789516800000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "a2733da4-3aa2-4430-bd0e-756121860055"
   },
   {
     "id": 12,
     "texto": "[BANCO DE DADOS I] Avaliação: 1ª Avaliação (avaliacao 23/09/2026)",
     "prazo": 1790121600000,
     "feita": false,
-    "lembrado": true
+    "lembrado": true,
+    "pg_id": "9bfdd5ec-b399-4232-ae69-e525298b24c5"
   }
 ]
