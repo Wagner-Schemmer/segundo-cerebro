@@ -12,6 +12,7 @@
 - [ ] [BANCO DE DADOS I] Atividade 04 - Modelagem conceitual (2) (tarefa 09/09/2026) 📅 08/09, 21:00 *(# 10)*
 - [ ] [BANCO DE DADOS I] Atividade 05 - Mapeamento entre modelos (tarefa 16/09/2026) 📅 15/09, 21:00 *(# 11)*
 - [ ] [BANCO DE DADOS I] Avaliação: 1ª Avaliação (avaliacao 23/09/2026) 📅 22/09, 21:00 *(# 12)*
+- [ ] [METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extens o - Atrasado (tarefa 28/09/2026) 📅 27/09, 21:00 *(# 13)*
 
 <details><summary>🗂️ Concluídas recentemente</summary>
 

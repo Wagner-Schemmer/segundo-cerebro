@@ -2,7 +2,7 @@
  tipo: curso
  plataforma: HTB Academy
  progresso: null%
- atualizados: 2026-09-29
+ atualizados: 2026-10-01
 ---
 
 # 🎯 HTB Academy

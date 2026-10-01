@@ -92,5 +92,13 @@
     "feita": false,
     "lembrado": true,
     "pg_id": "9bfdd5ec-b399-4232-ae69-e525298b24c5"
+  },
+  {
+    "id": 13,
+    "texto": "[METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extens o - Atrasado (tarefa 28/09/2026)",
+    "prazo": 1790553600000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "ca6535ab-e247-484f-8dea-624b0f681549"
   }
 ]
