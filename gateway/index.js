@@ -8,7 +8,7 @@ import os from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
 import { exec, execFile } from 'node:child_process'
-import { conversar, salvarNota, statusMaquina, estado, MODELO_PADRAO, esquecer, transcreverAudio, sintetizarVoz } from './lib.js'
+import { conversar, salvarNota, salvarNotaIntegrada, statusMaquina, estado, MODELO_PADRAO, esquecer, transcreverAudio, sintetizarVoz } from './lib.js'
 import { addTarefa, listarTarefas, fazerTarefa, proximasVencer, marcarLembrado, separarPrazo } from './tarefas.js'
 import * as bravo from './brave.js'
 import { spawn } from 'node:child_process'
@@ -168,7 +168,7 @@ bot.command('modelo', ctx => {
   ctx.reply(`✅ Modelo trocado para ${nome}`)
 })
 
-bot.command('nota', ctx => {
+bot.command('nota', async ctx => {
   const texto = ctx.message.text.split(' ').slice(1).join(' ').trim()
   if (!texto) {
     return ctx.reply(
@@ -182,8 +182,8 @@ bot.command('nota', ctx => {
       'Sem # vai pro inbox pra organizar depois.'
     )
   }
-  const arquivo = salvarNota(texto)
-  ctx.reply(`📝 Salvo em ${arquivo}`)
+  const arquivo = await salvarNotaIntegrada(texto, 'telegram')
+  ctx.reply(`📝 Salvo no Obsidian + banco: ${arquivo}`)
 })
 
 /* ───────── TAREFAS ───────── */
@@ -319,7 +319,8 @@ bot.command('salvar', async ctx => {
     let final = arquivo
     if (fs.existsSync(final)) final = arquivo.replace(/\.md$/, `-${Date.now()}.md`)
     fs.writeFileSync(final, conteudo)
-    ctx.reply(`💾 Guarduei no cérebro:\n📄 .../03-recursos/da-web/${path.basename(final)}`)
+    import('./db.js').then(m => m.salvarNotaPG({ origem: 'web', arquivo: path.relative(CEREBRO_VAULT, final), texto: `# ${pag.titulo}\n${pag.url}\n\n${pag.texto.slice(0, 2000)}` })).catch(() => {})
+    ctx.reply(`💾 Guarduei no cérebro (Obsidian + banco):\n📄 .../03-recursos/da-web/${path.basename(final)}`)
   } catch (e) { ctx.reply(`⚠️ ${e.message}`).catch(() => {}) }
 })
 

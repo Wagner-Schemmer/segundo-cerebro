@@ -4,7 +4,7 @@
 // Recebe: textos (conversa IA + /nota), documentos, imagens e áudios → cerebro/
 // Envia:  qualquer automação solta um .json em ./fila-envio e o Ulton entrega
 
-import { estado, conversar, salvarNota, listarSkills, obterSkill, esquecer } from './lib.js'
+import { estado, conversar, salvarNota, salvarNotaIntegrada, listarSkills, obterSkill, esquecer } from './lib.js'
 import { transcrever, sintetizar, vozDisponivel } from './voz.js'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -344,7 +344,7 @@ async function conectar() {
           let resposta
           if (texto.startsWith('/nota')) {
             const conteudo = texto.slice(5).trim()
-            resposta = conteudo ? `📝 Salvo: ${salvarNota(conteudo)}` : 'Uso: /nota #area texto'
+            resposta = conteudo ? `📝 Salvo (Obsidian + banco): ${await salvarNotaIntegrada(conteudo, 'whatsapp')}` : 'Uso: /nota #area texto'
           } else {
             sock.sendPresenceUpdate('composing', chatId).catch(() => {})
             // se demorar demais, dá sinal de vida (máquina fraca às vezes leva minutos)

@@ -201,9 +201,10 @@ export async function conversar(id, texto, canal = 'chat') {  // memória autom�
   h.push({ role: 'user', content: texto })
   while (h.length > 16) h.shift()
 
+  const extraPG = await contextoPG(texto)
   const corpo = JSON.stringify({
     model: estado.modelo,
-    messages: [{ role: 'system', content: montarSistema(id) }, ...h],
+    messages: [{ role: 'system', content: montarSistema(id) + extraPG }, ...h],
     stream: false,
     keep_alive: process.env.OLLAMA_KEEP_ALIVE ?? '5m',
     options: { num_ctx: Number(process.env.OLLAMA_NUM_CTX ?? 2048) },
@@ -263,6 +264,25 @@ export function salvarNota(texto) {
   const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
   fs.appendFileSync(arquivo, `## ${hora}\n${corpo}\n\n`)
   return path.relative(CEREBRO, arquivo)
+}
+
+// Integrada: Obsidian (sempre) + Postgres (se online, fire-and-forget)
+export async function salvarNotaIntegrada(texto, origem = 'telegram', projeto = 'segundo-cerebro') {
+  const arquivo = salvarNota(texto)
+  import('./db.js').then(m => m.salvarNotaPG({ origem, arquivo, texto, projeto }))
+    .catch(() => {})
+  return arquivo
+}
+
+async function contextoPG(texto) {
+  try {
+    const m = await import('./db.js')
+    const ctx = await Promise.race([
+      m.buscarContextoPG(texto, 3),
+      new Promise(res => setTimeout(() => res(''), 900)),
+    ])
+    return ctx ? `\n\n## LEMBRETES DO BANCO (notas parecidas)\n${ctx}\n` : ''
+  } catch { return '' }
 }
 
 /* ───────────────────────── STATUS ───────────────────────── */
@@ -343,11 +363,21 @@ export async function statusMaquina() {
     modelos = j.models?.map(m => m.name).join(', ') || 'nenhum (rode: ollama pull qwen2.5:1.5b)'
   } catch { modelos = 'Ollama offline' }
   const skills = listarSkills()
+  let pgLinha = '🐘 PG: offline'
+  try {
+    const m = await import('./db.js')
+    const s = await Promise.race([
+      m.statusPG(),
+      new Promise(res => setTimeout(() => res({ erro: 'timeout' }), 1500)),
+    ])
+    pgLinha = s.erro ? `🐘 PG: offline (${String(s.erro).slice(0, 60)})` : `🐘 PG: ${s.projetos} projetos · ${s.notas} notas · ${s.tarefas_abertas} tarefas abertas`
+  } catch {}
   return `🧠 Modelo ativo: ${estado.modelo}
 💾 RAM: ${livre} / ${total} GB livres
 📦 Modelos: ${modelos}
 🎯 Skills: ${skills.map(s => s.titulo).join(', ') || 'nenhuma'}
-🗂️ Memória: ${lerMem('fatos').split('\n').filter(Boolean).length} fatos aprendidos`
+🗂️ Memória: ${lerMem('fatos').split('\n').filter(Boolean).length} fatos aprendidos
+${pgLinha}`
 }
 
 garantirMemoria()

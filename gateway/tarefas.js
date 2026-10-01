@@ -36,9 +36,14 @@ function renderMd() {
 }
 
 export function addTarefa(texto, prazo = null) {
-  const t = { id: tarefas.reduce((m, x) => Math.max(m, x.id), 0) + 1, texto, prazo, feita: false, lembrado: false }
+  const t = { id: tarefas.reduce((m, x) => Math.max(m, x.id), 0) + 1, texto, prazo, feita: false, lembrado: false, pg_id: null }
   tarefas.push(t)
   salvar()
+  // espelho Postgres (fire-and-forget)
+  import('./db.js').then(async m => {
+    t.pg_id = await m.addTarefaPG({ titulo: texto, prazo })
+    try { fs.writeFileSync(ARQ, JSON.stringify(tarefas, null, 2)) } catch {}
+  }).catch(() => {})
   // sync Notion Minhas tarefas (fire-and-forget)
   import('./notion.js').then(m=>{
     const prazoISO = prazo ? new Date(prazo).toISOString().slice(0,10) : null
@@ -53,7 +58,10 @@ export function listarTarefas() {
 
 export function fazerTarefa(id) {
   const t = tarefas.find(x => x.id === id && !x.feita)
-  if (t) { t.feita = true; salvar() }
+  if (t) {
+    t.feita = true; salvar()
+    import('./db.js').then(m => m.concluirTarefaPG(t.pg_id)).catch(() => {})
+  }
   return t
 }
 
