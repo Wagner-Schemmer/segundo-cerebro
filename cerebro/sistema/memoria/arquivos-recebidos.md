@@ -30,3 +30,4 @@
 .jpeg` (~/Downloads/databov-logo
 .jpeg) → `anexos/imagens/databov-logo
 .jpeg`
+- 03/10/2026, 11:27:45 — `servidor.py` (~/Área de trabalho/servidor.py) → `~/Documentos/Projetos/_inbox/servidor.py`
