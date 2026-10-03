@@ -98,7 +98,7 @@
     "texto": "[METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extens o - Atrasado (tarefa 28/09/2026)",
     "prazo": 1790553600000,
     "feita": false,
-    "lembrado": false,
+    "lembrado": true,
     "pg_id": "ca6535ab-e247-484f-8dea-624b0f681549"
   }
 ]
