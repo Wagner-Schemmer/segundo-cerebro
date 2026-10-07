@@ -32,3 +32,4 @@
 .jpeg`
 - 03/10/2026, 11:27:45 — `servidor.py` (~/Área de trabalho/servidor.py) → `~/Documentos/Projetos/_inbox/servidor.py`
 - 07/10/2026, 17:00:04 — `UC-264f2b13-58ac-4a32-8335-85fdaf864828.pdf` (~/Área de trabalho/UC-264f2b13-58ac-4a32-8335-85fdaf864828.pdf) → `anexos/apostilas-ebooks/UC-264f2b13-58ac-4a32-8335-85fdaf864828.pdf`
+- 07/10/2026, 17:19:15 — `Design sem nome.png` (~/Área de trabalho/Design sem nome.png) → `anexos/imagens/Design sem nome.png`
