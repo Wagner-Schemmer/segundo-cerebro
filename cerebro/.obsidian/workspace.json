@@ -4,19 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "8a73cfc62185c675",
+        "id": "13cfad2bd7f91f8f",
         "type": "tabs",
         "children": [
           {
-            "id": "826a0f5daf367508",
+            "id": "ad464b565c2a6c2e",
             "type": "leaf",
             "state": {
-              "type": "pdf",
-              "state": {
-                "file": "02-areas/faculdade/Aulas/iffar/BD/exercicos prontos/Atividade_02_-_Resolvida.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Atividade_02_-_Resolvida"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
             }
           }
         ]
@@ -81,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "de16a528a8963a8f",
@@ -184,12 +183,12 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "0b3e01d3b8dd5188",
+  "active": "ad464b565c2a6c2e",
   "lastOpenFiles": [
+    "02-areas/faculdade/Aulas/iffar/BD/exercicos prontos/Atividade_02_-_Resolvida.pdf",
     "🏠 Dashboard.md",
     "anexos/compactados/open-notebook-main.zip",
     "02-areas/faculdade/Aulas/iffar/BD/exercicos prontos/Exercicios_01_-_Resolvidos.pdf",
-    "02-areas/faculdade/Aulas/iffar/BD/exercicos prontos/Atividade_02_-_Resolvida.pdf",
     "02-areas/faculdade/Aulas/iffar/Calculo 1/funcao2-novo.pdf",
     "02-areas/faculdade/Aulas/iffar/Calculo 1/funcao1-resumido.pdf",
     "02-areas/faculdade/Aulas/iffar/Calculo 1/PDF_01_e_lista_01_-_Matrizes.pdf",
