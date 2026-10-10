@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-09-10
+atualizado: 2026-10-10
 tags: [faculdade, "banco de dados i"]
 ---
 
@@ -9,9 +9,8 @@ tags: [faculdade, "banco de dados i"]
 
 ## 📋 Atividades e prazos (via SIGAA)
 
-- 📝 **09/09/2026 23:59** — Atividade 04 - Modelagem conceitual (2)
-- 📝 **16/09/2026 23:59** — Atividade 05 - Mapeamento entre modelos
-- 🧪 **23/09/2026** — Avaliação: 1ª Avaliação
+- 📝 **14/10/2026 23:59** — Atividade 07 - DDL
+- 📝 **18/10/2026 23:59** — Atividade 08 - DDL: comandos ALTER E DROP
 
 ## 🔑 Conceitos-chave
 - 

@@ -100,5 +100,21 @@
     "feita": false,
     "lembrado": true,
     "pg_id": "ca6535ab-e247-484f-8dea-624b0f681549"
+  },
+  {
+    "id": 14,
+    "texto": "[BANCO DE DADOS I] Atividade 07 - DDL (tarefa 14/10/2026)",
+    "prazo": 1791936000000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "c2a8d125-93f3-46cb-b3a5-0f3e345209c1"
+  },
+  {
+    "id": 15,
+    "texto": "[BANCO DE DADOS I] Atividade 08 - DDL: comandos ALTER E DROP (tarefa 18/10/2026)",
+    "prazo": 1792281600000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "72735486-afbb-4c7b-a2af-230812566b40"
   }
 ]

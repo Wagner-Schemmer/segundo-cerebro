@@ -13,6 +13,8 @@
 - [ ] [BANCO DE DADOS I] Atividade 05 - Mapeamento entre modelos (tarefa 16/09/2026) 📅 15/09, 21:00 *(# 11)*
 - [ ] [BANCO DE DADOS I] Avaliação: 1ª Avaliação (avaliacao 23/09/2026) 📅 22/09, 21:00 *(# 12)*
 - [ ] [METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extens o - Atrasado (tarefa 28/09/2026) 📅 27/09, 21:00 *(# 13)*
+- [ ] [BANCO DE DADOS I] Atividade 07 - DDL (tarefa 14/10/2026) 📅 13/10, 21:00 *(# 14)*
+- [ ] [BANCO DE DADOS I] Atividade 08 - DDL: comandos ALTER E DROP (tarefa 18/10/2026) 📅 17/10, 21:00 *(# 15)*
 
 <details><summary>🗂️ Concluídas recentemente</summary>
 
