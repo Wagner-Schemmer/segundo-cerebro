@@ -1,5 +1,11 @@
 # 🧠 Segundo Cérebro — Wagner
 
+![Local](https://img.shields.io/badge/100%25-local-4ade80?style=for-the-badge&logo=homeassistant&logoColor=white)
+![Custo](https://img.shields.io/badge/custo-R$0-22c55e?style=for-the-badge&logo=cashapp&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-≤3B-000000?style=flat-square&logo=ollama&logoColor=white)
+![Obsidian](https://img.shields.io/badge/Obsidian-vault-7C3AED?style=flat-square&logo=obsidian&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-gateway-339933?style=flat-square&logo=node.js&logoColor=white)
+
 Sistema de IA pessoal **100% local e gratuito**: Telegram + WhatsApp → gateway Node.js → Ollama → base de conhecimento no Obsidian.
 
 ## Arquitetura
