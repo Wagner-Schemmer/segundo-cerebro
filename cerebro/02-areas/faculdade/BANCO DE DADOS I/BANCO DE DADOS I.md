@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-10-10
+atualizado: 2026-10-11
 tags: [faculdade, "banco de dados i"]
 ---
 
