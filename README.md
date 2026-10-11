@@ -8,9 +8,13 @@
 
 **🧠 Cérebro:** Lógica de Predicados — salvei em `faculdade/LÓGICA MATEMÁTICA/` com o PDF da aula.
 
-**🧑 Você:** me lembra às 8h de revisar o dashboard.
+**🧑 Você:** 🎙️ *[áudio de 40s]* transforma em tarefa para amanhã 8h.
 
-**🧠 Cérebro:** anotado. Te chamo no Telegram. E Relaxa: nada disso saiu desta máquina.
+**🧠 Cérebro:** transcrevi, criei a tarefa e te chamo no Telegram às 8h. E relaxa: nada disso saiu desta máquina.
+
+**🧑 Você:** e se cair a internet?
+
+**🧠 Cérebro:** continuo funcionando. Ollama é local, o vault é pasta. Só o WhatsApp precisa de rede.
 
 ---
 
@@ -23,6 +27,31 @@ Isso não é print de suporte — é o projeto: IA pessoal **100% local e gráti
 
 <a href="https://github.com/Wagner-Schemmer/segundo-cerebro"><img alt="Segundo Cérebro" src="docs/banner.svg" /></a>
 
+## Por dentro da ligação
+
+```mermaid
+flowchart LR
+    T[📱 Telegram] --> G[gateway<br/>Node.js]
+    W[💬 WhatsApp] --> G
+    G <--> O[(🦙 Ollama<br/>modelos ≤ 3B)]
+    G <--> V[(🗂️ Obsidian vault<br/>inbox → projetos → áreas)]
+```
+
+| Canal | Faz | Onde |
+|---|---|---|
+| **Telegram** | Conversa, lembretes, resumos, transcrição de áudio | ✓ bot local (Telegraf) |
+| **WhatsApp** | Foto, áudio e texto viram nota no vault | ✓ Evolution API |
+| **Ollama** | Responde sem nuvem (ex.: `qwen2.5:1.5b`) | ✓ `localhost` |
+| **Obsidian** | Guarda tudo em Markdown pesquisável | ✓ pasta `cerebro/` |
+
+## Por que não um app pronto?
+
+| Nuvem / assinatura | Aqui |
+|---|---|
+| Seus dados treinam modelo alheio | **Ficam no seu disco** |
+| Mensalidade | **R$ 0** |
+| Só funciona no app deles | **Funciona onde você já fala** |
+
 ## Entrar na conversa
 
 ```bash
@@ -31,19 +60,21 @@ cd gateway && cp .env.example .env   # colar TELEGRAM_BOT_TOKEN
 npm install && npm start
 ```
 
-Chaves no `.env` (nunca commitado). `docker-compose.yml` guardado para quando houver mais RAM ou um VPS.
+<details>
+<summary><b>Detalhes: variáveis do .env e reserva Docker</b></summary>
+
+- `TELEGRAM_BOT_TOKEN` (BotFather), `ANTHROPIC_API_KEY` / `GOOGLE_API_KEY` / `OPENROUTER_API_KEY` (opcionais, fase 2), `EVOLUTION_API_KEY` (WhatsApp), `DATABASE_URL` (hub Postgres).
+- `docker-compose.yml` guardado para quando houver mais RAM ou um VPS.
+
+</details>
 
 ## Onde mora cada memória
 
-`cerebro/` é o vault: `00-inbox` (chegou, processar) · `01-projetos` · `02-areas` (ex.: faculdade) · `03-recursos` · `04-arquivo`. `gateway/` é o bot. `workflows/`, as automações futuras.
+`cerebro/` é o vault: `00-inbox` · `01-projetos` · `02-areas` (ex.: faculdade) · `03-recursos` · `04-arquivo`. `gateway/` é o bot. `workflows/`, as automações futuras.
 
-## Por que não um app pronto?
+## Diário de bordo (star history)
 
-| Nuvem / assinatura | Aqui |
-|---|---|
-| Seus dados treinam modelo alheio | **Ficam no seu disco** |
-| Mensalidade | **R$ 0** |
-| Só funciona no app deles | **Funciona onde você já fala (Zap/Telegram)** |
+<a href="https://www.star-history.com/#Wagner-Schemmer/segundo-cerebro&Date"><img alt="Star History" src="https://api.star-history.com/svg?repos=Wagner-Schemmer/segundo-cerebro&type=Date" /></a>
 
 ---
 Feito por [Wagner Schemmer](https://wagner-port.vercel.app) · [Portfólio](https://wagner-port.vercel.app) · [LinkedIn](https://www.linkedin.com/in/wagner-schemmer-martins-46950627a)
