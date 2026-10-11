@@ -72,9 +72,5 @@ npm install && npm start
 
 `cerebro/` é o vault: `00-inbox` · `01-projetos` · `02-areas` (ex.: faculdade) · `03-recursos` · `04-arquivo`. `gateway/` é o bot. `workflows/`, as automações futuras.
 
-## Diário de bordo (star history)
-
-<a href="https://www.star-history.com/#Wagner-Schemmer/segundo-cerebro&Date"><img alt="Star History" src="https://api.star-history.com/svg?repos=Wagner-Schemmer/segundo-cerebro&type=Date" /></a>
-
 ---
 Feito por [Wagner Schemmer](https://wagner-port.vercel.app) · [Portfólio](https://wagner-port.vercel.app) · [LinkedIn](https://www.linkedin.com/in/wagner-schemmer-martins-46950627a)
