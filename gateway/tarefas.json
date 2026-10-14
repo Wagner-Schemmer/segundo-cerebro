@@ -106,7 +106,7 @@
     "texto": "[BANCO DE DADOS I] Atividade 07 - DDL (tarefa 14/10/2026)",
     "prazo": 1791936000000,
     "feita": false,
-    "lembrado": false,
+    "lembrado": true,
     "pg_id": "c2a8d125-93f3-46cb-b3a5-0f3e345209c1"
   },
   {
