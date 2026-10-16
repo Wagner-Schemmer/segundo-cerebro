@@ -34,3 +34,4 @@
 - 07/10/2026, 17:00:04 — `UC-264f2b13-58ac-4a32-8335-85fdaf864828.pdf` (~/Área de trabalho/UC-264f2b13-58ac-4a32-8335-85fdaf864828.pdf) → `anexos/apostilas-ebooks/UC-264f2b13-58ac-4a32-8335-85fdaf864828.pdf`
 - 07/10/2026, 17:19:15 — `Design sem nome.png` (~/Área de trabalho/Design sem nome.png) → `anexos/imagens/Design sem nome.png`
 - 11/10/2026, 09:45:37 — `pdfcraft-0.4.0-linux-x86_64.appimage` (~/Downloads/pdfcraft-0.4.0-linux-x86_64.appimage) → `~/Downloads/instaladores/pdfcraft-0.4.0-linux-x86_64.appimage`
+- 16/10/2026, 16:48:44 — `cadcraft-0.5.0-linux-x86_64.appimage` (~/Downloads/cadcraft-0.5.0-linux-x86_64.appimage) → `~/Downloads/instaladores/cadcraft-0.5.0-linux-x86_64.appimage`
