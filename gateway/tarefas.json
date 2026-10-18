@@ -114,7 +114,7 @@
     "texto": "[BANCO DE DADOS I] Atividade 08 - DDL: comandos ALTER E DROP (tarefa 18/10/2026)",
     "prazo": 1792281600000,
     "feita": false,
-    "lembrado": false,
+    "lembrado": true,
     "pg_id": "72735486-afbb-4c7b-a2af-230812566b40"
   }
 ]
