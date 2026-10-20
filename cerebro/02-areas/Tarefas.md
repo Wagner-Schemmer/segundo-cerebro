@@ -15,6 +15,7 @@
 - [ ] [METODOLOGIA EXTENSIONISTA] Entrega do Projeto de Extens o - Atrasado (tarefa 28/09/2026) 📅 27/09, 21:00 *(# 13)*
 - [ ] [BANCO DE DADOS I] Atividade 07 - DDL (tarefa 14/10/2026) 📅 13/10, 21:00 *(# 14)*
 - [ ] [BANCO DE DADOS I] Atividade 08 - DDL: comandos ALTER E DROP (tarefa 18/10/2026) 📅 17/10, 21:00 *(# 15)*
+- [ ] [BANCO DE DADOS I] Atividade 09 - Comandos DML (tarefa 21/10/2026) 📅 20/10, 21:00 *(# 16)*
 
 <details><summary>🗂️ Concluídas recentemente</summary>
 

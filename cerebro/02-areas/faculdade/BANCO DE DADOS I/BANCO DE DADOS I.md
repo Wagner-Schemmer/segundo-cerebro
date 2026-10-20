@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-10-11
+atualizado: 2026-10-20
 tags: [faculdade, "banco de dados i"]
 ---
 
@@ -11,6 +11,7 @@ tags: [faculdade, "banco de dados i"]
 
 - 📝 **14/10/2026 23:59** — Atividade 07 - DDL
 - 📝 **18/10/2026 23:59** — Atividade 08 - DDL: comandos ALTER E DROP
+- 📝 **21/10/2026 23:59** — Atividade 09 - Comandos DML
 
 ## 🔑 Conceitos-chave
 - 

@@ -116,5 +116,13 @@
     "feita": false,
     "lembrado": true,
     "pg_id": "72735486-afbb-4c7b-a2af-230812566b40"
+  },
+  {
+    "id": 16,
+    "texto": "[BANCO DE DADOS I] Atividade 09 - Comandos DML (tarefa 21/10/2026)",
+    "prazo": 1792540800000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "e51dbf06-ca0a-4ac0-b2f6-36d726eb74c7"
   }
 ]
