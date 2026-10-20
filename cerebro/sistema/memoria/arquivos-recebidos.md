@@ -35,3 +35,7 @@
 - 07/10/2026, 17:19:15 — `Design sem nome.png` (~/Área de trabalho/Design sem nome.png) → `anexos/imagens/Design sem nome.png`
 - 11/10/2026, 09:45:37 — `pdfcraft-0.4.0-linux-x86_64.appimage` (~/Downloads/pdfcraft-0.4.0-linux-x86_64.appimage) → `~/Downloads/instaladores/pdfcraft-0.4.0-linux-x86_64.appimage`
 - 16/10/2026, 16:48:44 — `cadcraft-0.5.0-linux-x86_64.appimage` (~/Downloads/cadcraft-0.5.0-linux-x86_64.appimage) → `~/Downloads/instaladores/cadcraft-0.5.0-linux-x86_64.appimage`
+- 20/10/2026, 07:47:30 — `Limites_e_continuidade-atualizado.pdf` (~/Downloads/Limites_e_continuidade-atualizado.pdf) → `anexos/apostilas-ebooks/Limites_e_continuidade-atualizado.pdf`
+- 20/10/2026, 07:47:34 — `DerivadasCC-atualizado.pdf` (~/Downloads/DerivadasCC-atualizado.pdf) → `anexos/apostilas-ebooks/DerivadasCC-atualizado.pdf`
+- 20/10/2026, 07:47:38 — `DerivadasCC2.pdf` (~/Downloads/DerivadasCC2.pdf) → `anexos/apostilas-ebooks/DerivadasCC2.pdf`
+- 20/10/2026, 07:47:42 — `F_rmulas_Derivadas_Integrais.pdf` (~/Downloads/F_rmulas_Derivadas_Integrais.pdf) → `anexos/apostilas-ebooks/F_rmulas_Derivadas_Integrais.pdf`
