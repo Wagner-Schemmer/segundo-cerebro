@@ -48,6 +48,8 @@ const PASTA_CODE_INBOX = os.homedir() + '/Documentos/Projetos/_inbox'
 
 const pendentes = new Map() // arquivo -> timer de estabilização
 
+const INDICE = path.join(CEREBRO, '📥 Recentes.md')
+
 function logArquivo(linha) {
   fs.mkdirSync(path.dirname(LOG), { recursive: true })
   if (!fs.existsSync(LOG)) {
@@ -55,6 +57,69 @@ function logArquivo(linha) {
   }
   const agora = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
   fs.appendFileSync(LOG, `- ${agora} — ${linha}\n`)
+}
+
+// ---------- índice "Recentes" (raiz do vault, um clique e acha tudo) ----------
+const ICONE = {
+  'apostilas-ebooks': '📕', slides: '📊', textos: '📄', 'videos-e-audios': '🎬',
+  imagens: '🖼️', planilhas: '📗', compactados: '🗜️', outros: '📁',
+}
+const LINHA_LOG = /^- (.+?) — `(.+?)` \((.+?)\) → `(.+?)`$/
+
+function reescreverIndice() {
+  try {
+    if (!fs.existsSync(LOG)) return
+    const linhas = fs.readFileSync(LOG, 'utf8').split('\n')
+    const itens = []
+    for (const l of linhas) {
+      const m = l.match(LINHA_LOG)
+      if (!m) continue
+      itens.push({ quando: m[1], nome: m[2], origem: m[3], destino: m[4] })
+    }
+    if (!itens.length) return
+
+    // agrupa por dia (dd/mm/aaaa)
+    const porDia = new Map()
+    for (const it of itens) {
+      const dia = (it.quando.match(/^(\d{2}\/\d{2}\/\d{4})/) || [, it.quando])[1]
+      if (!porDia.has(dia)) porDia.set(dia, [])
+      porDia.get(dia).push(it)
+    }
+
+    const L = []
+    L.push('# 📥 Recentes')
+    L.push('')
+    L.push('> Tudo que o organizador moveu, do mais novo pro mais velho.')
+    L.push('> O arquivo original nunca é apagado — só muda de lugar.')
+    L.push('')
+    L.push(`**${itens.length} arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)`)
+    L.push('')
+    L.push('---')
+    L.push('')
+    for (const [dia, lista] of porDia) {
+      L.push(`## 🗓️ ${dia}`)
+      L.push('')
+      for (const it of lista) {
+        const destino = it.destino
+        const dentroDoVault = !destino.startsWith('~/')
+        const pasta = destino.includes('/') ? destino.slice(0, destino.lastIndexOf('/')) : ''
+        const icone = ICONE[pasta.split('/').pop()] || '📁'
+        if (dentroDoVault) {
+          L.push(`- ${icone} [${it.nome}](${destino}) — \`${pasta}\``)
+        } else {
+          L.push(`- ${icone} \`${it.nome}\` → ${destino} *(fora do vault)*`)
+        }
+      }
+      L.push('')
+    }
+    L.push('---')
+    L.push('')
+    L.push('💡 **Dica:** este arquivo é gerado sozinho. Para achar algo antigo, use a busca do Obsidian (Ctrl+Shift+F) — ela varre o vault inteiro.')
+    L.push('')
+    fs.writeFileSync(INDICE, L.join('\n'))
+  } catch (e) {
+    console.error(`⚠️ índice: ${e.message}`)
+  }
 }
 
 function ignorado(caminho) {
@@ -104,6 +169,7 @@ function mover(caminho) {
     const relativo = alvo.foraDoVault ? final.replace(os.homedir(), '~') : final.replace(CEREBRO + '/', '')
     console.log(`📥 ${path.basename(caminho)} → ${relativo}`)
     logArquivo(`\`${path.basename(caminho)}\` (${caminho.replace(os.homedir(), '~')}) → \`${relativo}\``)
+    reescreverIndice()
   } catch (e) {
     console.error(`⚠️ ${path.basename(caminho)}: ${e.message}`)
   }
@@ -138,3 +204,5 @@ for (const pasta of VIGIADAS) {
 }
 
 console.log('🧹 Organizador no ar (silencioso)')
+reescreverIndice() // índice "📥 Recentes" na raiz do vault
+console.log(`📋 índice: ${INDICE.replace(CEREBRO + '/', '')}`)

@@ -39,3 +39,4 @@
 - 20/10/2026, 07:47:34 — `DerivadasCC-atualizado.pdf` (~/Downloads/DerivadasCC-atualizado.pdf) → `anexos/apostilas-ebooks/DerivadasCC-atualizado.pdf`
 - 20/10/2026, 07:47:38 — `DerivadasCC2.pdf` (~/Downloads/DerivadasCC2.pdf) → `anexos/apostilas-ebooks/DerivadasCC2.pdf`
 - 20/10/2026, 07:47:42 — `F_rmulas_Derivadas_Integrais.pdf` (~/Downloads/F_rmulas_Derivadas_Integrais.pdf) → `anexos/apostilas-ebooks/F_rmulas_Derivadas_Integrais.pdf`
+- 20/10/2026, 08:17:58 — `teste-recente.pdf` (~/Downloads/teste-recente.pdf) → `anexos/apostilas-ebooks/teste-recente.pdf`
