@@ -16,6 +16,8 @@
 - [ ] [BANCO DE DADOS I] Atividade 07 - DDL (tarefa 14/10/2026) 📅 13/10, 21:00 *(# 14)*
 - [ ] [BANCO DE DADOS I] Atividade 08 - DDL: comandos ALTER E DROP (tarefa 18/10/2026) 📅 17/10, 21:00 *(# 15)*
 - [ ] [BANCO DE DADOS I] Atividade 09 - Comandos DML (tarefa 21/10/2026) 📅 20/10, 21:00 *(# 16)*
+- [ ] [TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA] CORRE O DA AVALIA O 1 (tarefa 27/10/2026) 📅 26/10, 21:00 *(# 17)*
+- [ ] [METODOLOGIA EXTENSIONISTA] Entrega dos Resultados do Projeto de Exten o (tarefa 16/11/2026) 📅 15/11, 21:00 *(# 18)*
 
 <details><summary>🗂️ Concluídas recentemente</summary>
 

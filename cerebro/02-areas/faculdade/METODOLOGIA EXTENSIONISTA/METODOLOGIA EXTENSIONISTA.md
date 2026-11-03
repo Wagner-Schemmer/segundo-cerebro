@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-10-01
+atualizado: 2026-11-03
 tags: [faculdade, "metodologia extensionista"]
 ---
 
@@ -9,7 +9,7 @@ tags: [faculdade, "metodologia extensionista"]
 
 ## 📋 Atividades e prazos (via SIGAA)
 
-- 📝 **28/09/2026 23:00** — Entrega do Projeto de Extens o - Atrasado
+- 📝 **16/11/2026 23:59** — Entrega dos Resultados do Projeto de Exten o
 
 ## 🔑 Conceitos-chave
 - 
