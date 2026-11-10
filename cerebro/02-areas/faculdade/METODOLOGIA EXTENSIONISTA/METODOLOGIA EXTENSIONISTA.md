@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-11-03
+atualizado: 2026-11-10
 tags: [faculdade, "metodologia extensionista"]
 ---
 
