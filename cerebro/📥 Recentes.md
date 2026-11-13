@@ -3,7 +3,7 @@
 > Tudo que o organizador moveu, do mais novo pro mais velho.
 > O arquivo original nunca é apagado — só muda de lugar.
 
-**29 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
+**30 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
 
 ---
 
@@ -68,6 +68,10 @@
 
 - 📕 [📄 Apresentação STEAM (PDF).pdf](anexos/apostilas-ebooks/📄 Apresentação STEAM (PDF).pdf) — `anexos/apostilas-ebooks`
 - 🎬 [🎬 Apresentação STEAM (MP4).mp4](anexos/videos-e-audios/🎬 Apresentação STEAM (MP4).mp4) — `anexos/videos-e-audios`
+
+## 🗓️ 13/11/2026
+
+- 📊 [📊 Apresentação STEAM (DeckCraft).pptx](anexos/slides/📊 Apresentação STEAM (DeckCraft).pptx) — `anexos/slides`
 
 ---
 

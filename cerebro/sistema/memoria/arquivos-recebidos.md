@@ -42,3 +42,4 @@
 - 20/10/2026, 08:17:58 — `teste-recente.pdf` (~/Downloads/teste-recente.pdf) → `anexos/apostilas-ebooks/teste-recente.pdf`
 - 12/11/2026, 21:11:13 — `📄 Apresentação STEAM (PDF).pdf` (~/Área de trabalho/📄 Apresentação STEAM (PDF).pdf) → `anexos/apostilas-ebooks/📄 Apresentação STEAM (PDF).pdf`
 - 12/11/2026, 21:11:13 — `🎬 Apresentação STEAM (MP4).mp4` (~/Área de trabalho/🎬 Apresentação STEAM (MP4).mp4) → `anexos/videos-e-audios/🎬 Apresentação STEAM (MP4).mp4`
+- 13/11/2026, 09:15:57 — `📊 Apresentação STEAM (DeckCraft).pptx` (~/Área de trabalho/📊 Apresentação STEAM (DeckCraft).pptx) → `anexos/slides/📊 Apresentação STEAM (DeckCraft).pptx`
