@@ -3,7 +3,7 @@
 > Tudo que o organizador moveu, do mais novo pro mais velho.
 > O arquivo original nunca é apagado — só muda de lugar.
 
-**27 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
+**29 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
 
 ---
 
@@ -63,6 +63,11 @@
 - 📕 [DerivadasCC2.pdf](anexos/apostilas-ebooks/DerivadasCC2.pdf) — `anexos/apostilas-ebooks`
 - 📕 [F_rmulas_Derivadas_Integrais.pdf](anexos/apostilas-ebooks/F_rmulas_Derivadas_Integrais.pdf) — `anexos/apostilas-ebooks`
 - 📕 [teste-recente.pdf](anexos/apostilas-ebooks/teste-recente.pdf) — `anexos/apostilas-ebooks`
+
+## 🗓️ 12/11/2026
+
+- 📕 [📄 Apresentação STEAM (PDF).pdf](anexos/apostilas-ebooks/📄 Apresentação STEAM (PDF).pdf) — `anexos/apostilas-ebooks`
+- 🎬 [🎬 Apresentação STEAM (MP4).mp4](anexos/videos-e-audios/🎬 Apresentação STEAM (MP4).mp4) — `anexos/videos-e-audios`
 
 ---
 
