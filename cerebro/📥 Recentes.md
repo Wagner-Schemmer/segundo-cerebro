@@ -3,7 +3,7 @@
 > Tudo que o organizador moveu, do mais novo pro mais velho.
 > O arquivo original nunca é apagado — só muda de lugar.
 
-**41 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
+**43 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
 
 ---
 
@@ -83,6 +83,8 @@
 - 📕 [Apresentacao - PDF.pdf](anexos/apostilas-ebooks/Apresentacao - PDF.pdf) — `anexos/apostilas-ebooks`
 - 📄 [ROTEIRO.md](anexos/textos/ROTEIRO.md) — `anexos/textos`
 - 🖼️ [t4.png](anexos/imagens/t4.png) — `anexos/imagens`
+- 📊 [Apresentacao STEAM - PPTX.pptx](anexos/slides/Apresentacao STEAM - PPTX.pptx) — `anexos/slides`
+- 📕 [Apresentacao STEAM - PDF.pdf](anexos/apostilas-ebooks/Apresentacao STEAM - PDF.pdf) — `anexos/apostilas-ebooks`
 
 ---
 

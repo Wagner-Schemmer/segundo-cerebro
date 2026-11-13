@@ -54,3 +54,5 @@
 - 13/11/2026, 10:22:02 — `Apresentacao - PDF.pdf` (~/Área de trabalho/Apresentacao - PDF.pdf) → `anexos/apostilas-ebooks/Apresentacao - PDF.pdf`
 - 13/11/2026, 10:22:02 — `ROTEIRO.md` (~/Área de trabalho/ROTEIRO.md) → `anexos/textos/ROTEIRO.md`
 - 13/11/2026, 18:35:05 — `t4.png` (~/Documentos/t4.png) → `anexos/imagens/t4.png`
+- 13/11/2026, 19:13:20 — `Apresentacao STEAM - PPTX.pptx` (~/Área de trabalho/Apresentacao STEAM - PPTX.pptx) → `anexos/slides/Apresentacao STEAM - PPTX.pptx`
+- 13/11/2026, 19:13:20 — `Apresentacao STEAM - PDF.pdf` (~/Área de trabalho/Apresentacao STEAM - PDF.pdf) → `anexos/apostilas-ebooks/Apresentacao STEAM - PDF.pdf`
