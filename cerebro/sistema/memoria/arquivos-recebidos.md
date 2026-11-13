@@ -43,3 +43,5 @@
 - 12/11/2026, 21:11:13 — `📄 Apresentação STEAM (PDF).pdf` (~/Área de trabalho/📄 Apresentação STEAM (PDF).pdf) → `anexos/apostilas-ebooks/📄 Apresentação STEAM (PDF).pdf`
 - 12/11/2026, 21:11:13 — `🎬 Apresentação STEAM (MP4).mp4` (~/Área de trabalho/🎬 Apresentação STEAM (MP4).mp4) → `anexos/videos-e-audios/🎬 Apresentação STEAM (MP4).mp4`
 - 13/11/2026, 09:15:57 — `📊 Apresentação STEAM (DeckCraft).pptx` (~/Área de trabalho/📊 Apresentação STEAM (DeckCraft).pptx) → `anexos/slides/📊 Apresentação STEAM (DeckCraft).pptx`
+- 13/11/2026, 10:09:25 — `📋 ROTEIRO (imprimir).pdf` (~/Área de trabalho/📋 ROTEIRO (imprimir).pdf) → `anexos/apostilas-ebooks/📋 ROTEIRO (imprimir).pdf`
+- 13/11/2026, 10:09:25 — `📋 ROTEIRO (markdown).md` (~/Área de trabalho/📋 ROTEIRO (markdown).md) → `anexos/textos/📋 ROTEIRO (markdown).md`
