@@ -45,3 +45,7 @@
 - 13/11/2026, 09:15:57 — `📊 Apresentação STEAM (DeckCraft).pptx` (~/Área de trabalho/📊 Apresentação STEAM (DeckCraft).pptx) → `anexos/slides/📊 Apresentação STEAM (DeckCraft).pptx`
 - 13/11/2026, 10:09:25 — `📋 ROTEIRO (imprimir).pdf` (~/Área de trabalho/📋 ROTEIRO (imprimir).pdf) → `anexos/apostilas-ebooks/📋 ROTEIRO (imprimir).pdf`
 - 13/11/2026, 10:09:25 — `📋 ROTEIRO (markdown).md` (~/Área de trabalho/📋 ROTEIRO (markdown).md) → `anexos/textos/📋 ROTEIRO (markdown).md`
+- 13/11/2026, 10:15:47 — `Apresentacao STEAM - DeckCraft (editar).pptx` (~/Área de trabalho/Apresentacao STEAM - DeckCraft (editar).pptx) → `anexos/slides/Apresentacao STEAM - DeckCraft (editar).pptx`
+- 13/11/2026, 10:15:47 — `Apresentacao STEAM - slides em PDF.pdf` (~/Área de trabalho/Apresentacao STEAM - slides em PDF.pdf) → `anexos/apostilas-ebooks/Apresentacao STEAM - slides em PDF.pdf`
+- 13/11/2026, 10:15:47 — `ROTEIRO do apresentador - PDF.pdf` (~/Área de trabalho/ROTEIRO do apresentador - PDF.pdf) → `anexos/apostilas-ebooks/ROTEIRO do apresentador - PDF.pdf`
+- 13/11/2026, 10:15:47 — `ROTEIRO do apresentador - markdown.md` (~/Área de trabalho/ROTEIRO do apresentador - markdown.md) → `anexos/textos/ROTEIRO do apresentador - markdown.md`
