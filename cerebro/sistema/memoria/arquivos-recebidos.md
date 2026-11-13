@@ -53,3 +53,4 @@
 - 13/11/2026, 10:22:02 — `Apresentacao - DeckCraft.pptx` (~/Área de trabalho/Apresentacao - DeckCraft.pptx) → `anexos/slides/Apresentacao - DeckCraft.pptx`
 - 13/11/2026, 10:22:02 — `Apresentacao - PDF.pdf` (~/Área de trabalho/Apresentacao - PDF.pdf) → `anexos/apostilas-ebooks/Apresentacao - PDF.pdf`
 - 13/11/2026, 10:22:02 — `ROTEIRO.md` (~/Área de trabalho/ROTEIRO.md) → `anexos/textos/ROTEIRO.md`
+- 13/11/2026, 18:35:05 — `t4.png` (~/Documentos/t4.png) → `anexos/imagens/t4.png`
