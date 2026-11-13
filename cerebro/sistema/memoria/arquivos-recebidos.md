@@ -49,3 +49,7 @@
 - 13/11/2026, 10:15:47 — `Apresentacao STEAM - slides em PDF.pdf` (~/Área de trabalho/Apresentacao STEAM - slides em PDF.pdf) → `anexos/apostilas-ebooks/Apresentacao STEAM - slides em PDF.pdf`
 - 13/11/2026, 10:15:47 — `ROTEIRO do apresentador - PDF.pdf` (~/Área de trabalho/ROTEIRO do apresentador - PDF.pdf) → `anexos/apostilas-ebooks/ROTEIRO do apresentador - PDF.pdf`
 - 13/11/2026, 10:15:47 — `ROTEIRO do apresentador - markdown.md` (~/Área de trabalho/ROTEIRO do apresentador - markdown.md) → `anexos/textos/ROTEIRO do apresentador - markdown.md`
+- 13/11/2026, 10:22:02 — `ROTEIRO.pdf` (~/Área de trabalho/ROTEIRO.pdf) → `anexos/apostilas-ebooks/ROTEIRO.pdf`
+- 13/11/2026, 10:22:02 — `Apresentacao - DeckCraft.pptx` (~/Área de trabalho/Apresentacao - DeckCraft.pptx) → `anexos/slides/Apresentacao - DeckCraft.pptx`
+- 13/11/2026, 10:22:02 — `Apresentacao - PDF.pdf` (~/Área de trabalho/Apresentacao - PDF.pdf) → `anexos/apostilas-ebooks/Apresentacao - PDF.pdf`
+- 13/11/2026, 10:22:02 — `ROTEIRO.md` (~/Área de trabalho/ROTEIRO.md) → `anexos/textos/ROTEIRO.md`
