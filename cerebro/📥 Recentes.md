@@ -3,7 +3,7 @@
 > Tudo que o organizador moveu, do mais novo pro mais velho.
 > O arquivo original nunca é apagado — só muda de lugar.
 
-**43 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
+**44 arquivos organizados** · [log cru](sistema/memoria/arquivos-recebidos.md)
 
 ---
 
@@ -85,6 +85,10 @@
 - 🖼️ [t4.png](anexos/imagens/t4.png) — `anexos/imagens`
 - 📊 [Apresentacao STEAM - PPTX.pptx](anexos/slides/Apresentacao STEAM - PPTX.pptx) — `anexos/slides`
 - 📕 [Apresentacao STEAM - PDF.pdf](anexos/apostilas-ebooks/Apresentacao STEAM - PDF.pdf) — `anexos/apostilas-ebooks`
+
+## 🗓️ 15/11/2026
+
+- 🖼️ [IMG_2026-11-15-10-52-56-634.jpg](anexos/imagens/IMG_2026-11-15-10-52-56-634.jpg) — `anexos/imagens`
 
 ---
 

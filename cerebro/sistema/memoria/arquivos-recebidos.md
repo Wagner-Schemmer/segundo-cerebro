@@ -56,3 +56,4 @@
 - 13/11/2026, 18:35:05 — `t4.png` (~/Documentos/t4.png) → `anexos/imagens/t4.png`
 - 13/11/2026, 19:13:20 — `Apresentacao STEAM - PPTX.pptx` (~/Área de trabalho/Apresentacao STEAM - PPTX.pptx) → `anexos/slides/Apresentacao STEAM - PPTX.pptx`
 - 13/11/2026, 19:13:20 — `Apresentacao STEAM - PDF.pdf` (~/Área de trabalho/Apresentacao STEAM - PDF.pdf) → `anexos/apostilas-ebooks/Apresentacao STEAM - PDF.pdf`
+- 15/11/2026, 11:33:07 — `IMG_2026-11-15-10-52-56-634.jpg` (~/Downloads/IMG_2026-11-15-10-52-56-634.jpg) → `anexos/imagens/IMG_2026-11-15-10-52-56-634.jpg`
