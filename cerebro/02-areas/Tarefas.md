@@ -18,6 +18,10 @@
 - [ ] [BANCO DE DADOS I] Atividade 09 - Comandos DML (tarefa 21/10/2026) 📅 20/10, 21:00 *(# 16)*
 - [ ] [TÓPICOS DE ÁLGEBRA LINEAR E GEOMETRIA ANALÍTICA] CORRE O DA AVALIA O 1 (tarefa 27/10/2026) 📅 26/10, 21:00 *(# 17)*
 - [ ] [METODOLOGIA EXTENSIONISTA] Entrega dos Resultados do Projeto de Exten o (tarefa 16/11/2026) 📅 15/11, 21:00 *(# 18)*
+- [ ] [BANCO DE DADOS I] Avalia o II - DDL e DML (tarefa 18/11/2026) 📅 17/11, 21:00 *(# 19)*
+- [ ] [INGLÊS TÉCNICO] abstract - PPI (tarefa 23/11/2026) 📅 22/11, 21:00 *(# 20)*
+- [ ] [INGLÊS TÉCNICO] Avaliação: 1ª Avaliação (avaliacao 30/11/2026) 📅 29/11, 21:00 *(# 21)*
+- [ ] [METODOLOGIA EXTENSIONISTA] Entrega dos Resultados do Projeto de Exten o - atrasado (tarefa 30/11/2026) 📅 29/11, 21:00 *(# 22)*
 
 <details><summary>🗂️ Concluídas recentemente</summary>
 

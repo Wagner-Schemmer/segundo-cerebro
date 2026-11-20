@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-09-10
+atualizado: 2026-11-20
 tags: [faculdade, "inglês técnico"]
 ---
 
@@ -9,8 +9,8 @@ tags: [faculdade, "inglês técnico"]
 
 ## 📋 Atividades e prazos (via SIGAA)
 
-- 📝 **07/09/2026 23:59** — Article science daily
-- 📝 **07/09/2026 23:59** — Respostas atividade figura-legenda
+- 📝 **23/11/2026 23:59** — abstract - PPI
+- 🧪 **30/11/2026** — Avaliação: 1ª Avaliação
 
 ## 🔑 Conceitos-chave
 - 

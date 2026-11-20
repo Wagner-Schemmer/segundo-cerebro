@@ -140,5 +140,37 @@
     "feita": false,
     "lembrado": true,
     "pg_id": "41b4c4a9-66a0-4dea-b82c-ad6a8abdccd6"
+  },
+  {
+    "id": 19,
+    "texto": "[BANCO DE DADOS I] Avalia o II - DDL e DML (tarefa 18/11/2026)",
+    "prazo": 1794960000000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "49214920-5fe8-4181-91be-07cc28179722"
+  },
+  {
+    "id": 20,
+    "texto": "[INGLÊS TÉCNICO] abstract - PPI (tarefa 23/11/2026)",
+    "prazo": 1795392000000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "13ea7d87-9d6f-4e76-b554-093bef80e5bc"
+  },
+  {
+    "id": 21,
+    "texto": "[INGLÊS TÉCNICO] Avaliação: 1ª Avaliação (avaliacao 30/11/2026)",
+    "prazo": 1795996800000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "73e931d6-2912-4b0d-8e3b-283cfbbc46d5"
+  },
+  {
+    "id": 22,
+    "texto": "[METODOLOGIA EXTENSIONISTA] Entrega dos Resultados do Projeto de Exten o - atrasado (tarefa 30/11/2026)",
+    "prazo": 1795996800000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "62fef01c-2e95-4367-89cd-d01272422060"
   }
 ]
