@@ -146,7 +146,7 @@
     "texto": "[BANCO DE DADOS I] Avalia o II - DDL e DML (tarefa 18/11/2026)",
     "prazo": 1794960000000,
     "feita": false,
-    "lembrado": false,
+    "lembrado": true,
     "pg_id": "49214920-5fe8-4181-91be-07cc28179722"
   },
   {
@@ -154,7 +154,7 @@
     "texto": "[INGLÊS TÉCNICO] abstract - PPI (tarefa 23/11/2026)",
     "prazo": 1795392000000,
     "feita": false,
-    "lembrado": false,
+    "lembrado": true,
     "pg_id": "13ea7d87-9d6f-4e76-b554-093bef80e5bc"
   },
   {
