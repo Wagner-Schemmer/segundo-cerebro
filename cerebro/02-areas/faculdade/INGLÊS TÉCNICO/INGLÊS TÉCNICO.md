@@ -1,7 +1,7 @@
 ---
 tipo: materia
 sigaa: true
-atualizado: 2026-11-20
+atualizado: 2026-11-26
 tags: [faculdade, "inglês técnico"]
 ---
 

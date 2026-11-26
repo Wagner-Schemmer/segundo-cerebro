@@ -172,5 +172,13 @@
     "feita": false,
     "lembrado": false,
     "pg_id": "62fef01c-2e95-4367-89cd-d01272422060"
+  },
+  {
+    "id": 23,
+    "texto": "[BANCO DE DADOS I] Atividade 10 - Comando SELECT (tarefa 02/12/2026)",
+    "prazo": 1796169600000,
+    "feita": false,
+    "lembrado": false,
+    "pg_id": "625faa25-ebdd-4be6-bc51-80c5eb69784b"
   }
 ]

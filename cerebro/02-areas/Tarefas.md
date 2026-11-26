@@ -22,6 +22,7 @@
 - [ ] [INGLÊS TÉCNICO] abstract - PPI (tarefa 23/11/2026) 📅 22/11, 21:00 *(# 20)*
 - [ ] [INGLÊS TÉCNICO] Avaliação: 1ª Avaliação (avaliacao 30/11/2026) 📅 29/11, 21:00 *(# 21)*
 - [ ] [METODOLOGIA EXTENSIONISTA] Entrega dos Resultados do Projeto de Exten o - atrasado (tarefa 30/11/2026) 📅 29/11, 21:00 *(# 22)*
+- [ ] [BANCO DE DADOS I] Atividade 10 - Comando SELECT (tarefa 02/12/2026) 📅 01/12, 21:00 *(# 23)*
 
 <details><summary>🗂️ Concluídas recentemente</summary>
 
